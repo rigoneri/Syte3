@@ -1,7 +1,6 @@
 .page {
     display: grid;
     grid-template-columns: 34% auto;
-    animation: fadeIn 200ms ease-in backwards;
 }
 
 .profile {
@@ -40,7 +39,14 @@
     border-radius: 40px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
     z-index: 2;
-    animation: scaleIn 350ms;
+}
+
+:global(.fade-enter-active) .profile .picture {
+    animation: scaleIn 350ms 1500ms;
+}
+
+:global(.fade-exit) .profile .picture {
+    animation: scaleIn 350ms reverse;
 }
 
 .picture img {
@@ -57,7 +63,14 @@
     top: 157px;
     left: 120px;
     z-index: 2;
-    animation: scaleIn 500ms;
+}
+
+:global(.fade-enter-active) .profile h2 {
+    animation: scaleIn 500ms 1500ms;
+}
+
+:global(.fade-exit) .profile h2 {
+    animation: scaleIn 350ms reverse;
 }
 
 .profile .username {
@@ -65,7 +78,14 @@
     top: 193px;
     left: 120px;
     z-index: 2;
-    animation: scaleIn 500ms;
+}
+
+:global(.fade-enter-active) .profile .username {
+    animation: scaleIn 500ms 1500ms;
+}
+
+:global(.fade-exit) .profile .username {
+    animation: scaleIn 350ms reverse;
 }
 
 .profile ul.stats {
@@ -84,7 +104,14 @@
     font-size: 12px;
     line-height: 20px;
     flex: 1 1 auto;
-    animation: scaleIn 500ms;
+}
+
+:global(.fade-enter-active) ul.stats li {
+    animation: scaleIn 500ms 1500ms;
+}
+
+:global(.fade-exit) ul.stats li {
+    animation: scaleIn 350ms reverse;
 }
 
 .profile ul li strong {
@@ -101,13 +128,28 @@
     animation: moveIn 500ms;
 }
 
+:global(.fade-enter-active) .profile p {
+    animation: moveIn 500ms 1500ms;
+}
+
+:global(.fade-exit) .profile p {
+    animation: moveOut 350ms;
+}
+
 .profile h3 {
     position: relative;
     margin: 0;
     font-size: 16px;
     line-height: 28px;
     font-weight: 400;
-    animation: moveIn 500ms;
+}
+
+:global(.fade-enter-active) .profile h3 {
+    animation: moveIn 500ms 1500ms;
+}
+
+:global(.fade-exit) .profile h3 {
+    animation: moveOut 350ms;
 }
 
 .photos {
@@ -125,7 +167,14 @@
     cursor: pointer;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
     transition: 320ms ease-out;
-    animation: halfScaleIn 500ms;
+}
+
+:global(.fade-enter-active) .profile li {
+    animation: halfScaleIn 500ms 1500ms;
+}
+
+:global(.fade-exit) .profile li {
+    animation: halfScaleIn 350ms reverse;
 }
 
 .photos li:nth-child(4) {
@@ -251,12 +300,47 @@
     pointer-events: none;
 }
 
-.tweets ul li:nth-child(-n + 10) .avatar {
-    animation: scaleIn 350ms;
+:global(.fade-enter-active) .tweets ul li:nth-child(-n + 10) .avatar {
+    animation: scaleIn 350ms 1500ms;
 }
 
-.tweets ul li:nth-child(-n + 10) .content {
-    animation: moveIn 400ms;
+:global(.fade-exit) .tweets ul li:nth-child(-n + 10) .avatar {
+    animation: scaleIn 350ms reverse;
+}
+
+:global(.fade-enter-active) .tweets ul li:nth-child(-n + 10) .content {
+    animation: moveIn 400ms 1500ms;
+}
+
+:global(.fade-exit) .tweets ul li:nth-child(-n + 10) .content {
+    animation: moveOut 350ms;
+}
+
+@media (max-width: 900px) {
+    .page {
+        grid-template-columns: 40% auto;
+    }
+}
+
+@media (max-width: 700px) {
+    .page {
+        display: block;
+    }
+
+    .profile {
+        padding: 40px 0;
+    }
+
+    .tweets {
+        padding: 0 0 40px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .page {
+        margin: 20px 10px;
+        position: relative;
+    }
 }
 
 @keyframes fadeIn {
@@ -302,5 +386,17 @@
     100% {
         left: 0px;
         opacity: 1;
+    }
+}
+
+@keyframes moveOut {
+    0% {
+        left: 0;
+        opacity: 1;
+    }
+
+    100% {
+        left: 20px;
+        opacity: 0;
     }
 }

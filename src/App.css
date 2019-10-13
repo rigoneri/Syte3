@@ -1,32 +1,59 @@
-.App {
+.app {
+    display: flex;
     width: 95%;
     max-width: 1140px;
     position: relative;
     margin: 0 auto;
 }
 
-.AppContent {
+.app-content {
     margin-left: 21%;
     position: relative;
+    flex: 1 1 auto;
+}
+
+.routes {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+.fade-enter {
+    opacity: 0;
+}
+
+.fade-enter.fade-enter-active {
+    opacity: 1;
+    transition: opacity 350ms ease-in 1600ms;
+}
+
+.fade-exit {
+    opacity: 1;
+}
+
+.fade-exit.fade-exit-active {
+    opacity: 0;
+    transition: opacity 350ms ease-out;
 }
 
 @media (max-width: 1035px) {
-    .App {
+    .app {
         width: 100%;
         padding: 0 30px;
     }
 
-    .AppContent {
+    .app-content {
         margin-left: 80px;
     }
 }
 
 @media (max-width: 480px) {
-    .App {
+    .app {
         padding: 0;
     }
 
-    .AppContent {
+    .app-content {
         margin-left: 0;
         padding: 20px 10px;
     }

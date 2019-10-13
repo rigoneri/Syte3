@@ -1,34 +1,40 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import { Logo } from '../../components/Icons'
 import styles from './Nav.module.css'
 
-const Nav = ({ handleOpened }) => {
+const Nav = ({ handleOpened, opened }) => {
+    const handleClick = () => {
+        if (opened) {
+            handleOpened()
+        }
+    }
+
     return (
         <Fragment>
             <nav>
                 <ul className={styles.nav}>
-                    <NavItem to="Twitter" />
-                    <NavItem to="Github" />
-                    <NavItem to="Dribbble" />
-                    <NavItem to="Spotify" />
-                    <NavItem to="Instagram" />
-                    <NavItem to="YouTube" />
-                    <NavItem to="Foursquare" />
+                    <NavItem to="Twitter" handleClick={handleClick} />
+                    <NavItem to="Github" handleClick={handleClick} />
+                    <NavItem to="Dribbble" handleClick={handleClick} />
+                    <NavItem to="Spotify" handleClick={handleClick} />
+                    <NavItem to="Instagram" handleClick={handleClick} />
+                    <NavItem to="YouTube" handleClick={handleClick} />
+                    <NavItem to="Foursquare" handleClick={handleClick} />
                 </ul>
                 <a href="https://github.com/rigoneri/Syte2" className={styles.about}>
                     About this site
                 </a>
             </nav>
-            <NavButton handleOpened={handleOpened} />
+            <NavButton handleClick={handleOpened} opened={opened} />
         </Fragment>
     )
 }
 
-const NavItem = ({ to }) => {
+const NavItem = ({ to, handleClick }) => {
     return (
         <li key={to}>
-            <Link to={`/${to.toLowerCase()}`}>
+            <Link to={`/${to.toLowerCase()}`} onClick={handleClick}>
                 <Logo type={to} />
                 <span className={styles.link}>{to}</span>
             </Link>
@@ -36,20 +42,13 @@ const NavItem = ({ to }) => {
     )
 }
 
-const NavButton = ({ handleOpened }) => {
-    let [opened, setOpened] = useState(false)
-
-    const handleOnClick = () => {
-        setOpened(!opened)
-        handleOpened(!opened)
-    }
-
+const NavButton = ({ handleClick, opened }) => {
     return (
-        <span className={`${styles.navButton} ${opened ? styles.opened : ''}`} onClick={handleOnClick}>
+        <button className={`${styles.navButton} ${opened ? styles.opened : ''}`} onClick={handleClick}>
             <span className={styles.bar1}></span>
             <span className={styles.bar2}></span>
             <span className={styles.bar3}></span>
-        </span>
+        </button>
     )
 }
 

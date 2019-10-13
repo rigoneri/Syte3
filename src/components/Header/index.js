@@ -21,6 +21,7 @@ export default function Header() {
                 handleOpened={() => {
                     setOpened(!opened)
                 }}
+                opened={opened}
             />
         </header>
     )

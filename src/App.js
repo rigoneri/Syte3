@@ -8,7 +8,7 @@ import './App.css'
 function App() {
     return (
         <BrowserRouter>
-            <div className="App">
+            <div className="app">
                 <Header />
                 <AppContent />
             </div>
@@ -20,38 +20,38 @@ function AppContent() {
     let location = useLocation()
 
     return (
-        <div className="AppContent">
-            {/* <TransitionGroup>
-                <CSSTransition key={location.key} classNames="fade" timeout={5000}> */}
-            <Switch location={location}>
-                <Route exact path="/">
-                    <Home />
-                </Route>
-                <Route path="/twitter">
-                    <Twitter />
-                </Route>
-                <Route path="/dribbble">
-                    <Dribbble />
-                </Route>
-                <Route path="/foursquare">
-                    <Foursquare />
-                </Route>
-                <Route path="/github">
-                    <Github />
-                </Route>
-                <Route path="/instagram">
-                    <Instagram />
-                </Route>
-                <Route path="/spotify">
-                    <Spotify />
-                </Route>
-                <Route path="/youtube">
-                    <YouTube />
-                </Route>
-            </Switch>
-            {/* </CSSTransition>
-            </TransitionGroup> */}
-        </div>
+        <TransitionGroup className="app-content">
+            <CSSTransition key={location.key} classNames="fade" timeout={{ enter: 2000, exit: 400 }}>
+                <section className="routes">
+                    <Switch location={location}>
+                        <Route exact path="/">
+                            <Home />
+                        </Route>
+                        <Route path="/twitter">
+                            <Twitter />
+                        </Route>
+                        <Route path="/dribbble">
+                            <Dribbble />
+                        </Route>
+                        <Route path="/foursquare">
+                            <Foursquare />
+                        </Route>
+                        <Route path="/github">
+                            <Github />
+                        </Route>
+                        <Route path="/instagram">
+                            <Instagram />
+                        </Route>
+                        <Route path="/spotify">
+                            <Spotify />
+                        </Route>
+                        <Route path="/youtube">
+                            <YouTube />
+                        </Route>
+                    </Switch>
+                </section>
+            </CSSTransition>
+        </TransitionGroup>
     )
 }
 

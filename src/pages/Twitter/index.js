@@ -1,5 +1,4 @@
 import React, { Fragment, useState, useEffect } from 'react'
-import Loading from '../../components/Loading'
 import Profile from './Profile'
 import Tweets from './Tweets'
 import styles from './Twitter.module.css'
