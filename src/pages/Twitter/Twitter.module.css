@@ -1,11 +1,12 @@
 .page {
-    display: flex;
+    display: grid;
+    grid-template-columns: 34% auto;
     animation: fadeIn 200ms ease-in backwards;
 }
 
 .profile {
-    width: 34%;
     padding: 40px 0;
+    grid-column: 1;
 }
 
 .banner {
@@ -15,10 +16,8 @@
     margin-bottom: 40px;
     border-radius: 4px;
     overflow: hidden;
-}
-
-.banner img {
-    width: 100%;
+    background-size: cover;
+    background-position: 50% 50%;
 }
 
 .bannerShadow {
@@ -146,7 +145,7 @@
 }
 
 .tweets {
-    flex: 1 1 auto;
+    grid-column: 2;
     padding: 40px 0 40px 40px;
 }
 
@@ -202,7 +201,7 @@
     margin: 0;
     font-size: 14px;
     line-height: 26px;
-    font-weight: 400;
+    font-weight: 500;
 }
 
 .tweets h4 a {
@@ -219,10 +218,6 @@
     color: var(--alt-text-color);
     font-size: 12px;
     margin-left: 10px;
-}
-
-.tweets p {
-    margin: 0 0 10px 0;
 }
 
 .tweets ul.pictures li {

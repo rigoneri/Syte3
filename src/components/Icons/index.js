@@ -12,6 +12,17 @@ import { ReactComponent as FacebookLogo } from './FacebookLogo.svg'
 import { ReactComponent as FlickrLogo } from './FlickrLogo.svg'
 import { ReactComponent as LinkedInLogo } from './LinkedInLogo.svg'
 import { ReactComponent as PlayLogo } from './PlayLogo.svg'
+import { ReactComponent as StarIcon } from './StarIcon.svg'
+import { ReactComponent as GitBranchIcon } from './GitBranchIcon.svg'
+import { ReactComponent as GitClosedIcon } from './GitClosedIcon.svg'
+import { ReactComponent as GitCommentIcon } from './GitCommentIcon.svg'
+import { ReactComponent as GitCommitIcon } from './GitCommitIcon.svg'
+import { ReactComponent as GitMergeIcon } from './GitMergeIcon.svg'
+import { ReactComponent as GitOpenedIcon } from './GitOpenedIcon.svg'
+import { ReactComponent as GitReopenedIcon } from './GitReopenedIcon.svg'
+import { ReactComponent as GitRepoIcon } from './GitRepoIcon.svg'
+import { ReactComponent as GitTagIcon } from './GitTagIcon.svg'
+import { ReactComponent as GitPRIcon } from './GitPRIcon.svg'
 
 const Logo = ({ type }) => {
     switch (type) {
@@ -42,4 +53,33 @@ const Logo = ({ type }) => {
     }
 }
 
-export { Logo, PlayLogo }
+const GitIcons = ({ type }) => {
+    switch (type) {
+        case 'git-branch':
+            return <GitBranchIcon />
+        case 'git-stars':
+            return <StarIcon />
+        case 'git-commit':
+            return <GitCommitIcon />
+        case 'git-merge':
+            return <GitMergeIcon />
+        case 'git-pull':
+            return <GitPRIcon />
+        case 'git-repo':
+            return <GitRepoIcon />
+        case 'git-issue-closed':
+            return <GitClosedIcon />
+        case 'git-issue':
+            return <GitOpenedIcon />
+        case 'git-issue-reopened':
+            return <GitReopenedIcon />
+        case 'git-tag':
+            return <GitTagIcon />
+        case 'git-comment':
+            return <GitCommentIcon />
+        default:
+            break
+    }
+}
+
+export { Logo, PlayLogo, GitIcons }

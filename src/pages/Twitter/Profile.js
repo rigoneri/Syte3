@@ -1,11 +1,11 @@
-import React, { Fragment } from 'react'
+import React from 'react'
+import Photos from './Photos'
 import styles from './Twitter.module.css'
 
 export default function Profile({ user }) {
     return (
-        <Fragment>
-            <div className={styles.banner}>
-                <img src={user.banner} alt="Banner" />
+        <div className={styles.profile}>
+            <div className={styles.banner} style={{ backgroundImage: `url(${user.banner})` }}>
                 <span className={styles.bannerShadow} />
             </div>
             <a href={user.url} className={styles.picture}>
@@ -27,6 +27,7 @@ export default function Profile({ user }) {
                     Followers <strong>{user.followers}</strong>
                 </li>
             </ul>
-        </Fragment>
+            {user.pictures && <Photos username={user.username} photos={user.pictures} />}
+        </div>
     )
 }
