@@ -1,0 +1,219 @@
+.nav {
+    list-style: none;
+    margin: 20px 0;
+    padding: 0;
+}
+
+.nav li {
+    padding: 10px 13px;
+}
+
+.nav a {
+    display: flex;
+}
+
+.nav svg {
+    width: 26px;
+    height: 26px;
+    margin: 2px 0;
+    fill: var(--primary-color);
+    opacity: 0.7;
+    transition: all 320ms ease-out;
+}
+
+.nav li:hover svg {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+.link {
+    line-height: 30px;
+    margin-left: 15px;
+    position: relative;
+    opacity: 0.7;
+    transition: all 320ms ease-out;
+}
+
+.nav li:hover .link {
+    opacity: 1;
+}
+
+.navButton:active {
+    opacity: 0.5;
+}
+
+.about {
+    display: inline-block;
+    position: absolute;
+    margin: 20px;
+    bottom: 30px;
+    font-size: 12px;
+    opacity: 0.7;
+    transition: all 320ms ease-out;
+    animation: fadeIn 500ms ease-in 1200ms backwards;
+}
+
+.about:hover {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+@media (max-width: 1035px) {
+    .nav a span {
+        display: none;
+    }
+
+    .about {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav {
+        margin: 0 0 20px 0;
+    }
+
+    .nav li {
+        padding: 10px 20px;
+    }
+
+    .nav a span {
+        display: inline;
+    }
+
+    .navButton {
+        position: absolute;
+        left: 0;
+        top: 10px;
+        margin: 0 5px;
+        padding: 10px;
+        z-index: 1;
+        cursor: pointer;
+    }
+
+    .navButton span {
+        display: block;
+        width: 24px;
+        height: 1px;
+        margin-bottom: 4px;
+        background-color: var(--text-color);
+        transition: all 200ms ease-in-out;
+    }
+
+    .navButton.opened {
+        top: 13px;
+    }
+
+    .navButton.opened .bar1 {
+        transform: rotate(45deg);
+    }
+
+    .navButton.opened .bar2 {
+        opacity: 0;
+    }
+
+    .navButton.opened .bar3 {
+        margin-top: -10px;
+        transform: rotate(-45deg);
+    }
+}
+
+@media (max-height: 600px) {
+    .about {
+        display: none;
+    }
+
+    .nav {
+        margin-top: 10px;
+    }
+
+    .nav li {
+        padding: 7px 10px;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0.7;
+    }
+}
+
+@keyframes scaleIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.nav li:nth-child(1) svg {
+    animation: scaleIn 450ms ease-out 100ms 1 backwards;
+}
+
+.nav li:nth-child(1) .link {
+    animation: fadeIn 450ms ease-out 100ms 1 backwards;
+}
+
+.nav li:nth-child(2) svg {
+    animation: scaleIn 450ms ease-out 200ms 1 backwards;
+}
+
+.nav li:nth-child(2) .link {
+    animation: fadeIn 450ms ease-out 200ms 1 backwards;
+}
+
+.nav li:nth-child(3) svg {
+    animation: scaleIn 450ms ease-out 300ms 1 backwards;
+}
+
+.nav li:nth-child(3) .link {
+    animation: fadeIn 450ms ease-out 300ms 1 backwards;
+}
+
+.nav li:nth-child(4) svg {
+    animation: scaleIn 450ms ease-out 400ms 1 backwards;
+}
+
+.nav li:nth-child(4) .link {
+    animation: fadeIn 450ms ease-out 400ms 1 backwards;
+}
+
+.nav li:nth-child(5) svg {
+    animation: scaleIn 450ms ease-out 500ms 1 backwards;
+}
+
+.nav li:nth-child(5) .link {
+    animation: fadeIn 450ms ease-out 500ms 1 backwards;
+}
+
+.nav li:nth-child(6) svg {
+    animation: scaleIn 450ms ease-out 600ms 1 backwards;
+}
+
+.nav li:nth-child(6) .link {
+    animation: fadeIn 450ms ease-out 600ms 1 backwards;
+}
+
+.nav li:nth-child(7) svg {
+    animation: scaleIn 450ms ease-out 700ms 1 backwards;
+}
+
+.nav li:nth-child(7) .link {
+    animation: fadeIn 450ms ease-out 700ms 1 backwards;
+}
+
+.nav li:nth-child(8) svg {
+    animation: scaleIn 450ms ease-out 800ms 1 backwards;
+}
+
+.nav li:nth-child(8) .link {
+    animation: fadeIn 450ms ease-out 800ms 1 backwards;
+}

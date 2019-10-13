@@ -1,0 +1,311 @@
+.page {
+    display: flex;
+    animation: fadeIn 200ms ease-in backwards;
+}
+
+.profile {
+    width: 34%;
+    padding: 40px 0;
+}
+
+.banner {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    margin-bottom: 40px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.banner img {
+    width: 100%;
+}
+
+.bannerShadow {
+    width: 100%;
+    height: 150px;
+    position: absolute;
+    display: block;
+    top: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.6) 100%);
+}
+
+.profile .picture {
+    display: inline-block;
+    position: absolute;
+    top: 140px;
+    left: 20px;
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+    border-radius: 40px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+    z-index: 2;
+    animation: scaleIn 350ms;
+}
+
+.picture img {
+    width: 80px;
+    height: 80px;
+}
+
+.profile h2 {
+    position: absolute;
+    margin: 0;
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 400;
+    top: 157px;
+    left: 120px;
+    z-index: 2;
+    animation: scaleIn 500ms;
+}
+
+.profile .username {
+    position: absolute;
+    top: 193px;
+    left: 120px;
+    z-index: 2;
+    animation: scaleIn 500ms;
+}
+
+.profile ul.stats {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    margin-bottom: 30px;
+    background-color: var(--background-color-dark);
+    border-radius: 4px;
+}
+
+.profile ul.stats li {
+    text-align: center;
+    padding: 10px 0;
+    font-size: 12px;
+    line-height: 20px;
+    flex: 1 1 auto;
+    animation: scaleIn 500ms;
+}
+
+.profile ul li strong {
+    font-weight: 300;
+    color: var(--primary-color);
+    display: block;
+    font-size: 16px;
+    line-height: 26px;
+}
+
+.profile p {
+    position: relative;
+    padding: 10px 0;
+    animation: moveIn 500ms;
+}
+
+.profile h3 {
+    position: relative;
+    margin: 0;
+    font-size: 16px;
+    line-height: 28px;
+    font-weight: 400;
+    animation: moveIn 500ms;
+}
+
+.photos {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.photos li {
+    width: 65px;
+    height: 65px;
+    margin: 10px 15px 0 0;
+    display: block;
+    cursor: pointer;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+    transition: 320ms ease-out;
+    animation: halfScaleIn 500ms;
+}
+
+.photos li:nth-child(4) {
+    margin-right: 0;
+}
+
+.photos li:hover {
+    transform: scale(1.07);
+}
+
+.photos span {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: 50% 50%;
+}
+
+.tweets {
+    flex: 1 1 auto;
+    padding: 40px 0 40px 40px;
+}
+
+.tweets h2 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 400;
+}
+
+.tweets ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.tweets li {
+    display: flex;
+    padding: 20px 0 10px 0;
+    border-top: 1px solid var(--line-color);
+    position: relative;
+}
+
+.tweets .avatar {
+    display: block;
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+    margin-top: 5px;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+    transition: all 320ms ease-out;
+}
+
+.tweets .avatar:hover {
+    transform: scale(1.07);
+}
+
+.tweets .avatar img {
+    width: 40px;
+    height: 40px;
+}
+
+.tweets .content {
+    flex: 1 1 auto;
+    position: relative;
+    margin-left: 20px;
+    font-weight: 300;
+}
+
+.tweets h4 {
+    margin: 0;
+    font-size: 14px;
+    line-height: 26px;
+    font-weight: 400;
+}
+
+.tweets h4 a {
+    color: var(--text-color);
+}
+
+.tweets h4 .username {
+    font-weight: 300;
+    font-size: 13px;
+    margin-left: 5px;
+}
+
+.tweets h4 .date {
+    color: var(--alt-text-color);
+    font-size: 12px;
+    margin-left: 10px;
+}
+
+.tweets p {
+    margin: 0 0 10px 0;
+}
+
+.tweets ul.pictures li {
+    padding: 0;
+    border: 0;
+    position: relative;
+}
+
+.tweets ul.pictures .picture {
+    width: 74px;
+    height: 74px;
+    margin: 10px 5px 10px 0;
+    display: block;
+    background-size: cover;
+    background-position: 50% 50%;
+    cursor: pointer;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+    transition: all 320ms ease-out;
+}
+
+.tweets ul.pictures .picture:hover {
+    transform: scale(1.07);
+}
+
+.tweets ul.pictures .video {
+    fill: #fff;
+    position: absolute;
+    z-index: 1;
+    left: 21px;
+    top: 31px;
+    pointer-events: none;
+}
+
+.tweets ul li:nth-child(-n + 10) .avatar {
+    animation: scaleIn 350ms;
+}
+
+.tweets ul li:nth-child(-n + 10) .content {
+    animation: moveIn 400ms;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes scaleIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes halfScaleIn {
+    0% {
+        transform: scale(0.7);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes moveIn {
+    0% {
+        left: -20px;
+        opacity: 0;
+    }
+
+    100% {
+        left: 0px;
+        opacity: 1;
+    }
+}

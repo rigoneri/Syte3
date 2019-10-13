@@ -1,0 +1,117 @@
+.Header {
+    position: fixed;
+    z-index: 10;
+    margin-top: 40px;
+    width: 15%;
+    height: 100%;
+}
+
+.Header {
+    animation: fadeIn 500ms ease-in backwards;
+}
+
+.Header hgroup a {
+    display: block;
+    color: var(--text-color);
+}
+
+.Header hgroup a:hover .picture {
+    transform: scale(1.1);
+}
+
+.Header h1 {
+    display: inline-block;
+    position: relative;
+    margin: 0;
+    vertical-align: top;
+    font-size: 16px;
+    font-weight: 300;
+    font-style: normal;
+    line-height: 50px;
+    text-transform: uppercase;
+}
+
+.picture {
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    overflow: hidden;
+    display: inline-block;
+    margin-right: 20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+    transition: all 320ms ease-out;
+}
+
+@media (max-width: 1035px) {
+    .Header {
+        width: 50px;
+        height: auto;
+    }
+
+    .Header h1 {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .Header {
+        width: 100%;
+        margin-top: 0;
+        position: fixed;
+        height: 50px;
+        background: rgba(24, 33, 37, 0.9);
+    }
+
+    .Header h1 {
+        display: block;
+        text-align: center;
+    }
+
+    .Header nav {
+        display: none;
+        margin-top: 0;
+        margin-bottom: 20px;
+    }
+
+    .Header.opened {
+        height: auto;
+    }
+
+    .Header.opened nav {
+        display: block;
+    }
+
+    .picture {
+        display: none;
+    }
+}
+
+@media (max-height: 480px) {
+    .Header {
+        margin-top: 20px;
+    }
+
+    .picture {
+        display: none;
+    }
+}
+
+@media (max-height: 400px) and (min-width: 480px) {
+    .Header {
+        margin-top: 0px;
+    }
+
+    .Header h1 {
+        display: none;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
