@@ -1,0 +1,45 @@
+.Error {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    height: 100%;
+    width: 100%;
+    animation: fadeIn 500ms ease-in backwards;
+}
+
+.Error h3 {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    flex: 1 1 auto;
+    font-weight: 400;
+    font-size: 80px;
+    text-align: center;
+    padding: 0 20px;
+    color: var(--alt-text-color);
+}
+
+.Error p {
+    flex: 1 1 auto;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 16px;
+    text-align: center;
+    padding: 0 20px;
+    color: var(--alt-text-color);
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0.7;
+    }
+}

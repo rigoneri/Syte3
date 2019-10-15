@@ -3,6 +3,12 @@
     grid-template-columns: 34% auto;
 }
 
+.error {
+    padding: 20px 0;
+    border-top: 1px solid var(--line-color);
+    font-style: italic;
+}
+
 .profile {
     padding: 40px 0;
     grid-column: 1;

@@ -15,7 +15,7 @@ export default function Profile({ user }) {
             <a href={user.url} className={styles.username}>
                 @{user.username}
             </a>
-            {user.description && <p>{user.description}</p>}
+            {user.description && user.description.length && <p>{user.description}</p>}
             <ul className={styles.stats}>
                 <li>
                     Tweets <strong>{user.statuses}</strong>

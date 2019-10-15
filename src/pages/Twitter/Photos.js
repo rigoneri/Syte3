@@ -2,6 +2,9 @@ import React, { Fragment } from 'react'
 import styles from './Twitter.module.css'
 
 export default function Photos({ username, photos }) {
+    if (!photos || photos.length === 0) {
+        return null
+    }
     return (
         <Fragment>
             <h3>Recent Photos</h3>
