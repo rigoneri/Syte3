@@ -4,16 +4,17 @@ This is Version 3 of [Syte](https://github.com/rigoneri/Syte2) using React (with
 
 **It's still a work in progress...**
 
-Front-End Integrations TODOs:
+Front-End TODOs:
 
-- [x] Twitter
-- [x] Github
-- [ ] Dribbble
-- [ ] Instagram
-- [ ] Spotify
-- [ ] YouTube
-- [ ] Foursquare
-- [ ] Tumblr
+- [x] Twitter Integration
+- [x] Github Integration
+- [ ] Dribbble Integration
+- [ ] Instagram Integration
+- [ ] Spotify Integration
+- [ ] YouTube Integration
+- [ ] Foursquare Integration
+- [ ] Tumblr Integration
+- [ ] Home Timeline
 
 Backend TODOs:
 
