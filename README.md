@@ -1,6 +1,6 @@
 # Syte3
 
-This is the v3 version of Syte using React (with Hooks).
+This is Version 3 of [Syte](https://github.com/rigoneri/Syte2) using React (with Hooks).
 
 **It's still a work in progress...**
 
