@@ -1,4 +1,4 @@
-#Syte3
+# Syte3
 
 This is the v3 version of Syte using React (with Hooks).
 
