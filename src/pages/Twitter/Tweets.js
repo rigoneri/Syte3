@@ -54,7 +54,7 @@ export default function Tweets() {
 
     return (
         <div className={styles.tweets} ref={pageEl}>
-            <h2>Recent Tweets</h2>
+            <h3>Recent Tweets</h3>
             {error && <p className={styles.error}>Unable to fetch recent tweets.</p>}
             {!error && (
                 <ul>

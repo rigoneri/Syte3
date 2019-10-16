@@ -9,6 +9,10 @@ describe('Tweets', () => {
         jest.resetAllMocks()
     })
 
+    afterAll(() => {
+        jest.resetAllMocks()
+    })
+
     it('should fetch and display a list of tweets', async () => {
         jest.spyOn(global, 'fetch').mockImplementation(() =>
             Promise.resolve({
@@ -22,14 +26,14 @@ describe('Tweets', () => {
         })
         expect(global.fetch).toHaveBeenCalled()
         component.update()
-        expect(component.find('h2').exists()).toEqual(true)
+        expect(component.find('h3').exists()).toEqual(true)
         expect(component.find('Tweet').exists()).toEqual(true)
 
         component.unmount()
         global.fetch.mockRestore()
     })
 
-    it('should display a an error message if it fails to fetch tweets', async () => {
+    it('should display an error message if it fails to fetch tweets', async () => {
         jest.spyOn(global, 'fetch').mockImplementation(() => Promise.reject())
 
         let component = null
@@ -39,7 +43,7 @@ describe('Tweets', () => {
         expect(global.fetch).toHaveBeenCalled()
 
         component.update()
-        expect(component.find('h2').exists()).toEqual(true)
+        expect(component.find('h3').exists()).toEqual(true)
         expect(component.find('Tweet').exists()).toEqual(false)
         expect(component.find('.error').exists()).toEqual(true)
 

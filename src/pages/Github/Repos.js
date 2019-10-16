@@ -4,20 +4,27 @@ import styles from './Github.module.css'
 
 export default function Repos() {
     const [repos, setRepos] = useState([])
+    const [error, setError] = useState(false)
 
-    useEffect(() => {
-        const fetchRepos = async () => {
+    const fetchRepos = async () => {
+        try {
             const response = await fetch('http://localhost:4000/github/repos')
             const repos = await response.json()
             setRepos(repos)
+        } catch (error) {
+            setError(true)
         }
+    }
+
+    useEffect(() => {
         fetchRepos()
     }, [])
 
     return (
         <div className={styles.repos}>
             <h3>Repositories</h3>
-            {repos && (
+            {error && <p className={styles.error}>Unable to fetch repositories.</p>}
+            {repos && repos.length && (
                 <ul>
                     {repos.map(repo => (
                         <li key={repo.id}>
