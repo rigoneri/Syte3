@@ -18,7 +18,7 @@ export default function Tweet({ tweet }) {
                     <a href={tweet.url}>
                         {tweet.user.name} <span className={styles.username}>@{tweet.user.username}</span>
                     </a>
-                    <span className={styles.date}> {formatDistanceToNow(parseISO(tweet.date))} ago</span>
+                    <span className={styles.date}>{formatDistanceToNow(parseISO(tweet.date))} ago</span>
                 </h4>
                 <p dangerouslySetInnerHTML={{ __html: tweet.text }}></p>
                 {tweet.pictures && (

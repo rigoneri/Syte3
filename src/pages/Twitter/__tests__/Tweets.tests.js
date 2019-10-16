@@ -1,33 +1,8 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import { act } from 'react-dom/test-utils'
+import { mockTweet } from './Tweet.tests'
 import Tweets from '../Tweets'
-
-const mockTweet = {
-    id: 'tweet-1',
-    date: '2019-10-14T02:25:32.000Z',
-    type: 'twitter',
-    text: 'RT <a href="https://twitter.com/rigoneri" target="_blank">@rigoneri</a>: Testing something...',
-    video: 'https://video.twimg.com/test-video',
-    pictures: [
-        {
-            id: 'pic-1',
-            url: 'https://pbs.twimg.com/test-pic.jpg',
-            width: 360,
-            height: 360,
-        },
-    ],
-    url: 'https://www.twitter.com/rigoneri/status/test-123',
-    favorites: 0,
-    retweets: 2,
-    user: {
-        username: 'rigoneri',
-        name: 'Rigo Neri',
-        picture: 'https://pbs.twimg.com/test-profile-pic.jpg',
-        id: 'user-1',
-    },
-    originalText: 'Testing something...',
-}
 
 describe('Tweets', () => {
     beforeEach(() => {
