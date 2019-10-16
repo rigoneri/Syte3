@@ -1,7 +1,7 @@
 .page {
     display: grid;
     grid-template-columns: 34% auto;
-    grid-template-rows: 220px auto;
+    grid-template-rows: auto auto;
 }
 
 .error {
@@ -22,7 +22,7 @@
     grid-row: 1;
     display: grid;
     grid-template-columns: 80px auto;
-    grid-template-rows: 30px 30px auto;
+    grid-template-rows: 30px 30px auto auto;
 }
 
 .profile .picture {
@@ -83,10 +83,18 @@
     animation: moveOut 350ms;
 }
 
-.profile ul.stats {
+.profile p {
     grid-column-start: 1;
     grid-column-end: span 2;
     grid-row: 3;
+    padding: 20px 0 0 0;
+    margin: 0;
+}
+
+.profile ul.stats {
+    grid-column-start: 1;
+    grid-column-end: span 2;
+    grid-row: 4;
 
     list-style: none;
     margin: 0;

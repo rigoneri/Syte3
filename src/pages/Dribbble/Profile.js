@@ -1,24 +1,18 @@
 import React from 'react'
-import styles from './Github.module.css'
+import styles from './Dribbble.module.css'
 
 export default function Profile({ user }) {
     return (
         <div className={styles.profile}>
             <a href={user.url} className={styles.picture}>
-                <img src={user.picture} alt="Github Profile" />
+                <img src={user.picture} alt="Dribble Profile" />
             </a>
             <h2>{user.name}</h2>
             <a href={user.url} className={styles.username}>
-                {user.username}
+                @{user.username}
             </a>
-            {user.description && user.description.length && <p>{user.description}</p>}
+            {user.bio && user.bio.length && <p dangerouslySetInnerHTML={{ __html: user.bio }}></p>}
             <ul className={styles.stats}>
-                <li>
-                    Repos <strong>{user.repos}</strong>
-                </li>
-                <li>
-                    Following <strong>{user.following}</strong>
-                </li>
                 <li>
                     Followers <strong>{user.followers}</strong>
                 </li>

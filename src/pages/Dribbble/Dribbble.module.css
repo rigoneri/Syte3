@@ -1,0 +1,156 @@
+.profile {
+    padding: 40px 0 0 0;
+    display: grid;
+    grid-template-columns: 80px 200px 100px auto;
+    grid-template-rows: 30px 36px auto;
+}
+
+.profile .picture {
+    display: inline-block;
+    grid-column: 1;
+    grid-row-start: 1;
+    grid-row-end: span 2;
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+    border-radius: 40px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+}
+
+:global(.fade-enter-active) .profile .picture {
+    animation: scaleIn 350ms 1500ms;
+}
+
+:global(.fade-exit) .profile .picture {
+    animation: scaleIn 350ms reverse;
+}
+
+.picture img {
+    width: 60px;
+    height: 60px;
+}
+
+.profile h2 {
+    margin: 5px 0 0 0;
+    grid-column: 2;
+    grid-row: 1;
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 400;
+    position: relative;
+}
+
+:global(.fade-enter-active) .profile h2 {
+    animation: moveIn 350ms 1500ms;
+}
+
+:global(.fade-exit) .profile h2 {
+    animation: moveOut 350ms;
+}
+
+.profile .username {
+    grid-column: 2;
+    grid-row: 2;
+    position: relative;
+    animation: moveIn 500ms;
+}
+
+:global(.fade-enter-active) .profile .username {
+    animation: moveIn 500ms 1500ms;
+}
+
+:global(.fade-exit) .profile .username {
+    animation: moveOut 350ms;
+}
+
+.profile p {
+    grid-column: 4;
+    grid-row-start: 1;
+    grid-row-end: span 2;
+    padding: 10px 30px;
+    margin: 0;
+}
+
+.profile ul.stats {
+    grid-column: 3;
+    grid-row-start: 1;
+    grid-row-end: span 2;
+
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    margin: 0;
+    background-color: var(--background-color-dark);
+    border-radius: 4px;
+}
+
+.profile ul.stats li {
+    text-align: center;
+    padding: 10px 0;
+    font-size: 12px;
+    line-height: 20px;
+    flex: 1 1 auto;
+}
+
+:global(.fade-enter-active) ul.stats li {
+    animation: scaleIn 500ms 1500ms;
+}
+
+:global(.fade-exit) ul.stats li {
+    animation: scaleIn 350ms reverse;
+}
+
+.profile ul li strong {
+    font-weight: 300;
+    color: var(--primary-color);
+    display: block;
+    font-size: 16px;
+    line-height: 26px;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes scaleIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes moveIn {
+    0% {
+        left: -20px;
+        opacity: 0;
+    }
+
+    100% {
+        left: 0px;
+        opacity: 1;
+    }
+}
+
+@keyframes moveOut {
+    0% {
+        left: 0;
+        opacity: 1;
+    }
+
+    100% {
+        left: 20px;
+        opacity: 0;
+    }
+}
