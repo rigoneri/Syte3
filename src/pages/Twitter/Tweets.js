@@ -21,16 +21,14 @@ export default function Tweets() {
 
     const fetchTweets = async () => {
         try {
-            console.log('Empty', empty)
             const response = await fetch(`http://localhost:4000/twitter/${page}`)
             const pageTweets = await response.json()
-            console.log('Size', pageTweets.length)
             if (pageTweets.length > 0) {
                 setTweets(tweets.concat(pageTweets))
                 setEmpty(0)
-            } else if (empty <= 2) {
-                setPage(page + 1)
+            } else if (empty < 2) {
                 setEmpty(empty + 1)
+                setPage(page + 1)
                 //TODO: change api to not return empty pages...
             }
             debouncing = false

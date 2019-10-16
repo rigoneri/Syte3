@@ -48,6 +48,7 @@ it('should fetch the twitter user', async () => {
     expect(component.find('Profile').exists()).toEqual(true)
     expect(component.find('Tweets').exists()).toEqual(true)
 
+    component.unmount()
     global.fetch.mockRestore()
 })
 
@@ -67,5 +68,6 @@ it('should display an error message if it fails to get the twitter user', async 
     expect(component.find('Profile').exists()).toEqual(false)
     expect(component.find('Tweets').exists()).toEqual(false)
 
+    component.unmount()
     global.fetch.mockRestore()
 })
