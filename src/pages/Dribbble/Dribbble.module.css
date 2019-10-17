@@ -2,7 +2,11 @@
     padding: 40px 0 0 0;
     display: grid;
     grid-template-columns: 80px 200px 100px auto;
-    grid-template-rows: 30px 36px auto;
+    grid-template-rows: 30px 36px;
+}
+
+.error {
+    font-style: italic;
 }
 
 .profile .picture {
@@ -109,6 +113,112 @@
     line-height: 26px;
 }
 
+.shots {
+    margin-top: 30px;
+    margin-right: 30px;
+}
+
+.shots ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.shots li {
+    position: relative;
+    width: 31%;
+    margin: 0 0 30px 0;
+}
+
+.shots a {
+    display: block;
+    transition: all 350ms ease-out;
+}
+
+.shots a:hover {
+    transform: scale(1.02);
+}
+
+.shots img {
+    display: block;
+    width: 100%;
+    height: auto;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+:global(.fade-enter-active) .shots a {
+    animation: halfScaleIn 500ms 1500ms;
+}
+
+:global(.fade-exit) .shots a {
+    animation: halfScaleIn 350ms reverse;
+}
+
+@media (max-width: 900px) {
+    .profile {
+        grid-template-columns: 80px 200px 90px auto;
+        grid-template-rows: 30px 36px auto;
+    }
+
+    .profile p {
+        grid-column-start: 1;
+        grid-column-end: span 4;
+        grid-row: 3;
+        padding: 10px;
+        margin: 0;
+    }
+}
+
+@media (max-width: 800px) {
+    .shots li {
+        width: 48%;
+    }
+}
+
+@media (max-width: 550px) {
+    .profile {
+        margin: 0 20px 0 0;
+        grid-template-columns: 80px auto;
+        grid-template-rows: 30px 36px auto auto;
+    }
+
+    .profile p {
+        margin-top: 30px;
+    }
+
+    .profile ul.stats {
+        grid-column-start: 1;
+        grid-column-end: span 4;
+        grid-row: 4;
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile {
+        margin: 20px 10px 20px 10px;
+    }
+
+    .profile p {
+        margin-top: 10px;
+    }
+
+    .profile ul.stats {
+        margin-top: 10px;
+    }
+
+    .shots {
+        margin: 30px 10px;
+    }
+
+    .shots li {
+        margin: 0 0 15px 0;
+    }
+}
+
 @keyframes fadeIn {
     0% {
         opacity: 0;
@@ -122,6 +232,18 @@
 @keyframes scaleIn {
     0% {
         transform: scale(0);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes halfScaleIn {
+    0% {
+        transform: scale(0.7);
         opacity: 0;
     }
 

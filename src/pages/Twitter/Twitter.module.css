@@ -201,7 +201,7 @@
 
 .tweets {
     grid-column: 2;
-    padding: 40px 0 40px 40px;
+    padding: 40px 30px 40px 40px;
 }
 
 .tweets h3 {
@@ -331,6 +331,7 @@
 @media (max-width: 700px) {
     .page {
         display: block;
+        padding-right: 20px;
     }
 
     .profile {
@@ -345,6 +346,7 @@
 @media (max-width: 480px) {
     .page {
         margin: 20px 10px;
+        padding-right: 0;
         position: relative;
     }
 }

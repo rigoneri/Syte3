@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Logo } from '../../components/Icons'
 import styles from './Nav.module.css'
 
-const Nav = ({ handleOpened, opened }) => {
+export const Nav = ({ handleOpened, opened }) => {
     const handleClick = () => {
         if (opened) {
             handleOpened()
@@ -31,7 +31,7 @@ const Nav = ({ handleOpened, opened }) => {
     )
 }
 
-const NavItem = ({ to, handleClick }) => {
+export const NavItem = ({ to, handleClick }) => {
     return (
         <li key={to}>
             <Link to={`/${to.toLowerCase()}`} onClick={handleClick}>

@@ -219,7 +219,7 @@
     grid-column: 2;
     grid-row-start: 1;
     grid-row-end: span 2;
-    padding: 40px 0 40px 40px;
+    padding: 40px 30px 40px 40px;
 }
 
 .activities h3 {
@@ -313,6 +313,7 @@
 @media (max-width: 700px) {
     .page {
         display: block;
+        padding-right: 20px;
     }
 
     .repos {
@@ -327,6 +328,7 @@
 @media (max-width: 480px) {
     .page {
         margin: 20px 10px;
+        padding-right: 0;
         position: relative;
     }
 }
