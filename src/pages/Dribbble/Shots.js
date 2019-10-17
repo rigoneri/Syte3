@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
+import Img from 'react-image'
+import { Logo } from '../../components/Icons'
 import styles from './Dribbble.module.css'
 
 export default function Shots() {
@@ -59,17 +61,25 @@ export default function Shots() {
     return (
         <div className={styles.shots} ref={pageEl}>
             {error && <p className={styles.error}>Unable to fetch Dribbble shots.</p>}
-            {!error && shots && shots.length && (
+            {!error && shots && shots.length ? (
                 <ul>
                     {shots.map(shot => (
                         <li key={shot.id}>
                             <a href={shot.url} className={styles.shot} onClick={e => handleClick(e, shot)}>
-                                <img src={shot.picture} alt={shot.title} />
+                                <Img
+                                    src={shot.picture}
+                                    alt={shot.title}
+                                    loader={
+                                        <div className={styles.placeholder}>
+                                            <Logo type="Dribbble" />
+                                        </div>
+                                    }
+                                />
                             </a>
                         </li>
                     ))}
                 </ul>
-            )}
+            ) : null}
         </div>
     )
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import Photos from './Photos'
+import Img from 'react-image'
 import styles from './Twitter.module.css'
 
 export default function Profile({ user }) {
@@ -9,7 +10,7 @@ export default function Profile({ user }) {
                 <span className={styles.bannerShadow} />
             </div>
             <a href={user.url} className={styles.picture}>
-                <img src={user.picture} alt="Twitter Profile" />
+                <Img src={user.picture} alt="Twitter Profile" />
             </a>
             <h2>{user.name}</h2>
             <a href={user.url} className={styles.username}>

@@ -135,6 +135,7 @@
 
 .shots a {
     display: block;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
     transition: all 350ms ease-out;
 }
 
@@ -146,7 +147,6 @@
     display: block;
     width: 100%;
     height: auto;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
 }
 
 :global(.fade-enter-active) .shots a {
@@ -155,6 +155,20 @@
 
 :global(.fade-exit) .shots a {
     animation: halfScaleIn 350ms reverse;
+}
+
+.placeholder {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.placeholder svg {
+    fill: var(--alt-text-color);
+    opacity: 0.7;
+    animation: rotate 2000ms infinite linear;
 }
 
 @media (max-width: 900px) {
@@ -274,5 +288,15 @@
     100% {
         left: 20px;
         opacity: 0;
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
     }
 }

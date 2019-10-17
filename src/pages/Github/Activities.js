@@ -29,13 +29,13 @@ export default function Activities() {
             {loading && <p>Loading...</p>}
             {!loading && error && <p className={styles.error}>Unable to fetch recent activity.</p>}
             {!loading && !activities.length && !error && <p className={styles.empty}>No recent activity.</p>}
-            {!loading && activities.length && (
+            {!loading && activities.length ? (
                 <ul>
                     {activities.map(activity => (
                         <Activity key={activity.id} activity={activity} />
                     ))}
                 </ul>
-            )}
+            ) : null}
         </div>
     )
 }

@@ -1,4 +1,5 @@
 import React from 'react'
+import Img from 'react-image'
 import { parseISO, formatDistanceToNow } from 'date-fns'
 import { PlayLogo } from '../../components/Icons'
 import styles from './Twitter.module.css'
@@ -11,7 +12,7 @@ export default function Tweet({ tweet }) {
     return (
         <li>
             <a href={tweet.url} className={styles.avatar}>
-                <img src={tweet.user.picture} alt="Avatar" />
+                <Img src={tweet.user.picture} alt="Avatar" />
             </a>
             <div className={styles.content}>
                 <h4>

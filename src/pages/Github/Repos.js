@@ -24,7 +24,7 @@ export default function Repos() {
         <div className={styles.repos}>
             <h3>Repositories</h3>
             {error && <p className={styles.error}>Unable to fetch repositories.</p>}
-            {repos && repos.length && (
+            {repos && repos.length ? (
                 <ul>
                     {repos.map(repo => (
                         <li key={repo.id}>
@@ -42,7 +42,7 @@ export default function Repos() {
                         </li>
                     ))}
                 </ul>
-            )}
+            ) : null}
         </div>
     )
 }

@@ -31,7 +31,7 @@ export const mockTweet = {
 describe('Tweet', () => {
     it('should display a tweet', () => {
         const component = shallow(<Tweet tweet={mockTweet} />)
-        expect(component.find('img[alt="Avatar"]').exists()).toEqual(true)
+        expect(component.find('Img[alt="Avatar"]').exists()).toEqual(true)
         expect(component.find('h4').exists()).toEqual(true)
         expect(component.find('.username').exists()).toEqual(true)
         expect(component.find('.date').exists()).toEqual(true)
