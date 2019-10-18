@@ -13,6 +13,8 @@ import { ReactComponent as FlickrLogo } from './FlickrLogo.svg'
 import { ReactComponent as LinkedInLogo } from './LinkedInLogo.svg'
 import { ReactComponent as PlayLogo } from './PlayLogo.svg'
 import { ReactComponent as StarIcon } from './StarIcon.svg'
+import { ReactComponent as HeartIcon } from './HeartIcon.svg'
+import { ReactComponent as CommentIcon } from './CommentIcon.svg'
 import { ReactComponent as GitBranchIcon } from './GitBranchIcon.svg'
 import { ReactComponent as GitClosedIcon } from './GitClosedIcon.svg'
 import { ReactComponent as GitCommentIcon } from './GitCommentIcon.svg'
@@ -82,4 +84,4 @@ const GitIcons = ({ type }) => {
     }
 }
 
-export { Logo, PlayLogo, GitIcons }
+export { Logo, PlayLogo, GitIcons, HeartIcon, CommentIcon }

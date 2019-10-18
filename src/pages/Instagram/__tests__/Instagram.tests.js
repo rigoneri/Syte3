@@ -1,24 +1,28 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import { act } from 'react-dom/test-utils'
-import Dribbble from '../index'
+import Instagram from '../index'
 
 export const mockUser = {
-    id: 12345,
-    name: 'Syte User',
+    id: '1326084',
     username: 'syte3',
-    url: 'https://dribbble.com/syte3',
-    picture: 'https://cdn.dribbble.com/users/1/avatars/normal/new-avatar.png',
-    followers: 94,
-    bio: 'Some description...',
+    profile_picture: 'https://scontent.cdninstagram.com/vp/picture.jpg',
+    full_name: 'Syte User',
+    bio: 'Some description',
+    counts: {
+        media: 661,
+        follows: 270,
+        followed_by: 610,
+    },
+    url: 'https://instagram.com/syte3',
 }
 
-describe('Dribbble', () => {
+describe('Instagram', () => {
     afterAll(() => {
         jest.resetAllMocks()
     })
 
-    it('should fetch the dribbble user', async () => {
+    it('should fetch the instagram user', async () => {
         jest.spyOn(global, 'fetch').mockImplementation(url => {
             if (url.includes('/user')) {
                 return Promise.resolve({
@@ -31,31 +35,31 @@ describe('Dribbble', () => {
 
         let component = null
         await act(async () => {
-            component = mount(<Dribbble />)
+            component = mount(<Instagram />)
         })
         expect(global.fetch).toHaveBeenCalled()
 
         component.update()
         expect(component.find('Profile').exists()).toEqual(true)
-        expect(component.find('Shots').exists()).toEqual(true)
+        expect(component.find('Posts').exists()).toEqual(true)
 
         component.unmount()
         global.fetch.mockRestore()
     })
 
-    it('should display an error message if it fails to get the dribbble user', async () => {
+    it('should display an error message if it fails to get the instagram user', async () => {
         jest.spyOn(global, 'fetch').mockImplementation(() => Promise.reject())
 
         let component = null
         await act(async () => {
-            component = mount(<Dribbble />)
+            component = mount(<Instagram />)
         })
         expect(global.fetch).toHaveBeenCalled()
 
         component.update()
         expect(component.find('Error').exists()).toEqual(true)
         expect(component.find('Profile').exists()).toEqual(false)
-        expect(component.find('Shots').exists()).toEqual(false)
+        expect(component.find('Posts').exists()).toEqual(false)
 
         component.unmount()
         global.fetch.mockRestore()

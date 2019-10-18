@@ -61,7 +61,7 @@ export default function Shots() {
     return (
         <div className={styles.shots} ref={pageEl}>
             {error && <p className={styles.error}>Unable to fetch Dribbble shots.</p>}
-            {!error && shots && shots.length ? (
+            {!error && shots.length ? (
                 <ul>
                     {shots.map(shot => (
                         <li key={shot.id}>

@@ -1,8 +1,8 @@
 .profile {
     padding: 40px 0 0 0;
     display: grid;
-    grid-template-columns: 80px 200px 100px auto;
-    grid-template-rows: 30px 36px;
+    grid-template-columns: 80px 200px auto auto;
+    grid-template-rows: 30px 36px auto;
 }
 
 .profile .picture {
@@ -40,14 +40,6 @@
     position: relative;
 }
 
-:global(.fade-enter-active) .profile h2 {
-    animation: moveIn 350ms 1500ms;
-}
-
-:global(.fade-exit) .profile h2 {
-    animation: moveOut 350ms;
-}
-
 .profile .username {
     grid-column: 2;
     grid-row: 2;
@@ -61,14 +53,6 @@
 
 :global(.fade-exit) .profile .username {
     animation: moveOut 350ms;
-}
-
-.profile p {
-    grid-column: 4;
-    grid-row-start: 1;
-    grid-row-end: span 2;
-    padding: 10px 30px;
-    margin: 0;
 }
 
 .profile ul.stats {
@@ -109,52 +93,117 @@
     line-height: 26px;
 }
 
-.shots {
-    margin-top: 30px;
-    margin-right: 30px;
+.profile p {
+    grid-column-start: 1;
+    grid-column-end: span 3;
+    grid-row: 3;
+    padding: 10px 0;
+    margin: 0;
 }
 
-.shots ul {
+.posts {
+    margin: 30px 30px 30px 0;
+}
+
+.posts ul {
     list-style: none;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(4, 180px);
+    grid-auto-rows: 180px;
+    grid-gap: 30px;
 }
 
-.shots li {
+.posts li {
     position: relative;
-    width: 31%;
-    margin: 0 0 30px 0;
-}
-
-.shots a {
-    display: block;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
     transition: all 350ms ease-out;
 }
 
-.shots a:hover {
+.posts li:hover {
     transform: scale(1.02);
 }
 
-.shots img {
+.posts a {
+    position: relative;
     display: block;
+    overflow: hidden;
     width: 100%;
-    height: auto;
+    height: 100%;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
 }
 
-:global(.fade-enter-active) .shots a {
+.posts img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.posts .video {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+}
+
+.posts .video svg {
+    width: 50px;
+    height: 50px;
+    fill: #fff;
+}
+
+.posts .stats {
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    fill: #fff;
+    opacity: 0;
+    transition: all 320ms ease-out;
+}
+
+.posts .post:hover .stats {
+    opacity: 1;
+}
+
+.posts .stats svg {
+    width: 14px;
+    height: 14px;
+    margin-right: 7px;
+}
+
+.posts .stats li {
+    margin: 0 10px;
+    display: flex;
+    align-items: center;
+}
+
+:global(.fade-enter-active) .posts a {
     animation: halfScaleIn 500ms 1500ms;
 }
 
-:global(.fade-exit) .shots a {
+:global(.fade-exit) .posts a {
     animation: halfScaleIn 350ms reverse;
 }
 
 .placeholder {
-    height: 200px;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -171,36 +220,62 @@
     font-style: italic;
 }
 
-@media (max-width: 900px) {
-    .profile {
-        grid-template-columns: 80px 200px 90px auto;
-        grid-template-rows: 30px 36px auto;
+.more {
+    display: inline-block;
+    padding: 10px 15px;
+    margin-bottom: 30px;
+    color: #fff;
+    font-size: 13px;
+    background: rgba(0, 0, 0, 0.2);
+    transition: all 320ms ease-out;
+}
+
+.more:hover {
+    transform: scale(1.02);
+    background: rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 950px) {
+    .profile ul.stats {
+        margin-right: 20px;
     }
 
-    .profile p {
-        grid-column-start: 1;
-        grid-column-end: span 4;
-        grid-row: 3;
-        padding: 10px;
-        margin: 0;
+    .posts ul {
+        grid-template-columns: repeat(4, 160px);
+        grid-auto-rows: 160px;
+    }
+}
+
+@media (max-width: 900px) {
+    .profile ul.stats li {
+        min-width: 80px;
+    }
+
+    .posts ul {
+        grid-template-columns: repeat(3, 180px);
+        grid-auto-rows: 180px;
     }
 }
 
 @media (max-width: 800px) {
-    .shots li {
-        width: 48%;
+    .posts ul {
+        grid-template-columns: repeat(3, 170px);
+        grid-auto-rows: 170px;
     }
 }
 
-@media (max-width: 550px) {
+@media (max-width: 700px) {
+    .posts ul {
+        grid-template-columns: repeat(2, 170px);
+        grid-auto-rows: 170px;
+    }
+}
+
+@media (max-width: 650px) {
     .profile {
         margin: 0 20px 0 0;
         grid-template-columns: 80px auto;
         grid-template-rows: 30px 36px auto auto;
-    }
-
-    .profile p {
-        margin-top: 30px;
     }
 
     .profile ul.stats {
@@ -208,6 +283,18 @@
         grid-column-end: span 4;
         grid-row: 4;
         margin-top: 30px;
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 550px) {
+    .posts {
+        margin: 30px 0;
+    }
+
+    .posts ul {
+        grid-auto-rows: 170px;
+        grid-gap: 15px;
     }
 }
 
@@ -224,12 +311,13 @@
         margin-top: 10px;
     }
 
-    .shots {
+    .posts {
         margin: 30px 10px;
     }
 
-    .shots li {
-        margin: 0 0 15px 0;
+    .posts ul {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 170px;
     }
 }
 

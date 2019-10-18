@@ -3,9 +3,9 @@ import Activity from './Activity'
 import styles from './Github.module.css'
 
 export default function Activities() {
+    const [activities, setActivities] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(false)
-    const [activities, setActivities] = useState([])
 
     useEffect(() => {
         fetchActivities()
