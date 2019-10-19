@@ -1,9 +1,17 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import { BrowserRouter, Switch, Route, useLocation } from 'react-router-dom'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
-import { Home, Twitter, Dribbble, Foursquare, Github, Instagram, Spotify, YouTube } from './pages'
 import Header from './components/Header'
 import './App.css'
+
+const Home = React.lazy(() => import('./pages/Home'))
+const Twitter = React.lazy(() => import('./pages/Twitter'))
+const Dribbble = React.lazy(() => import('./pages/Dribbble'))
+const Foursquare = React.lazy(() => import('./pages/Foursquare'))
+const Github = React.lazy(() => import('./pages/Github'))
+const Instagram = React.lazy(() => import('./pages/Instagram'))
+const Spotify = React.lazy(() => import('./pages/Spotify'))
+const YouTube = React.lazy(() => import('./pages/YouTube'))
 
 function App() {
     return (
@@ -23,32 +31,34 @@ function AppContent() {
         <TransitionGroup className="app-content">
             <CSSTransition key={location.key} classNames="fade" timeout={{ enter: 2000, exit: 400 }}>
                 <section className="routes">
-                    <Switch location={location}>
-                        <Route exact path="/">
-                            <Home />
-                        </Route>
-                        <Route path="/twitter">
-                            <Twitter />
-                        </Route>
-                        <Route path="/dribbble">
-                            <Dribbble />
-                        </Route>
-                        <Route path="/foursquare">
-                            <Foursquare />
-                        </Route>
-                        <Route path="/github">
-                            <Github />
-                        </Route>
-                        <Route path="/instagram">
-                            <Instagram />
-                        </Route>
-                        <Route path="/spotify">
-                            <Spotify />
-                        </Route>
-                        <Route path="/youtube">
-                            <YouTube />
-                        </Route>
-                    </Switch>
+                    <Suspense fallback={null}>
+                        <Switch location={location}>
+                            <Route exact path="/">
+                                <Home />
+                            </Route>
+                            <Route path="/twitter">
+                                <Twitter />
+                            </Route>
+                            <Route path="/dribbble">
+                                <Dribbble />
+                            </Route>
+                            <Route path="/foursquare">
+                                <Foursquare />
+                            </Route>
+                            <Route path="/github">
+                                <Github />
+                            </Route>
+                            <Route path="/instagram">
+                                <Instagram />
+                            </Route>
+                            <Route path="/spotify">
+                                <Spotify />
+                            </Route>
+                            <Route path="/youtube">
+                                <YouTube />
+                            </Route>
+                        </Switch>
+                    </Suspense>
                 </section>
             </CSSTransition>
         </TransitionGroup>
