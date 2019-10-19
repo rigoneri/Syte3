@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import Nav from '../Nav'
-import pic from '../../images/pic.jpg'
+import Nav from 'components/Nav'
+import pic from 'images/pic.jpg'
 import styles from './Header.module.css'
 
 export default function Header() {

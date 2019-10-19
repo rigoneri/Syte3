@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import Img from 'react-image'
-import { Logo } from '../../components/Icons'
+import { Logo } from 'components/Icons'
 import styles from './Dribbble.module.css'
 
 export default function Shots() {

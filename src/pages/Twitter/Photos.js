@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import styles from './Twitter.module.css'
 
 export default function Photos({ username, photos }) {
@@ -6,7 +6,7 @@ export default function Photos({ username, photos }) {
         return null
     }
     return (
-        <Fragment>
+        <>
             <h3>Recent Photos</h3>
             <ul className={styles.photos}>
                 {photos.map(photo => (
@@ -17,6 +17,6 @@ export default function Photos({ username, photos }) {
                     </li>
                 ))}
             </ul>
-        </Fragment>
+        </>
     )
 }

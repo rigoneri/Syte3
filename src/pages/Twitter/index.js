@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Profile from './Profile'
 import Tweets from './Tweets'
-import Error from '../../components/Error'
+import Error from 'components/Error'
 import styles from './Twitter.module.css'
 
 export default function Twitter() {

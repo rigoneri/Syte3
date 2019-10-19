@@ -1,6 +1,6 @@
 import React from 'react'
 import { parseISO, formatDistanceToNow } from 'date-fns'
-import { GitIcons } from '../../components/Icons'
+import { GitIcons } from 'components/Icons'
 import styles from './Github.module.css'
 
 export default function Activity({ activity }) {

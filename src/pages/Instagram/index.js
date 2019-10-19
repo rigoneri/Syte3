@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import Error from '../../components/Error'
+import Error from 'components/Error'
 import Profile from './Profile'
 import Posts from './Posts'
 import styles from './Instagram.module.css'

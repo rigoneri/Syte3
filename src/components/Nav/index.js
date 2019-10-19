@@ -1,6 +1,6 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import { Logo } from '../../components/Icons'
+import { Logo } from 'components/Icons'
 import styles from './Nav.module.css'
 
 export const Nav = ({ handleOpened, opened }) => {
@@ -11,7 +11,7 @@ export const Nav = ({ handleOpened, opened }) => {
     }
 
     return (
-        <Fragment>
+        <>
             <nav>
                 <ul className={styles.nav}>
                     <NavItem to="Twitter" handleClick={handleClick} />
@@ -27,7 +27,7 @@ export const Nav = ({ handleOpened, opened }) => {
                 </a>
             </nav>
             <NavButton handleClick={handleOpened} opened={opened} />
-        </Fragment>
+        </>
     )
 }
 

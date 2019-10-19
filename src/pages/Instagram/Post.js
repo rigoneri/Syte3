@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Img from 'react-image'
-import { Logo, PlayLogo, HeartIcon, CommentIcon } from '../../components/Icons'
+import { Logo, PlayLogo, HeartIcon, CommentIcon } from 'components/Icons'
 import styles from './Instagram.module.css'
 
 export default function Post({ post }) {

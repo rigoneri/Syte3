@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { GitIcons } from '../../components/Icons'
+import { GitIcons } from 'components/Icons'
 import styles from './Github.module.css'
 
 export default function Repos() {
