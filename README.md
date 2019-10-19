@@ -10,7 +10,7 @@ Front-End TODOs:
 -   [x] Github Integration
 -   [x] Dribbble Integration
 -   [x] Instagram Integration
--   [ ] Spotify Integration
+-   [x] Spotify Integration
 -   [ ] YouTube Integration
 -   [ ] Foursquare Integration
 -   [ ] Tumblr Integration
