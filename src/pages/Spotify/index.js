@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import Img from 'react-image'
 import Error from 'components/Error'
 import RecentTracks from './RecentTracks'
+import { PlayContext } from './PlayContext'
 import Top from './Top'
 import styles from './Spotify.module.css'
 
@@ -61,8 +62,14 @@ export default function Spotify() {
                     <h2>{user.name}</h2>
                 </div>
             )}
-            <RecentTracks playing={playing} onPlayTrack={playTrack} />
-            <Top playing={playing} onPlayTrack={playTrack} />
+            <PlayContext.Provider
+                value={{
+                    playing: playing,
+                    onPlayTrack: playTrack,
+                }}>
+                <RecentTracks />
+                <Top />
+            </PlayContext.Provider>
         </div>
     )
 }

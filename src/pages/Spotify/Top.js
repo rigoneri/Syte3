@@ -3,7 +3,7 @@ import TopArtists from './TopArtists'
 import TopTracks from './TopTracks'
 import styles from './Spotify.module.css'
 
-export default function Top({ playing, onPlayTrack }) {
+export default function Top() {
     const [top, setTop] = useState(null)
     const [error, setError] = useState(false)
 
@@ -32,7 +32,7 @@ export default function Top({ playing, onPlayTrack }) {
             {top ? (
                 <>
                     <TopArtists artists={top ? top.artists : null} />
-                    <TopTracks tracks={top ? top.tracks : null} playing={playing} onPlayTrack={onPlayTrack} />
+                    <TopTracks tracks={top ? top.tracks : null} />
                 </>
             ) : null}
         </div>

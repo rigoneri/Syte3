@@ -1,6 +1,7 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import { act } from 'react-dom/test-utils'
+import { PlayContext } from '../PlayContext'
 import RecentTracks from '../RecentTracks'
 
 export const mockTrack = {
@@ -30,9 +31,18 @@ describe('RecentTracks', () => {
             })
         )
 
+        const onPlayTrack = jest.fn()
         let component = null
         await act(async () => {
-            component = mount(<RecentTracks playing={null} onPlayTrack={jest.fn()} />)
+            component = mount(
+                <PlayContext.Provider
+                    value={{
+                        playing: null,
+                        onPlayTrack,
+                    }}>
+                    <RecentTracks />
+                </PlayContext.Provider>
+            )
         })
         expect(global.fetch).toHaveBeenCalled()
         component.update()
@@ -46,9 +56,19 @@ describe('RecentTracks', () => {
     it('should display an error message if it fails to fetch recent tracks', async () => {
         jest.spyOn(global, 'fetch').mockImplementation(() => Promise.reject())
 
+        const onPlayTrack = jest.fn()
+
         let component = null
         await act(async () => {
-            component = mount(<RecentTracks playing={null} onPlayTrack={jest.fn()} />)
+            component = mount(
+                <PlayContext.Provider
+                    value={{
+                        playing: null,
+                        onPlayTrack,
+                    }}>
+                    <RecentTracks />
+                </PlayContext.Provider>
+            )
         })
         expect(global.fetch).toHaveBeenCalled()
 
@@ -72,7 +92,15 @@ describe('RecentTracks', () => {
 
         let component = null
         await act(async () => {
-            component = mount(<RecentTracks playing={null} onPlayTrack={onPlayTrack} />)
+            component = mount(
+                <PlayContext.Provider
+                    value={{
+                        playing: null,
+                        onPlayTrack,
+                    }}>
+                    <RecentTracks />
+                </PlayContext.Provider>
+            )
         })
         expect(global.fetch).toHaveBeenCalled()
         component.update()
@@ -98,7 +126,15 @@ describe('RecentTracks', () => {
 
         let component = null
         await act(async () => {
-            component = mount(<RecentTracks playing={mockTrack.id} onPlayTrack={onPlayTrack} />)
+            component = mount(
+                <PlayContext.Provider
+                    value={{
+                        playing: mockTrack.id,
+                        onPlayTrack,
+                    }}>
+                    <RecentTracks />
+                </PlayContext.Provider>
+            )
         })
         expect(global.fetch).toHaveBeenCalled()
         component.update()

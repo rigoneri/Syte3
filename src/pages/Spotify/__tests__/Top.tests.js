@@ -1,6 +1,7 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import { act } from 'react-dom/test-utils'
+import { PlayContext } from '../PlayContext'
 import Top from '../Top'
 import { mockTrack } from './RecentTracks.tests'
 
@@ -34,7 +35,15 @@ describe('Top', () => {
 
         let component = null
         await act(async () => {
-            component = mount(<Top />)
+            component = mount(
+                <PlayContext.Provider
+                    value={{
+                        playing: null,
+                        onPlayTrack: jest.fn(),
+                    }}>
+                    <Top />
+                </PlayContext.Provider>
+            )
         })
         expect(global.fetch).toHaveBeenCalled()
         component.update()
@@ -51,7 +60,15 @@ describe('Top', () => {
 
         let component = null
         await act(async () => {
-            component = mount(<Top />)
+            component = mount(
+                <PlayContext.Provider
+                    value={{
+                        playing: null,
+                        onPlayTrack: jest.fn(),
+                    }}>
+                    <Top />
+                </PlayContext.Provider>
+            )
         })
         expect(global.fetch).toHaveBeenCalled()
 
