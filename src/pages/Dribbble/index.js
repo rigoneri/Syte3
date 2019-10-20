@@ -26,9 +26,9 @@ export default function Github() {
     }
 
     return (
-        <div>
+        <>
             {user && <Profile user={user} />}
             <Shots />
-        </div>
+        </>
     )
 }

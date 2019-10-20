@@ -27,7 +27,7 @@ export default function Instagram() {
     }
 
     return (
-        <div>
+        <>
             {user && <Profile user={user} />}
             <Posts />
             {user && (
@@ -35,6 +35,6 @@ export default function Instagram() {
                     See more on Instagram...
                 </a>
             )}
-        </div>
+        </>
     )
 }

@@ -1,0 +1,224 @@
+.page {
+    display: grid;
+    grid-template-columns: 34% auto;
+    grid-template-rows: auto auto;
+}
+
+.error {
+    padding: 20px 0;
+    border-top: 1px solid var(--line-color);
+    font-style: italic;
+}
+
+.profile {
+    padding: 40px 0 0 0;
+    grid-column: 1;
+    grid-row: 1;
+    display: grid;
+    grid-template-columns: 80px auto;
+    grid-template-rows: 30px 30px auto auto;
+}
+
+.profile .picture {
+    display: inline-block;
+    grid-column: 1;
+    grid-row-start: 1;
+    grid-row-end: span 2;
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+    border-radius: 40px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+}
+
+:global(.fade-enter-active) .profile .picture {
+    animation: scaleIn 350ms 1500ms;
+}
+
+:global(.fade-exit) .profile .picture {
+    animation: scaleIn 350ms reverse;
+}
+
+.picture img {
+    width: 60px;
+    height: 60px;
+}
+
+.profile h2 {
+    margin: 5px 0 0 0;
+    grid-column: 2;
+    grid-row: 1;
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 400;
+    position: relative;
+}
+
+:global(.fade-enter-active) .profile h2 {
+    animation: moveIn 350ms 1500ms;
+}
+
+:global(.fade-exit) .profile h2 {
+    animation: moveOut 350ms;
+}
+
+.profile .location {
+    grid-column: 2;
+    grid-row: 2;
+    position: relative;
+    animation: moveIn 500ms;
+    font-weight: 200;
+}
+
+:global(.fade-enter-active) .profile .location {
+    animation: moveIn 500ms 1500ms;
+}
+
+:global(.fade-exit) .profile .location {
+    animation: moveOut 350ms;
+}
+
+.profile ul.stats {
+    grid-column-start: 1;
+    grid-column-end: span 2;
+    grid-row: 4;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    margin: 30px 0;
+    background-color: var(--background-color-dark);
+    border-radius: 4px;
+}
+
+.profile ul.stats li {
+    text-align: center;
+    padding: 10px 0;
+    font-size: 12px;
+    line-height: 20px;
+    flex: 1 1 auto;
+}
+
+:global(.fade-enter-active) ul.stats li {
+    animation: scaleIn 500ms 1500ms;
+}
+
+:global(.fade-exit) ul.stats li {
+    animation: scaleIn 350ms reverse;
+}
+
+.profile ul li strong {
+    font-weight: 300;
+    color: var(--primary-color);
+    display: block;
+    font-size: 16px;
+    line-height: 26px;
+}
+
+.checkins {
+    grid-column: 1;
+    grid-row: 2;
+    padding: 0 0 40px 0;
+}
+
+.checkins h3 {
+    position: relative;
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    line-height: 28px;
+    font-weight: 400;
+}
+
+:global(.fade-enter-active) .checkins h3 {
+    animation: moveIn 350ms 1500ms;
+}
+
+:global(.fade-exit) .checkins h3 {
+    animation: moveOut 350ms;
+}
+
+.checkins ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.checkins ul a {
+    display: block;
+    position: relative;
+}
+
+:global(.fade-enter-active) .checkins ul a {
+    animation: moveIn 350ms 1500ms;
+}
+
+:global(.fade-exit) .checkins ul a {
+    animation: moveOut 350ms;
+}
+
+.checkins ul li {
+    padding: 15px 0;
+    display: grid;
+    grid-template-columns: 60px auto;
+    grid-template-rows: auto auto auto;
+    border-top: 1px solid var(--line-color);
+}
+
+.checkins ul .icon {
+    display: block;
+    grid-column: 1;
+    grid-row-start: 1;
+    grid-row-end: span 3;
+    width: 48px;
+    height: 48px;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+    background-color: var(--background-color-dark);
+    transition: all 350ms ease-out;
+    text-align: center;
+}
+
+.checkins ul .icon:hover {
+    transform: scale(1.05);
+}
+
+.checkins ul .icon img {
+    width: 32px;
+    height: 32px;
+    margin-top: 8px;
+    opacity: 0.7;
+}
+
+:global(.fade-enter-active) .checkins ul li:nth-child(-n + 10) .icon {
+    animation: halfScaleIn 500ms 1500ms;
+}
+
+.checkins ul a.title {
+    display: block;
+    grid-column: 2;
+    grid-row: 1;
+    position: relative;
+    font-size: 13px;
+}
+
+.checkins ul .info {
+    display: block;
+    grid-column: 2;
+    grid-row: 2;
+    font-size: 13px;
+    position: relative;
+}
+
+.checkins ul .location {
+    color: var(--alt-text-color);
+}
+
+.checkins ul .date {
+    display: block;
+    grid-column: 2;
+    grid-row: 3;
+    color: var(--alt-text-color);
+    font-size: 12px;
+    position: relative;
+}
