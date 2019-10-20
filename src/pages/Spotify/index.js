@@ -16,7 +16,11 @@ export default function Spotify() {
         try {
             const response = await fetch('http://localhost:4000/spotify/user')
             const user = await response.json()
-            setUser(user)
+            if (user) {
+                setUser(user)
+            } else {
+                setError(true)
+            }
         } catch (error) {
             setError(true)
         }

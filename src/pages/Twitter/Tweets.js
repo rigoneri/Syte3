@@ -8,7 +8,7 @@ export default function Tweets() {
     const [error, setError] = useState(false)
     const [empty, setEmpty] = useState(0)
     const pageEl = useRef(null)
-    let debouncing = false
+    let debouncing = useRef(false)
 
     useEffect(() => {
         fetchTweets()
@@ -31,24 +31,24 @@ export default function Tweets() {
                 setPage(page + 1)
                 //TODO: change api to not return empty pages...
             }
-            debouncing = false
+            debouncing.current = false
         } catch (error) {
             setError(true)
         }
     }
 
     const handleScroll = () => {
-        if (debouncing) {
+        if (debouncing.current) {
             return
         }
 
-        debouncing = true
+        debouncing.current = true
         window.requestAnimationFrame(() => {
             if (window.scrollY + window.innerHeight > pageEl.current.clientHeight - 200) {
                 setPage(page + 1)
                 return
             }
-            debouncing = false
+            debouncing.current = false
         })
     }
 

@@ -11,9 +11,8 @@ Front-End TODOs:
 -   [x] Dribbble Integration
 -   [x] Instagram Integration
 -   [x] Spotify Integration
--   [ ] YouTube Integration
+-   [x] YouTube Integration
 -   [ ] Foursquare Integration
--   [ ] Tumblr Integration
 -   [ ] Home Timeline
 
 Backend TODOs:

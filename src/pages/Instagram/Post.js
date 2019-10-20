@@ -5,13 +5,14 @@ import styles from './Instagram.module.css'
 
 export default function Post({ post }) {
     const [videoVisible, setVideoVisible] = useState(false)
-    const handleClick = tweet => {
-        console.log('TODO OPEN Modal', tweet)
+    const handleClick = e => {
+        e.preventDefault()
+        console.log('TODO OPEN Modal', post)
     }
 
     return (
         <li>
-            <a href={post.url} className={styles.post} onClick={e => handleClick(e, post)}>
+            <a href={post.url} className={styles.post} onClick={handleClick}>
                 <Img
                     src={post.pictureHD}
                     alt="Instagram Post"
