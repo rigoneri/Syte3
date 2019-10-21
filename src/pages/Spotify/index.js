@@ -1,33 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react'
 import Img from 'react-image'
 import Error from 'components/Error'
+import useUser from 'hooks/User'
 import RecentTracks from './RecentTracks'
 import { PlayContext } from './PlayContext'
 import Top from './Top'
 import styles from './Spotify.module.css'
 
 export default function Spotify() {
-    const [user, setUser] = useState(null)
-    const [error, setError] = useState(false)
+    const [user, error] = useUser('spotify')
     const [playing, setPlaying] = useState(null)
     let audio = useRef(new Audio())
 
-    const fetchUser = async () => {
-        try {
-            const response = await fetch('http://localhost:4000/spotify/user')
-            const user = await response.json()
-            if (user) {
-                setUser(user)
-            } else {
-                setError(true)
-            }
-        } catch (error) {
-            setError(true)
-        }
-    }
-
     useEffect(() => {
-        fetchUser()
         let currentAudio = audio.current
         currentAudio.onended = () => {
             setPlaying(null)

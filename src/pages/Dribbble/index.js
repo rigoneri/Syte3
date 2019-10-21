@@ -1,25 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Error from 'components/Error'
+import useUser from 'hooks/User'
 import Profile from './Profile'
 import Shots from './Shots'
 
-export default function Github() {
-    const [user, setUser] = useState(null)
-    const [error, setError] = useState(false)
-
-    const fetchUser = async () => {
-        try {
-            const response = await fetch('http://localhost:4000/dribbble/user')
-            const user = await response.json()
-            setUser(user)
-        } catch (error) {
-            setError(true)
-        }
-    }
-
-    useEffect(() => {
-        fetchUser()
-    }, [])
+export default function Dribbble() {
+    const [user, error] = useUser('dribbble')
 
     if (error) {
         return <Error message="Unable to fetch dribbble profile." />
