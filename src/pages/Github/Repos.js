@@ -8,7 +8,7 @@ export default function Repos() {
 
     const fetchRepos = async () => {
         try {
-            const response = await fetch('http://localhost:4000/github/repos')
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/github/repos`)
             const repos = await response.json()
             setRepos(repos)
         } catch (error) {

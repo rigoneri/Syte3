@@ -22,7 +22,7 @@ export default function Shots() {
 
     const fetchShots = async () => {
         try {
-            const response = await fetch(`http://localhost:4000/dribbble/${page}`)
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/dribbble/${page}`)
             const pageShots = await response.json()
             if (pageShots.length > 0) {
                 setShots(shots.concat(pageShots))

@@ -1,26 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Error from 'components/Error'
+import useUser from 'hooks/User'
 import Profile from './Profile'
 import Videos from './Videos'
 import styles from './YouTube.module.css'
 
 export default function YouTube() {
-    const [user, setUser] = useState(null)
-    const [error, setError] = useState(false)
-
-    const fetchUser = async () => {
-        try {
-            const response = await fetch('http://localhost:4000/youtube/user')
-            const user = await response.json()
-            setUser(user)
-        } catch (error) {
-            setError(true)
-        }
-    }
-
-    useEffect(() => {
-        fetchUser()
-    }, [])
+    const [user, error] = useUser('youtube')
 
     if (error) {
         return <Error message="Unable to fetch youtube profile." />

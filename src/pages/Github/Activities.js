@@ -13,7 +13,7 @@ export default function Activities() {
 
     const fetchActivities = async () => {
         try {
-            const response = await fetch('http://localhost:4000/github/activity')
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/github/activity`)
             const activities = await response.json()
             setLoading(false)
             setActivities(activities)

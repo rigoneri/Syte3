@@ -25,7 +25,7 @@ export default function Checkins() {
 
     const fetchCheckins = async () => {
         try {
-            const response = await fetch(`http://localhost:4000/foursquare/${page}`)
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/foursquare/${page}`)
             const pageCheckins = await response.json()
             if (loadingMonth) {
                 setLoadingMonth(false)

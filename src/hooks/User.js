@@ -7,7 +7,7 @@ export default function useUser(type) {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const url = `http://localhost:4000/${type}/user`
+                const url = `${process.env.REACT_APP_API_URL}/${type}/user`
                 const response = await fetch(url)
                 const user = await response.json()
                 setUser(user)

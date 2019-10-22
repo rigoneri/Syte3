@@ -23,7 +23,7 @@ export default function Videos() {
 
     const fetchVideos = async () => {
         try {
-            const response = await fetch(`http://localhost:4000/youtube/${page}`)
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/youtube/${page}`)
             const pageVideos = await response.json()
             if (pageVideos) {
                 const pageUploads = pageVideos.uploads

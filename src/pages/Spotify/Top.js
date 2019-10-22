@@ -9,7 +9,7 @@ export default function Top() {
 
     const fetchTop = async () => {
         try {
-            const response = await fetch('http://localhost:4000/spotify/top')
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/spotify/top`)
             const top = await response.json()
             setTop(top)
         } catch (error) {

@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { subMonths, format } from 'date-fns'
 import Img from 'react-image'
 import { LeftIcon, RightIcon } from 'components/Icons'
+import Map from './Map'
 import styles from './Foursquare.module.css'
 
 export default function Monthly({ checkins, month, onMonthChange: changeMonth }) {
     const [categories, setCategories] = useState(null)
 
     useEffect(() => {
-        console.log('checkins', checkins)
         const groupedCheckins = {}
         if (checkins) {
             checkins.forEach(checkin => {
@@ -52,7 +52,9 @@ export default function Monthly({ checkins, month, onMonthChange: changeMonth })
                     </span>
                 )}
             </header>
-            <section className={styles.map}></section>
+            <section className={styles.map}>
+                <Map markers={checkins} />
+            </section>
             {categories ? (
                 <section className={styles.categories}>
                     <ul>

@@ -13,7 +13,7 @@ export default function Posts() {
 
     const fetchPosts = async () => {
         try {
-            const response = await fetch(`http://localhost:4000/instagram/recent`)
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/instagram/recent`)
             const posts = await response.json()
             if (posts.length > 0) {
                 setPosts(posts)

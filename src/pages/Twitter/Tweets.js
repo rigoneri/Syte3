@@ -21,7 +21,7 @@ export default function Tweets() {
 
     const fetchTweets = async () => {
         try {
-            const response = await fetch(`http://localhost:4000/twitter/${page}`)
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/twitter/${page}`)
             const pageTweets = await response.json()
             if (pageTweets.length > 0) {
                 setTweets(tweets.concat(pageTweets))
