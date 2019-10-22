@@ -164,7 +164,7 @@
     border-top: 1px solid var(--line-color);
 }
 
-.checkins ul .icon {
+ul .icon {
     display: block;
     grid-column: 1;
     grid-row-start: 1;
@@ -183,7 +183,7 @@
     transform: scale(1.05);
 }
 
-.checkins ul .icon img {
+ul .icon img {
     width: 32px;
     height: 32px;
     margin-top: 8px;
@@ -221,4 +221,108 @@
     color: var(--alt-text-color);
     font-size: 12px;
     position: relative;
+}
+
+.monthly {
+    grid-column: 2;
+    grid-row-start: 1;
+    grid-row-end: span 3;
+    padding: 40px 30px 40px 40px;
+}
+
+.monthly header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.monthly header h2 {
+    margin: 0 10px;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.monthly header svg {
+    fill: var(--primary-color);
+    opacity: 0.6;
+    transform: scale(0.8);
+}
+
+.monthly .leftIcon {
+    position: absolute;
+    display: inline-block;
+    left: 10px;
+    cursor: pointer;
+    width: 30px;
+}
+
+.monthly .leftIcon svg {
+    transition: all 350ms ease-out;
+}
+
+.monthly .leftIcon:hover svg {
+    opacity: 1;
+    transform: scale(0.9);
+    margin-left: -5px;
+}
+
+.monthly .rightIcon {
+    position: absolute;
+    display: inline-block;
+    right: 10px;
+    cursor: pointer;
+    width: 30px;
+}
+
+.monthly .rightIcon svg {
+    transition: all 350ms ease-out;
+}
+
+.monthly .rightIcon:hover svg {
+    opacity: 1;
+    transform: scale(0.9);
+    margin-left: 5px;
+}
+
+.map {
+    min-height: 300px;
+    width: 100%;
+    margin-top: 30px;
+    border-radius: 4px;
+    background: var(--background-color-dark);
+}
+
+.categories ul {
+    list-style: none;
+    margin: 30px 0;
+    padding: 0;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.categories li {
+    display: block;
+    width: 25%;
+    margin: 0 0 30px 0;
+}
+
+.categories li .icon {
+    margin: 0 auto 5px auto;
+}
+
+.categories li .category {
+    text-align: center;
+    display: block;
+    font-weight: 200;
+}
+
+.categories li .count {
+    display: block;
+    color: var(--alt-text-color);
+    font-size: 12px;
+    line-height: 16px;
 }

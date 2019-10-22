@@ -26,6 +26,8 @@ import { ReactComponent as GitReopenedIcon } from './GitReopenedIcon.svg'
 import { ReactComponent as GitRepoIcon } from './GitRepoIcon.svg'
 import { ReactComponent as GitTagIcon } from './GitTagIcon.svg'
 import { ReactComponent as GitPRIcon } from './GitPRIcon.svg'
+import { ReactComponent as LeftIcon } from './LeftIcon.svg'
+import { ReactComponent as RightIcon } from './RightIcon.svg'
 
 const Logo = ({ type }) => {
     switch (type) {
@@ -85,4 +87,4 @@ const GitIcons = ({ type }) => {
     }
 }
 
-export { Logo, PlayLogo, PauseLogo, GitIcons, HeartIcon, CommentIcon }
+export { Logo, PlayLogo, PauseLogo, GitIcons, HeartIcon, CommentIcon, LeftIcon, RightIcon }

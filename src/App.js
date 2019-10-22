@@ -32,36 +32,42 @@ function AppContent() {
             <CSSTransition key={location.key} classNames="fade" timeout={{ enter: 2000, exit: 400 }}>
                 <section className="routes">
                     <Suspense fallback={null}>
-                        <Switch location={location}>
-                            <Route exact path="/">
-                                <Home />
-                            </Route>
-                            <Route path="/twitter">
-                                <Twitter />
-                            </Route>
-                            <Route path="/dribbble">
-                                <Dribbble />
-                            </Route>
-                            <Route path="/foursquare">
-                                <Foursquare />
-                            </Route>
-                            <Route path="/github">
-                                <Github />
-                            </Route>
-                            <Route path="/instagram">
-                                <Instagram />
-                            </Route>
-                            <Route path="/spotify">
-                                <Spotify />
-                            </Route>
-                            <Route path="/youtube">
-                                <YouTube />
-                            </Route>
-                        </Switch>
+                        <Routes location={location} />
                     </Suspense>
                 </section>
             </CSSTransition>
         </TransitionGroup>
+    )
+}
+
+function Routes({ location }) {
+    return (
+        <Switch location={location}>
+            <Route exact path="/">
+                <Home />
+            </Route>
+            <Route path="/twitter">
+                <Twitter />
+            </Route>
+            <Route path="/dribbble">
+                <Dribbble />
+            </Route>
+            <Route path="/foursquare">
+                <Foursquare />
+            </Route>
+            <Route path="/github">
+                <Github />
+            </Route>
+            <Route path="/instagram">
+                <Instagram />
+            </Route>
+            <Route path="/spotify">
+                <Spotify />
+            </Route>
+            <Route path="/youtube">
+                <YouTube />
+            </Route>
+        </Switch>
     )
 }
 

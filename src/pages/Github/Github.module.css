@@ -218,7 +218,7 @@
 .activities {
     grid-column: 2;
     grid-row-start: 1;
-    grid-row-end: span 2;
+    grid-row-end: span 3;
     padding: 40px 30px 40px 40px;
 }
 
