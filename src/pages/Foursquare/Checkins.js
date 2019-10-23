@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { parseISO, formatDistanceToNow } from 'date-fns'
-import Img from 'react-image'
 import Monthly from './Monthly'
+import Checkin from './Checkin'
 import styles from './Foursquare.module.css'
 
 export default function Checkins() {
@@ -32,12 +31,16 @@ export default function Checkins() {
                 setMonth(page)
             }
 
-            if (pageCheckins.length > 0) {
+            if (pageCheckins.length >= 0) {
                 const ins = checkins.slice()
                 ins.push(pageCheckins)
                 setCheckins(ins)
-                setEmpty(0)
-            } else if (empty < 2) {
+                if (pageCheckins.length >= 0) {
+                    setEmpty(0)
+                }
+            }
+
+            if (pageCheckins.length === 0 && empty < 2) {
                 setEmpty(empty + 1)
                 setPage(page + 1)
             }
@@ -79,31 +82,12 @@ export default function Checkins() {
                 {!error && (
                     <ul>
                         {checkins.length
-                            ? checkins.map(page =>
-                                  page.map(checkin => (
-                                      <li key={`${page}-${checkin.id}`}>
-                                          <a href={checkin.url} className={styles.icon}>
-                                              <Img src={checkin.icon} alt={checkin.title} />
-                                          </a>
-                                          <a href={checkin.url} className={styles.title}>
-                                              {checkin.title}
-                                          </a>
-                                          <span className={styles.info}>
-                                              <span className={styles.category}>{checkin.category}</span>&nbsp;
-                                              <span className={styles.location}>
-                                                  {checkin.city ? `${checkin.city}, ` : null}
-                                                  {checkin.state}
-                                              </span>
-                                          </span>
-                                          <span className={styles.date}>{formatDistanceToNow(parseISO(checkin.date))} ago</span>
-                                      </li>
-                                  ))
-                              )
+                            ? checkins.map(page => page.map(checkin => <Checkin key={`${page}-${checkin.id}`} checkin={checkin} />))
                             : null}
                     </ul>
                 )}
             </div>
-            {checkins.length && !loadingMonth ? <Monthly checkins={checkins[month]} month={month} onMonthChange={handleMonthChange} /> : null}
+            {checkins.length ? <Monthly checkins={loadingMonth ? null : checkins[month]} month={month} onMonthChange={handleMonthChange} /> : null}
         </>
     )
 }

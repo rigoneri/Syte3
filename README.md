@@ -12,7 +12,7 @@ Front-End TODOs:
 -   [x] Instagram Integration
 -   [x] Spotify Integration
 -   [x] YouTube Integration
--   [ ] Foursquare Integration
+-   [x] Foursquare Integration
 -   [ ] Home Timeline
 
 Backend TODOs:

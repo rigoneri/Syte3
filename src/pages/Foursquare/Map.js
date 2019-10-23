@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import GoogleMapReact from 'google-map-react'
 import { defaultCenter, defaultZoom, mapOptions } from './MapOptions'
 import styles from './Foursquare.module.css'
@@ -11,14 +11,19 @@ const Marker = ({ $hover, title }) => {
     )
 }
 
-export default function Map({ markers }) {
-    const googleApiLoaded = (map, maps, markers) => {
-        const bounds = new maps.LatLngBounds()
-        markers.forEach(marker => {
-            bounds.extend(new maps.LatLng(marker.lat, marker.lng))
-        })
-        map.fitBounds(bounds)
-    }
+export default function Map({ markers, month }) {
+    const [map, setMap] = useState(null)
+    const [maps, setMaps] = useState(null)
+
+    useEffect(() => {
+        if (map && maps && markers && markers.length) {
+            const bounds = new maps.LatLngBounds()
+            markers.forEach(marker => {
+                bounds.extend(new maps.LatLng(marker.lat, marker.lng))
+            })
+            map.fitBounds(bounds)
+        }
+    }, [month, markers, map, maps])
 
     return (
         <div style={{ height: '300px', width: '100%' }}>
@@ -29,7 +34,12 @@ export default function Map({ markers }) {
                 options={mapOptions}
                 hoverDistance={10}
                 yesIWantToUseGoogleMapApiInternals
-                onGoogleApiLoaded={({ map, maps }) => googleApiLoaded(map, maps, markers)}>
+                onGoogleApiLoaded={({ map: gMap, maps: gMaps }) => {
+                    if (!map && !maps) {
+                        setMap(gMap)
+                        setMaps(gMaps)
+                    }
+                }}>
                 {markers && markers.map(marker => <Marker key={marker.id} lat={marker.lat} lng={marker.lng} title={marker.title} />)}
             </GoogleMapReact>
         </div>

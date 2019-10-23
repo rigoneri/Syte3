@@ -148,20 +148,28 @@
     position: relative;
 }
 
-:global(.fade-enter-active) .checkins ul a {
-    animation: moveIn 350ms 1500ms;
-}
-
-:global(.fade-exit) .checkins ul a {
-    animation: moveOut 350ms;
-}
-
 .checkins ul li {
     padding: 15px 0;
     display: grid;
     grid-template-columns: 60px auto;
     grid-template-rows: auto auto auto;
     border-top: 1px solid var(--line-color);
+}
+
+:global(.fade-enter-active) .checkins ul .title {
+    animation: moveIn 350ms 1500ms;
+}
+
+:global(.fade-exit) .checkins ul .title {
+    animation: moveOut 350ms;
+}
+
+:global(.fade-enter-active) .checkins ul .icon {
+    animation: halfScaleIn 350ms 1500ms;
+}
+
+:global(.fade-exit) .checkins ul .icon {
+    animation: halfScaleIn 350ms reverse;
 }
 
 ul .icon {
@@ -210,6 +218,14 @@ ul .icon img {
     position: relative;
 }
 
+:global(.fade-enter-active) .checkins ul .info {
+    animation: moveIn 500ms 1500ms;
+}
+
+:global(.fade-exit) .checkins ul .info {
+    animation: moveOut 300ms;
+}
+
 .checkins ul .location {
     color: var(--alt-text-color);
 }
@@ -221,6 +237,14 @@ ul .icon img {
     color: var(--alt-text-color);
     font-size: 12px;
     position: relative;
+}
+
+:global(.fade-enter-active) .checkins ul .date {
+    animation: moveIn 550ms 1500ms;
+}
+
+:global(.fade-exit) .checkins ul .date {
+    animation: moveOut 200ms;
 }
 
 .monthly {
@@ -270,9 +294,10 @@ ul .icon img {
 .monthly .rightIcon {
     position: absolute;
     display: inline-block;
-    right: 10px;
+    right: 0;
     cursor: pointer;
     width: 30px;
+    text-align: right;
 }
 
 .monthly .rightIcon svg {
@@ -282,7 +307,7 @@ ul .icon img {
 .monthly .rightIcon:hover svg {
     opacity: 1;
     transform: scale(0.9);
-    margin-left: 5px;
+    margin-right: -5px;
 }
 
 .map {
@@ -292,6 +317,14 @@ ul .icon img {
     border-radius: 4px;
     padding: 5px;
     background: var(--background-color-dark);
+}
+
+:global(.fade-enter-active) .map {
+    animation: halfScaleIn 350ms 1500ms;
+}
+
+:global(.fade-exit) .map {
+    animation: halfScaleIn 350ms reverse;
 }
 
 .map > div {
@@ -316,6 +349,7 @@ ul .icon img {
     font-size: 12px;
     text-align: center;
     position: absolute;
+    z-index: 5;
     left: -96px;
     top: -20px;
     opacity: 0;
@@ -352,6 +386,14 @@ ul .icon img {
     margin: 0 auto 5px auto;
 }
 
+:global(.fade-enter-active) .categories li .icon {
+    animation: halfScaleIn 350ms 1500ms;
+}
+
+:global(.fade-exit) .categories li .icon {
+    animation: halfScaleIn 350ms reverse;
+}
+
 .categories li .category {
     text-align: center;
     display: block;
@@ -363,4 +405,96 @@ ul .icon img {
     color: var(--alt-text-color);
     font-size: 12px;
     line-height: 16px;
+}
+
+@media (max-width: 900px) {
+    .categories li {
+        width: 33.33%;
+    }
+}
+
+@media (max-width: 700px) {
+    .page {
+        padding-right: 30px;
+    }
+
+    .profile {
+        grid-column-start: 1;
+        grid-column-end: span 2;
+    }
+
+    .checkins {
+        grid-column-start: 1;
+        grid-column-end: span 2;
+    }
+
+    .monthly {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .page {
+        margin: 20px 10px;
+        padding-right: 0;
+        position: relative;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes scaleIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes halfScaleIn {
+    0% {
+        transform: scale(0.7);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes moveIn {
+    0% {
+        left: -20px;
+        opacity: 0;
+    }
+
+    100% {
+        left: 0px;
+        opacity: 1;
+    }
+}
+
+@keyframes moveOut {
+    0% {
+        left: 0;
+        opacity: 1;
+    }
+
+    100% {
+        left: 20px;
+        opacity: 0;
+    }
 }

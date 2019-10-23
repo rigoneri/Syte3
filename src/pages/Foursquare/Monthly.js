@@ -26,7 +26,7 @@ export default function Monthly({ checkins, month, onMonthChange: changeMonth })
         }
 
         setCategories(Object.keys(groupedCheckins).length > 0 ? groupedCheckins : null)
-    }, [checkins, month])
+    }, [checkins])
 
     return (
         <div className={styles.monthly}>
@@ -53,7 +53,7 @@ export default function Monthly({ checkins, month, onMonthChange: changeMonth })
                 )}
             </header>
             <section className={styles.map}>
-                <Map markers={checkins} />
+                <Map markers={checkins} month={month} />
             </section>
             {categories ? (
                 <section className={styles.categories}>
