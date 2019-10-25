@@ -18,7 +18,7 @@
 }
 
 :global(.fade-enter-active) .profile .picture {
-    animation: scaleIn 350ms 1500ms;
+    animation: scaleIn 350ms var(--animation-delay);
 }
 
 :global(.fade-exit) .profile .picture {
@@ -41,7 +41,7 @@
 }
 
 :global(.fade-enter-active) .profile h2 {
-    animation: moveIn 350ms 1500ms;
+    animation: moveIn 350ms var(--animation-delay);
 }
 
 :global(.fade-exit) .profile h2 {
@@ -56,7 +56,7 @@
 }
 
 :global(.fade-enter-active) .profile .username {
-    animation: moveIn 500ms 1500ms;
+    animation: moveIn 500ms var(--animation-delay);
 }
 
 :global(.fade-exit) .profile .username {
@@ -94,7 +94,7 @@
 }
 
 :global(.fade-enter-active) ul.stats li {
-    animation: scaleIn 500ms 1500ms;
+    animation: scaleIn 500ms var(--animation-delay);
 }
 
 :global(.fade-exit) ul.stats li {
@@ -150,7 +150,7 @@
 }
 
 :global(.fade-enter-active) .shots a {
-    animation: halfScaleIn 500ms 1500ms;
+    animation: halfScaleIn 500ms var(--animation-delay);
 }
 
 :global(.fade-exit) .shots a {

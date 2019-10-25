@@ -51,7 +51,7 @@
 }
 
 :global(.fade-enter-active) .profile .picture {
-    animation: scaleIn 350ms 1500ms;
+    animation: scaleIn 350ms var(--animation-delay);
 }
 
 :global(.fade-exit) .profile .picture {
@@ -75,7 +75,7 @@
 }
 
 :global(.fade-enter-active) .profile h2 {
-    animation: scaleIn 500ms 1500ms;
+    animation: scaleIn 500ms var(--animation-delay);
 }
 
 :global(.fade-exit) .profile h2 {
@@ -93,7 +93,7 @@
 }
 
 :global(.fade-enter-active) .profile ul.stats {
-    animation: scaleIn 500ms 1500ms;
+    animation: scaleIn 500ms var(--animation-delay);
 }
 
 :global(.fade-exit) .profile ul.stats {
@@ -109,7 +109,7 @@
 }
 
 :global(.fade-enter-active) .videos h3 {
-    animation: moveIn 350ms 1600ms;
+    animation: moveIn 350ms var(--animation-delay);
 }
 
 :global(.fade-exit) .videos h3 {
@@ -135,7 +135,7 @@
 }
 
 :global(.fade-enter-active) .videos li {
-    animation: halfScaleIn 500ms 1500ms;
+    animation: halfScaleIn 500ms var(--animation-delay);
 }
 
 :global(.fade-exit) .videos li {

@@ -12,6 +12,7 @@ html {
     --text-color: #eee;
     --alt-text-color: #5d7679;
     --line-color: #263435;
+    --animation-delay: 1000ms;
 }
 
 body {

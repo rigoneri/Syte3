@@ -31,7 +31,7 @@
 }
 
 :global(.fade-enter-active) .profile .picture {
-    animation: scaleIn 350ms 1500ms;
+    animation: scaleIn 350ms var(--animation-delay);
 }
 
 :global(.fade-exit) .profile .picture {
@@ -53,7 +53,7 @@
 }
 
 :global(.fade-enter-active) .profile h2 {
-    animation: moveIn 500ms 1500ms;
+    animation: moveIn 500ms var(--animation-delay);
 }
 
 :global(.fade-exit) .profile h2 {
@@ -74,7 +74,7 @@
 }
 
 :global(.fade-enter-active) .recentTracks h3 {
-    animation: moveIn 350ms 1500ms;
+    animation: moveIn 350ms var(--animation-delay);
 }
 
 :global(.fade-exit) .recentTracks h3 {
@@ -120,7 +120,7 @@
 }
 
 :global(.fade-enter-active) .recentTracks ul li:nth-child(-n + 10) .album {
-    animation: halfScaleIn 500ms 1500ms;
+    animation: scaleIn 500ms var(--animation-delay);
 }
 
 .recentTracks ul .album .playIcon {
@@ -161,7 +161,7 @@
 }
 
 :global(.fade-enter-active) .recentTracks ul li:nth-child(-n + 10) a.title {
-    animation: moveIn 350ms 1500ms;
+    animation: moveIn 350ms var(--animation-delay);
 }
 
 .recentTracks ul .artist {
@@ -197,7 +197,7 @@
 }
 
 :global(.fade-enter-active) .top h3 {
-    animation: moveIn 350ms 1500ms;
+    animation: moveIn 350ms var(--animation-delay);
 }
 
 :global(.fade-exit) .top h3 {
@@ -209,6 +209,7 @@
     margin: 0 0 30px 0;
     padding: 0;
     display: grid;
+    position: relative;
     grid-template-columns: 50% 25% 25%;
     grid-template-rows: 1fr 1fr;
 }
@@ -219,13 +220,17 @@
     grid-row-end: span 2;
 }
 
+.topArtists ul li:nth-child(1) a {
+    height: 287px;
+}
+
 .topArtists li {
     position: relative;
     overflow: hidden;
 }
 
 :global(.fade-enter-active) .topArtists li {
-    animation: halfScaleIn 500ms 1500ms;
+    animation: halfScaleIn 500ms var(--animation-delay);
 }
 
 :global(.fade-exit) .topArtists li {
@@ -291,10 +296,6 @@
     background-color: rgba(0, 0, 0, 0.1);
 }
 
-.topArtists ul li:nth-child(1) a {
-    height: 287px;
-}
-
 .topArtists .placeholder svg {
     fill: var(--alt-text-color);
     opacity: 0.7;
@@ -317,7 +318,7 @@
 }
 
 :global(.fade-enter-active) .topTracks ul li {
-    animation: moveIn 350ms 1500ms;
+    animation: moveIn 350ms var(--animation-delay);
 }
 
 :global(.fade-exit) .topTracks ul li {

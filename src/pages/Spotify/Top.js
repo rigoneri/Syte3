@@ -7,17 +7,16 @@ export default function Top() {
     const [top, setTop] = useState(null)
     const [error, setError] = useState(false)
 
-    const fetchTop = async () => {
-        try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/spotify/top`)
-            const top = await response.json()
-            setTop(top)
-        } catch (error) {
-            setError(true)
-        }
-    }
-
     useEffect(() => {
+        const fetchTop = async () => {
+            try {
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/spotify/top`)
+                const top = await response.json()
+                setTop(top)
+            } catch (error) {
+                setError(true)
+            }
+        }
         fetchTop()
     }, [])
 

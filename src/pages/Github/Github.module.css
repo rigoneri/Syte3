@@ -38,7 +38,7 @@
 }
 
 :global(.fade-enter-active) .profile .picture {
-    animation: scaleIn 350ms 1500ms;
+    animation: scaleIn 350ms var(--animation-delay);
 }
 
 :global(.fade-exit) .profile .picture {
@@ -61,7 +61,7 @@
 }
 
 :global(.fade-enter-active) .profile h2 {
-    animation: moveIn 350ms 1500ms;
+    animation: moveIn 350ms var(--animation-delay);
 }
 
 :global(.fade-exit) .profile h2 {
@@ -76,7 +76,7 @@
 }
 
 :global(.fade-enter-active) .profile .username {
-    animation: moveIn 500ms 1500ms;
+    animation: moveIn 500ms var(--animation-delay);
 }
 
 :global(.fade-exit) .profile .username {
@@ -114,7 +114,7 @@
 }
 
 :global(.fade-enter-active) ul.stats li {
-    animation: scaleIn 500ms 1500ms;
+    animation: scaleIn 500ms var(--animation-delay);
 }
 
 :global(.fade-exit) ul.stats li {
@@ -144,7 +144,7 @@
 }
 
 :global(.fade-enter-active) .repos h3 {
-    animation: moveIn 350ms 1500ms;
+    animation: moveIn 350ms var(--animation-delay);
 }
 
 :global(.fade-exit) .repos h3 {
@@ -164,7 +164,7 @@
 }
 
 :global(.fade-enter-active) .repos ul a {
-    animation: moveIn 350ms 1500ms;
+    animation: moveIn 350ms var(--animation-delay);
 }
 
 :global(.fade-exit) .repos ul a {
@@ -176,7 +176,7 @@
 }
 
 :global(.fade-enter-active) .repos ul p {
-    animation: moveIn 600ms 1500ms;
+    animation: moveIn 600ms var(--animation-delay);
 }
 
 :global(.fade-exit) .repos ul p {
@@ -201,7 +201,7 @@
 }
 
 :global(.fade-enter-active) .repos ul.stats li {
-    animation: scaleIn 500ms 1500ms;
+    animation: scaleIn 500ms var(--animation-delay);
 }
 
 :global(.fade-exit) .repos ul.stats li {
@@ -231,7 +231,7 @@
 }
 
 :global(.fade-enter-active) .activities h3 {
-    animation: moveIn 500ms 1500ms;
+    animation: moveIn 500ms var(--animation-delay);
 }
 
 :global(.fade-exit) .activities h3 {
@@ -258,7 +258,7 @@
 }
 
 :global(.fade-enter-active) .activities svg {
-    animation: scaleIn 500ms 1500ms;
+    animation: scaleIn 500ms var(--animation-delay);
 }
 
 :global(.fade-exit) .activities svg {
@@ -272,7 +272,7 @@
 }
 
 :global(.fade-enter-active) .activities .date {
-    animation: moveIn 600ms 1500ms;
+    animation: moveIn 600ms var(--animation-delay);
 }
 
 :global(.fade-exit) .activities .date {
@@ -284,7 +284,7 @@
 }
 
 :global(.fade-enter-active) .activities p {
-    animation: moveIn 500ms 1500ms;
+    animation: moveIn 500ms var(--animation-delay);
 }
 
 :global(.fade-exit) .activities p {
@@ -297,7 +297,7 @@
 }
 
 :global(.fade-enter-active) .activities .comment {
-    animation: moveIn 600ms 1500ms;
+    animation: moveIn 600ms var(--animation-delay);
 }
 
 :global(.fade-exit) .activities .comment {

@@ -48,7 +48,7 @@
 }
 
 :global(.fade-enter-active) .profile .picture {
-    animation: scaleIn 350ms 1500ms;
+    animation: scaleIn 350ms var(--animation-delay);
 }
 
 :global(.fade-exit) .profile .picture {
@@ -72,7 +72,7 @@
 }
 
 :global(.fade-enter-active) .profile h2 {
-    animation: scaleIn 500ms 1500ms;
+    animation: scaleIn 500ms var(--animation-delay);
 }
 
 :global(.fade-exit) .profile h2 {
@@ -87,7 +87,7 @@
 }
 
 :global(.fade-enter-active) .profile .username {
-    animation: scaleIn 500ms 1500ms;
+    animation: scaleIn 500ms var(--animation-delay);
 }
 
 :global(.fade-exit) .profile .username {
@@ -113,7 +113,7 @@
 }
 
 :global(.fade-enter-active) ul.stats li {
-    animation: scaleIn 500ms 1500ms;
+    animation: scaleIn 500ms var(--animation-delay);
 }
 
 :global(.fade-exit) ul.stats li {
@@ -135,7 +135,7 @@
 }
 
 :global(.fade-enter-active) .profile p {
-    animation: moveIn 500ms 1500ms;
+    animation: moveIn 500ms var(--animation-delay);
 }
 
 :global(.fade-exit) .profile p {
@@ -151,7 +151,7 @@
 }
 
 :global(.fade-enter-active) .profile h3 {
-    animation: moveIn 500ms 1500ms;
+    animation: moveIn 500ms var(--animation-delay);
 }
 
 :global(.fade-exit) .profile h3 {
@@ -176,7 +176,7 @@
 }
 
 :global(.fade-enter-active) .profile li {
-    animation: halfScaleIn 500ms 1500ms;
+    animation: halfScaleIn 500ms var(--animation-delay);
 }
 
 :global(.fade-exit) .profile li {
@@ -307,7 +307,7 @@
 }
 
 :global(.fade-enter-active) .tweets ul li:nth-child(-n + 10) .avatar {
-    animation: scaleIn 350ms 1500ms;
+    animation: scaleIn 350ms var(--animation-delay);
 }
 
 :global(.fade-exit) .tweets ul li:nth-child(-n + 10) .avatar {
@@ -315,7 +315,7 @@
 }
 
 :global(.fade-enter-active) .tweets ul li:nth-child(-n + 10) .content {
-    animation: moveIn 400ms 1500ms;
+    animation: moveIn 400ms var(--animation-delay);
 }
 
 :global(.fade-exit) .tweets ul li:nth-child(-n + 10) .content {

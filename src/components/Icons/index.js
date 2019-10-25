@@ -1,16 +1,27 @@
 import React from 'react'
 
 import { ReactComponent as TwitterLogo } from './TwitterLogo.svg'
+import { ReactComponent as TwitterIcon } from './TwitterIcon.svg'
 import { ReactComponent as DribbbleLogo } from './DribbbleLogo.svg'
+import { ReactComponent as DribbbleIcon } from './DribbbleIcon.svg'
 import { ReactComponent as InstagramLogo } from './InstagramLogo.svg'
+import { ReactComponent as InstagramIcon } from './InstagramIcon.svg'
 import { ReactComponent as GithubLogo } from './GithubLogo.svg'
+import { ReactComponent as GithubIcon } from './GithubIcon.svg'
 import { ReactComponent as SpotifyLogo } from './SpotifyLogo.svg'
+import { ReactComponent as SpotifyIcon } from './SpotifyIcon.svg'
 import { ReactComponent as YouTubeLogo } from './YouTubeLogo.svg'
+import { ReactComponent as YouTubeIcon } from './YouTubeIcon.svg'
 import { ReactComponent as FoursquareLogo } from './FoursquareLogo.svg'
+import { ReactComponent as FoursquareIcon } from './FoursquareIcon.svg'
 import { ReactComponent as TumblrLogo } from './TumblrLogo.svg'
+import { ReactComponent as TumblrIcon } from './TumblrIcon.svg'
 import { ReactComponent as FacebookLogo } from './FacebookLogo.svg'
+import { ReactComponent as FacebookIcon } from './FacebookIcon.svg'
 import { ReactComponent as FlickrLogo } from './FlickrLogo.svg'
+import { ReactComponent as FlickrIcon } from './FlickrIcon.svg'
 import { ReactComponent as LinkedInLogo } from './LinkedInLogo.svg'
+import { ReactComponent as LinkedInIcon } from './LinkedInIcon.svg'
 import { ReactComponent as PlayLogo } from './PlayLogo.svg'
 import { ReactComponent as PauseLogo } from './PauseLogo.svg'
 import { ReactComponent as StarIcon } from './StarIcon.svg'
@@ -58,6 +69,36 @@ const Logo = ({ type }) => {
     }
 }
 
+const Icon = ({ type }) => {
+    switch (type) {
+        case 'twitter':
+            return <TwitterIcon />
+        case 'dribbble':
+            return <DribbbleIcon />
+        case 'instagram':
+            return <InstagramIcon />
+        case 'github':
+            return <GithubIcon />
+        case 'spotify':
+        case 'lastfm':
+            return <SpotifyIcon />
+        case 'youtube':
+            return <YouTubeIcon />
+        case 'foursquare':
+            return <FoursquareIcon />
+        case 'tumblr':
+            return <TumblrIcon />
+        case 'facebook':
+            return <FacebookIcon />
+        case 'flickr':
+            return <FlickrIcon />
+        case 'linkedin':
+            return <LinkedInIcon />
+        default:
+            return null
+    }
+}
+
 const GitIcons = ({ type }) => {
     switch (type) {
         case 'git-branch':
@@ -87,4 +128,4 @@ const GitIcons = ({ type }) => {
     }
 }
 
-export { Logo, PlayLogo, PauseLogo, GitIcons, HeartIcon, CommentIcon, LeftIcon, RightIcon }
+export { Logo, Icon, PlayLogo, PauseLogo, GitIcons, HeartIcon, CommentIcon, LeftIcon, RightIcon }

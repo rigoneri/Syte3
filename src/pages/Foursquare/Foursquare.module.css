@@ -32,7 +32,7 @@
 }
 
 :global(.fade-enter-active) .profile .picture {
-    animation: scaleIn 350ms 1500ms;
+    animation: scaleIn 350ms var(--animation-delay);
 }
 
 :global(.fade-exit) .profile .picture {
@@ -55,7 +55,7 @@
 }
 
 :global(.fade-enter-active) .profile h2 {
-    animation: moveIn 350ms 1500ms;
+    animation: moveIn 350ms var(--animation-delay);
 }
 
 :global(.fade-exit) .profile h2 {
@@ -71,7 +71,7 @@
 }
 
 :global(.fade-enter-active) .profile .location {
-    animation: moveIn 500ms 1500ms;
+    animation: moveIn 500ms var(--animation-delay);
 }
 
 :global(.fade-exit) .profile .location {
@@ -100,7 +100,7 @@
 }
 
 :global(.fade-enter-active) ul.stats li {
-    animation: scaleIn 500ms 1500ms;
+    animation: scaleIn 500ms var(--animation-delay);
 }
 
 :global(.fade-exit) ul.stats li {
@@ -130,7 +130,7 @@
 }
 
 :global(.fade-enter-active) .checkins h3 {
-    animation: moveIn 350ms 1500ms;
+    animation: moveIn 350ms var(--animation-delay);
 }
 
 :global(.fade-exit) .checkins h3 {
@@ -157,7 +157,7 @@
 }
 
 :global(.fade-enter-active) .checkins ul .title {
-    animation: moveIn 350ms 1500ms;
+    animation: moveIn 350ms var(--animation-delay);
 }
 
 :global(.fade-exit) .checkins ul .title {
@@ -165,7 +165,7 @@
 }
 
 :global(.fade-enter-active) .checkins ul .icon {
-    animation: halfScaleIn 350ms 1500ms;
+    animation: halfScaleIn 350ms var(--animation-delay);
 }
 
 :global(.fade-exit) .checkins ul .icon {
@@ -199,7 +199,7 @@ ul .icon img {
 }
 
 :global(.fade-enter-active) .checkins ul li:nth-child(-n + 10) .icon {
-    animation: halfScaleIn 500ms 1500ms;
+    animation: halfScaleIn 500ms var(--animation-delay);
 }
 
 .checkins ul a.title {
@@ -219,7 +219,7 @@ ul .icon img {
 }
 
 :global(.fade-enter-active) .checkins ul .info {
-    animation: moveIn 500ms 1500ms;
+    animation: moveIn 500ms var(--animation-delay);
 }
 
 :global(.fade-exit) .checkins ul .info {
@@ -240,7 +240,7 @@ ul .icon img {
 }
 
 :global(.fade-enter-active) .checkins ul .date {
-    animation: moveIn 550ms 1500ms;
+    animation: moveIn 550ms var(--animation-delay);
 }
 
 :global(.fade-exit) .checkins ul .date {
@@ -320,7 +320,7 @@ ul .icon img {
 }
 
 :global(.fade-enter-active) .map {
-    animation: halfScaleIn 350ms 1500ms;
+    animation: halfScaleIn 350ms var(--animation-delay);
 }
 
 :global(.fade-exit) .map {
@@ -387,7 +387,7 @@ ul .icon img {
 }
 
 :global(.fade-enter-active) .categories li .icon {
-    animation: halfScaleIn 350ms 1500ms;
+    animation: halfScaleIn 350ms var(--animation-delay);
 }
 
 :global(.fade-exit) .categories li .icon {

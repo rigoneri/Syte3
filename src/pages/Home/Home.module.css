@@ -1,0 +1,72 @@
+.timeline {
+    position: relative;
+    margin-left: 1%;
+    padding: 40px 0;
+}
+
+.timeline h2 {
+    position: relative;
+    margin-left: 100px;
+    padding: 10px 40px 30px 45px;
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 400;
+}
+
+.timeline h3 {
+    position: absolute;
+    left: 0;
+    width: 100px;
+    margin-top: 11px;
+    font-size: 14px;
+    line-height: 26px;
+    font-weight: 400;
+    color: var(--alt-text-color);
+}
+
+.timeline ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.timeline ul li {
+    position: relative;
+}
+
+.timeline .icon {
+    position: absolute;
+    z-index: 1;
+    width: 40px;
+    height: 40px;
+    left: 82px;
+    top: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--line-color);
+    border-radius: 20px;
+}
+
+.timeline .icon svg {
+    width: 14px;
+    height: 14px;
+    fill: var(--alt-text-color);
+}
+
+.timeline .content {
+    position: relative;
+    max-width: 80%;
+    padding: 10px 40px 40px 45px;
+    margin-left: 100px;
+}
+
+.line {
+    height: 100%;
+    width: 4px;
+    position: fixed;
+    z-index: 0;
+    top: 0;
+    margin-left: 100px;
+    background-color: var(--line-color);
+}

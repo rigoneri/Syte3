@@ -14,6 +14,7 @@ Front-End TODOs:
 -   [x] YouTube Integration
 -   [x] Foursquare Integration
 -   [ ] Home Timeline
+-   [ ] Add modal for viewing details
 
 Backend TODOs:
 
