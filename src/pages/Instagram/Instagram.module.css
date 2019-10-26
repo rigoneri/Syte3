@@ -235,6 +235,37 @@
     background: rgba(0, 0, 0, 0.4);
 }
 
+.timelinePost a {
+    position: relative;
+}
+
+.timelinePost .picture {
+    width: 120px;
+    height: 120px;
+    display: block;
+    margin: 10px 5px 10px 0;
+    background-size: cover;
+    background-position: 50% 50%;
+    cursor: pointer;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+    transition: all 320ms ease-out;
+}
+
+.timelinePost .picture:hover {
+    transform: scale(1.07);
+}
+
+.timelinePost .video {
+    fill: #fff;
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+    left: 39px;
+    top: 39px;
+    width: 42px;
+    height: 42px;
+}
+
 @media (max-width: 950px) {
     .profile ul.stats {
         margin-right: 20px;

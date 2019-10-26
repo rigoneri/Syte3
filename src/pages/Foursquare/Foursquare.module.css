@@ -143,36 +143,43 @@
     padding: 0;
 }
 
-.checkins ul a {
+.checkins ul li {
+    border-top: 1px solid var(--line-color);
+    padding: 15px 0;
+}
+
+.checkin a {
     display: block;
     position: relative;
 }
 
-.checkins ul li {
-    padding: 15px 0;
+.checkin {
     display: grid;
     grid-template-columns: 60px auto;
     grid-template-rows: auto auto auto;
-    border-top: 1px solid var(--line-color);
 }
 
-:global(.fade-enter-active) .checkins ul .title {
+div.checkin {
+    margin-top: -10px;
+}
+
+:global(.fade-enter-active) .checkin .title {
     animation: moveIn 350ms var(--animation-delay);
 }
 
-:global(.fade-exit) .checkins ul .title {
+:global(.fade-exit) .checkin .title {
     animation: moveOut 350ms;
 }
 
-:global(.fade-enter-active) .checkins ul .icon {
+:global(.fade-enter-active) .checkin .icon {
     animation: halfScaleIn 350ms var(--animation-delay);
 }
 
-:global(.fade-exit) .checkins ul .icon {
+:global(.fade-exit) .checkin .icon {
     animation: halfScaleIn 350ms reverse;
 }
 
-ul .icon {
+.icon {
     display: block;
     grid-column: 1;
     grid-row-start: 1;
@@ -187,11 +194,11 @@ ul .icon {
     text-align: center;
 }
 
-.checkins ul .icon:hover {
+.checkin .icon:hover {
     transform: scale(1.05);
 }
 
-ul .icon img {
+.icon img {
     width: 32px;
     height: 32px;
     margin-top: 8px;
@@ -202,7 +209,7 @@ ul .icon img {
     animation: halfScaleIn 500ms var(--animation-delay);
 }
 
-.checkins ul a.title {
+.checkin a.title {
     display: block;
     grid-column: 2;
     grid-row: 1;
@@ -210,7 +217,7 @@ ul .icon img {
     font-size: 13px;
 }
 
-.checkins ul .info {
+.checkin .info {
     display: block;
     grid-column: 2;
     grid-row: 2;
@@ -218,19 +225,23 @@ ul .icon img {
     position: relative;
 }
 
-:global(.fade-enter-active) .checkins ul .info {
+:global(.fade-enter-active) .checkin .info {
     animation: moveIn 500ms var(--animation-delay);
 }
 
-:global(.fade-exit) .checkins ul .info {
+:global(.fade-exit) .checkin .info {
     animation: moveOut 300ms;
 }
 
-.checkins ul .location {
+.checkin .category {
+    margin-right: 3px;
+}
+
+.checkin .location {
     color: var(--alt-text-color);
 }
 
-.checkins ul .date {
+.checkin .date {
     display: block;
     grid-column: 2;
     grid-row: 3;
@@ -239,11 +250,11 @@ ul .icon img {
     position: relative;
 }
 
-:global(.fade-enter-active) .checkins ul .date {
+:global(.fade-enter-active) .checkin .date {
     animation: moveIn 550ms var(--animation-delay);
 }
 
-:global(.fade-exit) .checkins ul .date {
+:global(.fade-exit) .checkin .date {
     animation: moveOut 200ms;
 }
 

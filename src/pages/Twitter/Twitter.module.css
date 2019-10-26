@@ -224,7 +224,7 @@
     position: relative;
 }
 
-.tweets .avatar {
+.avatar {
     display: block;
     flex: 0 0 40px;
     width: 40px;
@@ -236,11 +236,11 @@
     transition: all 320ms ease-out;
 }
 
-.tweets .avatar:hover {
+.avatar:hover {
     transform: scale(1.07);
 }
 
-.tweets .avatar img {
+.avatar img {
     width: 40px;
     height: 40px;
 }
@@ -275,13 +275,13 @@
     margin-left: 10px;
 }
 
-.tweets ul.pictures li {
+ul.pictures li {
     padding: 0;
     border: 0;
     position: relative;
 }
 
-.tweets ul.pictures .picture {
+ul.pictures .picture {
     width: 74px;
     height: 74px;
     margin: 10px 5px 10px 0;
@@ -293,11 +293,11 @@
     transition: all 320ms ease-out;
 }
 
-.tweets ul.pictures .picture:hover {
+ul.pictures .picture:hover {
     transform: scale(1.07);
 }
 
-.tweets ul.pictures .video {
+ul.pictures .video {
     fill: #fff;
     position: absolute;
     z-index: 1;
@@ -320,6 +320,26 @@
 
 :global(.fade-exit) .tweets ul li:nth-child(-n + 10) .content {
     animation: moveOut 350ms;
+}
+
+.timelineTweet .avatar {
+    margin: 0;
+    position: absolute;
+    top: 5px;
+    left: -19px;
+    z-index: 3;
+}
+
+.timelineTweet .pictures .picture {
+    width: 120px;
+    height: 120px;
+}
+
+.timelineTweet .pictures .video {
+    left: 39px;
+    top: 39px;
+    width: 42px;
+    height: 42px;
 }
 
 @media (max-width: 900px) {

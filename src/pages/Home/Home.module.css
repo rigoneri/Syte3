@@ -7,7 +7,7 @@
 .timeline h2 {
     position: relative;
     margin-left: 100px;
-    padding: 10px 40px 30px 45px;
+    padding: 0 40px 20px 45px;
     font-size: 18px;
     line-height: 28px;
     font-weight: 400;
@@ -57,7 +57,7 @@
 .timeline .content {
     position: relative;
     max-width: 80%;
-    padding: 10px 40px 40px 45px;
+    padding: 11px 40px 40px 45px;
     margin-left: 100px;
 }
 

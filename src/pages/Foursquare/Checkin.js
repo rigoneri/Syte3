@@ -5,7 +5,7 @@ import styles from './Foursquare.module.css'
 
 export default function Checkin({ checkin }) {
     return (
-        <li>
+        <li className={styles.checkin}>
             <a href={checkin.url} className={styles.icon}>
                 <Img src={checkin.icon} alt={checkin.title} />
             </a>

@@ -25,7 +25,7 @@ export default function Tweet({ tweet }) {
                 {tweet.pictures && (
                     <ul className={styles.pictures}>
                         {tweet.pictures.map(picture => (
-                            <li key={picture.id} onClick={() => handleClick(tweet)}>
+                            <li key={picture.id} onClick={handleClick}>
                                 <span style={{ backgroundImage: `url(${picture.url})` }} className={styles.picture} />
                                 {tweet.video && <PlayLogo className={styles.video} />}
                             </li>

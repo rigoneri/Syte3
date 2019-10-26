@@ -365,6 +365,33 @@
     margin-right: 10px;
 }
 
+.timelineTracks ul {
+    display: flex;
+    flex-direction: row;
+}
+
+.timelineTracks li {
+    display: inline-block;
+    position: relative;
+    margin-right: 5px;
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.6);
+    transition: all 350ms ease-out;
+}
+
+.timelineTracks li img {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+}
+
+.timelineTracks li:hover {
+    transform: scale(1.04);
+}
+
 @media (max-width: 800px) {
     .topArtists ul {
         grid-template-columns: 25% 25% 25% 25%;
