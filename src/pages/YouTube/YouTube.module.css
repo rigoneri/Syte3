@@ -48,10 +48,8 @@
     border-radius: 40px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
     z-index: 2;
-}
-
-:global(.fade-enter-active) .profile .picture {
-    animation: scaleIn 350ms var(--animation-delay);
+    opacity: 0;
+    animation: scaleIn 350ms var(--animation-delay) forwards;
 }
 
 :global(.fade-exit) .profile .picture {
@@ -72,10 +70,8 @@
     font-weight: 400;
     top: 110px;
     left: 120px;
-}
-
-:global(.fade-enter-active) .profile h2 {
-    animation: scaleIn 500ms var(--animation-delay);
+    opacity: 0;
+    animation: scaleIn 500ms var(--animation-delay) forwards;
 }
 
 :global(.fade-exit) .profile h2 {
@@ -90,10 +86,8 @@
     top: 145px;
     left: 120px;
     z-index: 2;
-}
-
-:global(.fade-enter-active) .profile ul.stats {
-    animation: scaleIn 500ms var(--animation-delay);
+    opacity: 0;
+    animation: scaleIn 500ms var(--animation-delay) forwards;
 }
 
 :global(.fade-exit) .profile ul.stats {
@@ -106,10 +100,8 @@
     font-size: 16px;
     line-height: 28px;
     font-weight: 400;
-}
-
-:global(.fade-enter-active) .videos h3 {
-    animation: moveIn 350ms var(--animation-delay);
+    opacity: 0;
+    animation: moveIn 350ms var(--animation-delay) forwards;
 }
 
 :global(.fade-exit) .videos h3 {
@@ -128,14 +120,12 @@
     width: 300px;
     height: 169px;
     margin-bottom: 30px;
+    opacity: 0;
+    animation: halfScaleIn 500ms var(--animation-delay) forwards;
 }
 
 .videos li:hover {
     transform: scale(1.02);
-}
-
-:global(.fade-enter-active) .videos li {
-    animation: halfScaleIn 500ms var(--animation-delay);
 }
 
 :global(.fade-exit) .videos li {
@@ -229,6 +219,37 @@
 .likes {
     grid-column: 2;
     grid-row: 2;
+}
+
+.timelinePost a {
+    position: relative;
+}
+
+.timelinePost .picture {
+    width: 200px;
+    height: 113px;
+    display: block;
+    margin: 10px 5px 10px 0;
+    background-size: cover;
+    background-position: 50% 50%;
+    cursor: pointer;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+    transition: all 320ms ease-out;
+}
+
+.timelinePost .picture:hover {
+    transform: scale(1.07);
+}
+
+.timelinePost .video {
+    fill: #fff;
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+    left: 79px;
+    top: 35px;
+    width: 42px;
+    height: 42px;
 }
 
 @media (max-width: 800px) {

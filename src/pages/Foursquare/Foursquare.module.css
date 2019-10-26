@@ -29,10 +29,8 @@
     overflow: hidden;
     border-radius: 40px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
-}
-
-:global(.fade-enter-active) .profile .picture {
-    animation: scaleIn 350ms var(--animation-delay);
+    opacity: 0;
+    animation: scaleIn 350ms var(--animation-delay) forwards;
 }
 
 :global(.fade-exit) .profile .picture {
@@ -52,10 +50,8 @@
     line-height: 28px;
     font-weight: 400;
     position: relative;
-}
-
-:global(.fade-enter-active) .profile h2 {
-    animation: moveIn 350ms var(--animation-delay);
+    opacity: 0;
+    animation: moveIn 350ms var(--animation-delay) forwards;
 }
 
 :global(.fade-exit) .profile h2 {
@@ -68,10 +64,8 @@
     position: relative;
     animation: moveIn 500ms;
     font-weight: 200;
-}
-
-:global(.fade-enter-active) .profile .location {
-    animation: moveIn 500ms var(--animation-delay);
+    opacity: 0;
+    animation: moveIn 500ms var(--animation-delay) forwards;
 }
 
 :global(.fade-exit) .profile .location {
@@ -97,10 +91,8 @@
     font-size: 12px;
     line-height: 20px;
     flex: 1 1 auto;
-}
-
-:global(.fade-enter-active) ul.stats li {
-    animation: scaleIn 500ms var(--animation-delay);
+    opacity: 0;
+    animation: scaleIn 500ms var(--animation-delay) forwards;
 }
 
 :global(.fade-exit) ul.stats li {
@@ -127,10 +119,8 @@
     font-size: 16px;
     line-height: 28px;
     font-weight: 400;
-}
-
-:global(.fade-enter-active) .checkins h3 {
-    animation: moveIn 350ms var(--animation-delay);
+    opacity: 0;
+    animation: moveIn 350ms var(--animation-delay) forwards;
 }
 
 :global(.fade-exit) .checkins h3 {
@@ -163,19 +153,21 @@ div.checkin {
     margin-top: -10px;
 }
 
-:global(.fade-enter-active) .checkin .title {
-    animation: moveIn 350ms var(--animation-delay);
+.checkins .checkin .title {
+    opacity: 0;
+    animation: moveIn 350ms var(--animation-delay) forwards;
 }
 
-:global(.fade-exit) .checkin .title {
+:global(.fade-exit) .checkins .checkin .title {
     animation: moveOut 350ms;
 }
 
-:global(.fade-enter-active) .checkin .icon {
-    animation: halfScaleIn 350ms var(--animation-delay);
+.checkins .checkin .icon {
+    opacity: 0;
+    animation: halfScaleIn 350ms var(--animation-delay) forwards;
 }
 
-:global(.fade-exit) .checkin .icon {
+:global(.fade-exit) .checkins .checkin .icon {
     animation: halfScaleIn 350ms reverse;
 }
 
@@ -205,8 +197,9 @@ div.checkin {
     opacity: 0.7;
 }
 
-:global(.fade-enter-active) .checkins ul li:nth-child(-n + 10) .icon {
-    animation: halfScaleIn 500ms var(--animation-delay);
+.checkins ul li:nth-child(-n + 10) .icon {
+    opacity: 0;
+    animation: halfScaleIn 500ms var(--animation-delay) forwards;
 }
 
 .checkin a.title {
@@ -225,11 +218,12 @@ div.checkin {
     position: relative;
 }
 
-:global(.fade-enter-active) .checkin .info {
-    animation: moveIn 500ms var(--animation-delay);
+.checkins .checkin .info {
+    opacity: 0;
+    animation: moveIn 500ms var(--animation-delay) forwards;
 }
 
-:global(.fade-exit) .checkin .info {
+:global(.fade-exit) .checkins .checkin .info {
     animation: moveOut 300ms;
 }
 
@@ -248,10 +242,8 @@ div.checkin {
     color: var(--alt-text-color);
     font-size: 12px;
     position: relative;
-}
-
-:global(.fade-enter-active) .checkin .date {
-    animation: moveIn 550ms var(--animation-delay);
+    opacity: 0;
+    animation: moveIn 550ms var(--animation-delay) forwards;
 }
 
 :global(.fade-exit) .checkin .date {
@@ -270,6 +262,8 @@ div.checkin {
     display: flex;
     align-items: center;
     justify-content: center;
+    opacity: 0;
+    animation: halfScaleIn 350ms var(--animation-delay) forwards;
 }
 
 .monthly header h2 {
@@ -328,10 +322,8 @@ div.checkin {
     border-radius: 4px;
     padding: 5px;
     background: var(--background-color-dark);
-}
-
-:global(.fade-enter-active) .map {
-    animation: halfScaleIn 350ms var(--animation-delay);
+    opacity: 0;
+    animation: halfScaleIn 350ms var(--animation-delay) forwards;
 }
 
 :global(.fade-exit) .map {
@@ -395,10 +387,8 @@ div.checkin {
 
 .categories li .icon {
     margin: 0 auto 5px auto;
-}
-
-:global(.fade-enter-active) .categories li .icon {
-    animation: halfScaleIn 350ms var(--animation-delay);
+    opacity: 0;
+    animation: halfScaleIn 350ms var(--animation-delay) forwards;
 }
 
 :global(.fade-exit) .categories li .icon {
@@ -409,6 +399,8 @@ div.checkin {
     text-align: center;
     display: block;
     font-weight: 200;
+    opacity: 0;
+    animation: halfScaleIn 350ms var(--animation-delay) forwards;
 }
 
 .categories li .count {
@@ -416,6 +408,8 @@ div.checkin {
     color: var(--alt-text-color);
     font-size: 12px;
     line-height: 16px;
+    opacity: 0;
+    animation: halfScaleIn 350ms var(--animation-delay) forwards;
 }
 
 @media (max-width: 900px) {
@@ -441,6 +435,10 @@ div.checkin {
 
     .monthly {
         display: none;
+    }
+
+    div.checkin {
+        margin-top: 0;
     }
 }
 

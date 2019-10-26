@@ -45,10 +45,8 @@
     border-radius: 40px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
     z-index: 2;
-}
-
-:global(.fade-enter-active) .profile .picture {
-    animation: scaleIn 350ms var(--animation-delay);
+    opacity: 0;
+    animation: scaleIn 350ms var(--animation-delay) forwards;
 }
 
 :global(.fade-exit) .profile .picture {
@@ -69,10 +67,8 @@
     top: 157px;
     left: 120px;
     z-index: 2;
-}
-
-:global(.fade-enter-active) .profile h2 {
-    animation: scaleIn 500ms var(--animation-delay);
+    opacity: 0;
+    animation: scaleIn 500ms var(--animation-delay) forwards;
 }
 
 :global(.fade-exit) .profile h2 {
@@ -84,10 +80,8 @@
     top: 193px;
     left: 120px;
     z-index: 2;
-}
-
-:global(.fade-enter-active) .profile .username {
-    animation: scaleIn 500ms var(--animation-delay);
+    opacity: 0;
+    animation: scaleIn 500ms var(--animation-delay) forwards;
 }
 
 :global(.fade-exit) .profile .username {
@@ -110,10 +104,8 @@
     font-size: 12px;
     line-height: 20px;
     flex: 1 1 auto;
-}
-
-:global(.fade-enter-active) ul.stats li {
-    animation: scaleIn 500ms var(--animation-delay);
+    opacity: 0;
+    animation: scaleIn 500ms var(--animation-delay) forwards;
 }
 
 :global(.fade-exit) ul.stats li {
@@ -132,10 +124,8 @@
     position: relative;
     padding: 10px 0;
     animation: moveIn 500ms;
-}
-
-:global(.fade-enter-active) .profile p {
-    animation: moveIn 500ms var(--animation-delay);
+    opacity: 0;
+    animation: moveIn 500ms var(--animation-delay) forwards;
 }
 
 :global(.fade-exit) .profile p {
@@ -148,10 +138,8 @@
     font-size: 16px;
     line-height: 28px;
     font-weight: 400;
-}
-
-:global(.fade-enter-active) .profile h3 {
-    animation: moveIn 500ms var(--animation-delay);
+    opacity: 0;
+    animation: moveIn 500ms var(--animation-delay) forwards;
 }
 
 :global(.fade-exit) .profile h3 {
@@ -173,10 +161,8 @@
     cursor: pointer;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
     transition: 320ms ease-out;
-}
-
-:global(.fade-enter-active) .profile li {
-    animation: halfScaleIn 500ms var(--animation-delay);
+    opacity: 0;
+    animation: halfScaleIn 500ms var(--animation-delay) forwards;
 }
 
 :global(.fade-exit) .profile li {
@@ -209,6 +195,9 @@
     font-size: 18px;
     line-height: 28px;
     font-weight: 400;
+    position: relative;
+    opacity: 0;
+    animation: moveIn 350ms var(--animation-delay) forwards;
 }
 
 .tweets ul {
@@ -306,16 +295,18 @@ ul.pictures .video {
     pointer-events: none;
 }
 
-:global(.fade-enter-active) .tweets ul li:nth-child(-n + 10) .avatar {
-    animation: scaleIn 350ms var(--animation-delay);
+.tweets ul li:nth-child(-n + 10) .avatar {
+    opacity: 0;
+    animation: scaleIn 350ms var(--animation-delay) forwards;
 }
 
 :global(.fade-exit) .tweets ul li:nth-child(-n + 10) .avatar {
     animation: scaleIn 350ms reverse;
 }
 
-:global(.fade-enter-active) .tweets ul li:nth-child(-n + 10) .content {
-    animation: moveIn 400ms var(--animation-delay);
+.tweets ul li:nth-child(-n + 10) .content {
+    opacity: 0;
+    animation: moveIn 400ms var(--animation-delay) forwards;
 }
 
 :global(.fade-exit) .tweets ul li:nth-child(-n + 10) .content {
@@ -360,6 +351,11 @@ ul.pictures .video {
 
     .tweets {
         padding: 0 0 40px 0;
+    }
+
+    .timelineTweet .avatar {
+        top: -30px;
+        left: -60px;
     }
 }
 

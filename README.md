@@ -13,8 +13,9 @@ Front-End TODOs:
 -   [x] Spotify Integration
 -   [x] YouTube Integration
 -   [x] Foursquare Integration
--   [ ] Home Timeline
+-   [x] Home Timeline
 -   [ ] Add modal for viewing details
+-   [ ] Show YouTube likes in the home timeline
 
 Backend TODOs:
 

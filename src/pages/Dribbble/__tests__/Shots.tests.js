@@ -3,7 +3,7 @@ import { mount } from 'enzyme'
 import { act } from 'react-dom/test-utils'
 import Shots from '../Shots'
 
-const mockShot = {
+export const mockShot = {
     id: 2676728,
     date: '2016-04-26T21:03:47.000Z',
     type: 'dribbble',

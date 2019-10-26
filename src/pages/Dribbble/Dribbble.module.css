@@ -15,10 +15,8 @@
     overflow: hidden;
     border-radius: 40px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
-}
-
-:global(.fade-enter-active) .profile .picture {
-    animation: scaleIn 350ms var(--animation-delay);
+    opacity: 0;
+    animation: scaleIn 350ms var(--animation-delay) forwards;
 }
 
 :global(.fade-exit) .profile .picture {
@@ -38,10 +36,8 @@
     line-height: 28px;
     font-weight: 400;
     position: relative;
-}
-
-:global(.fade-enter-active) .profile h2 {
-    animation: moveIn 350ms var(--animation-delay);
+    opacity: 0;
+    animation: moveIn 350ms var(--animation-delay) forwards;
 }
 
 :global(.fade-exit) .profile h2 {
@@ -53,10 +49,8 @@
     grid-row: 2;
     position: relative;
     animation: moveIn 500ms;
-}
-
-:global(.fade-enter-active) .profile .username {
-    animation: moveIn 500ms var(--animation-delay);
+    opacity: 0;
+    animation: moveIn 500ms var(--animation-delay) forwards;
 }
 
 :global(.fade-exit) .profile .username {
@@ -91,10 +85,8 @@
     font-size: 12px;
     line-height: 20px;
     flex: 1 1 auto;
-}
-
-:global(.fade-enter-active) ul.stats li {
-    animation: scaleIn 500ms var(--animation-delay);
+    opacity: 0;
+    animation: scaleIn 500ms var(--animation-delay) forwards;
 }
 
 :global(.fade-exit) ul.stats li {
@@ -140,6 +132,12 @@
     width: 100%;
     height: 100%;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    animation: halfScaleIn 500ms var(--animation-delay) forwards;
+}
+
+:global(.fade-exit) .shots a {
+    animation: halfScaleIn 350ms reverse;
 }
 
 .shots img {
@@ -147,14 +145,6 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-}
-
-:global(.fade-enter-active) .shots a {
-    animation: halfScaleIn 500ms var(--animation-delay);
-}
-
-:global(.fade-exit) .shots a {
-    animation: halfScaleIn 350ms reverse;
 }
 
 .placeholder {
@@ -173,6 +163,26 @@
 
 .error {
     font-style: italic;
+}
+
+.timelinePost a {
+    position: relative;
+}
+
+.timelinePost .picture {
+    width: 120px;
+    height: 120px;
+    display: block;
+    margin: 10px 5px 10px 0;
+    background-size: cover;
+    background-position: 50% 50%;
+    cursor: pointer;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+    transition: all 320ms ease-out;
+}
+
+.timelinePost .picture:hover {
+    transform: scale(1.07);
 }
 
 @media (max-width: 1150px) {

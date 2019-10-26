@@ -11,6 +11,12 @@
     font-size: 18px;
     line-height: 28px;
     font-weight: 400;
+    opacity: 0;
+    animation: moveIn 350ms ease-in var(--animation-delay) forwards;
+}
+
+:global(.fade-exit) .timeline h2 {
+    animation: moveOut 350ms;
 }
 
 .timeline h3 {
@@ -22,12 +28,15 @@
     line-height: 26px;
     font-weight: 400;
     color: var(--alt-text-color);
+    opacity: 0;
+    animation: scaleIn 350ms ease-in var(--animation-delay) forwards;
 }
 
 .timeline ul {
     list-style: none;
     margin: 0;
     padding: 0;
+    position: relative;
 }
 
 .timeline ul li {
@@ -46,6 +55,8 @@
     justify-content: center;
     background-color: var(--line-color);
     border-radius: 20px;
+    opacity: 0;
+    animation: scaleIn 350ms ease-in var(--animation-delay) forwards;
 }
 
 .timeline .icon svg {
@@ -54,11 +65,22 @@
     fill: var(--alt-text-color);
 }
 
+:global(.fade-exit) .timeline li .icon {
+    animation: scaleOut 350ms;
+}
+
 .timeline .content {
     position: relative;
+    z-index: 3;
     max-width: 80%;
     padding: 11px 40px 40px 45px;
     margin-left: 100px;
+    opacity: 0;
+    animation: moveIn 350ms ease-in var(--animation-delay) forwards;
+}
+
+:global(.fade-exit) .timeline .content {
+    animation: moveOut 350ms;
 }
 
 .line {
@@ -69,4 +91,101 @@
     top: 0;
     margin-left: 100px;
     background-color: var(--line-color);
+    opacity: 0;
+    animation: scaleIn 400ms ease-in var(--animation-delay) forwards;
+}
+
+:global(.fade-exit) .line {
+    animation: scaleIn 200ms reverse;
+}
+
+@media (max-width: 700px) {
+    .line {
+        margin-left: 18px;
+    }
+
+    .timeline h2 {
+        margin-left: 15px;
+    }
+
+    .timeline h3 {
+        position: relative;
+        margin: 0 0 0 60px;
+        padding-top: 10px;
+    }
+
+    .timeline .icon {
+        left: 0;
+    }
+
+    .timeline .content {
+        margin-left: 60px;
+        padding-left: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .timeline {
+        padding: 40px 10px;
+    }
+}
+
+@keyframes scaleIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes halfScaleIn {
+    0% {
+        transform: scale(0.7);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes scaleOut {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+@keyframes moveIn {
+    0% {
+        left: -20px;
+        opacity: 0;
+    }
+
+    100% {
+        left: 0px;
+        opacity: 1;
+    }
+}
+
+@keyframes moveOut {
+    0% {
+        left: 0;
+        opacity: 1;
+    }
+
+    100% {
+        left: 30px;
+        opacity: 0;
+    }
 }

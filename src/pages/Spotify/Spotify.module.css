@@ -28,10 +28,8 @@
     overflow: hidden;
     border-radius: 40px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
-}
-
-:global(.fade-enter-active) .profile .picture {
-    animation: scaleIn 350ms var(--animation-delay);
+    opacity: 0;
+    animation: scaleIn 350ms var(--animation-delay) forwards;
 }
 
 :global(.fade-exit) .profile .picture {
@@ -50,10 +48,8 @@
     line-height: 28px;
     font-weight: 400;
     position: relative;
-}
-
-:global(.fade-enter-active) .profile h2 {
-    animation: moveIn 500ms var(--animation-delay);
+    opacity: 0;
+    animation: moveIn 500ms var(--animation-delay) forwards;
 }
 
 :global(.fade-exit) .profile h2 {
@@ -71,10 +67,8 @@
     font-size: 16px;
     line-height: 28px;
     font-weight: 400;
-}
-
-:global(.fade-enter-active) .recentTracks h3 {
-    animation: moveIn 350ms var(--animation-delay);
+    opacity: 0;
+    animation: moveIn 350ms var(--animation-delay) forwards;
 }
 
 :global(.fade-exit) .recentTracks h3 {
@@ -119,8 +113,9 @@
     display: inline-block;
 }
 
-:global(.fade-enter-active) .recentTracks ul li:nth-child(-n + 10) .album {
-    animation: scaleIn 500ms var(--animation-delay);
+.recentTracks ul li:nth-child(-n + 10) .album {
+    opacity: 0;
+    animation: scaleIn 500ms var(--animation-delay) forwards;
 }
 
 .recentTracks ul .album .playIcon {
@@ -160,8 +155,13 @@
     font-size: 13px;
 }
 
-:global(.fade-enter-active) .recentTracks ul li:nth-child(-n + 10) a.title {
-    animation: moveIn 350ms var(--animation-delay);
+.recentTracks ul li:nth-child(-n + 10) a.title {
+    opacity: 0;
+    animation: moveIn 350ms var(--animation-delay) forwards;
+}
+
+:global(.fade-exit) ul li:nth-child(-n + 10) a.title {
+    animation: moveOut 350ms;
 }
 
 .recentTracks ul .artist {
@@ -172,6 +172,15 @@
     position: relative;
 }
 
+.recentTracks ul li:nth-child(-n + 10) .artist {
+    opacity: 0;
+    animation: moveIn 400ms var(--animation-delay) forwards;
+}
+
+:global(.fade-exit) ul li:nth-child(-n + 10) .artist {
+    animation: moveOut 350ms;
+}
+
 .recentTracks ul .date {
     display: block;
     grid-column: 2;
@@ -179,6 +188,15 @@
     color: var(--alt-text-color);
     font-size: 12px;
     position: relative;
+}
+
+.recentTracks ul li:nth-child(-n + 10) .date {
+    opacity: 0;
+    animation: moveIn 450ms var(--animation-delay) forwards;
+}
+
+:global(.fade-exit) ul li:nth-child(-n + 10) .date {
+    animation: moveOut 350ms;
 }
 
 .top {
@@ -194,10 +212,8 @@
     font-size: 18px;
     line-height: 28px;
     font-weight: 400;
-}
-
-:global(.fade-enter-active) .top h3 {
-    animation: moveIn 350ms var(--animation-delay);
+    opacity: 0;
+    animation: moveIn 350ms var(--animation-delay) forwards;
 }
 
 :global(.fade-exit) .top h3 {
@@ -227,10 +243,8 @@
 .topArtists li {
     position: relative;
     overflow: hidden;
-}
-
-:global(.fade-enter-active) .topArtists li {
-    animation: halfScaleIn 500ms var(--animation-delay);
+    opacity: 0;
+    animation: halfScaleIn 500ms var(--animation-delay) forwards;
 }
 
 :global(.fade-exit) .topArtists li {
@@ -315,10 +329,8 @@
     padding: 10px 0;
     border-top: 1px solid var(--line-color);
     position: relative;
-}
-
-:global(.fade-enter-active) .topTracks ul li {
-    animation: moveIn 350ms var(--animation-delay);
+    opacity: 0;
+    animation: moveIn 350ms var(--animation-delay) forwards;
 }
 
 :global(.fade-exit) .topTracks ul li {
