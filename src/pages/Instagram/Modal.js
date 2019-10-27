@@ -1,7 +1,7 @@
 import React from 'react'
 import Img from 'react-image'
 import { parseISO, formatDistanceToNow } from 'date-fns'
-import { PlayLogo, HeartIcon, CommentIcon } from 'components/Icons'
+import { HeartIcon, CommentIcon } from 'components/Icons'
 import Modal from 'components/Modal'
 import styles from 'components/Modal/Modal.module.css'
 
