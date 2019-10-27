@@ -79,6 +79,13 @@
     right: 10px;
 }
 
+.date.noAvatar {
+    position: relative;
+    right: auto;
+    top: 0;
+    margin-bottom: 10px;
+}
+
 .stats {
     list-style: none;
     margin: 0 0 10px 5px;

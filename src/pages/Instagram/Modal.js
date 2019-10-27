@@ -18,7 +18,7 @@ export default function InstagramModal({ item, onClose }) {
                 <a href={item.url} className={styles.avatar}>
                     <Img src={item.user.profile_picture} alt="Avatar" />
                 </a>
-                <span className={styles.date}>{formatDistanceToNow(parseISO(item.date))} ago</span>
+                <span className={styles.date}>{formatDistanceToNow(typeof item.date === 'string' ? parseISO(item.date) : item.date)} ago</span>
                 <ul className={styles.stats}>
                     <li>
                         <HeartIcon />

@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { PlayLogo } from 'components/Icons'
+import Modal from './Modal'
 import styles from './Instagram.module.css'
 
 export const TimelineItem = ({ item }) => {
+    const [showDetails, setShowDetails] = useState(false)
     const handleClick = e => {
         e.preventDefault()
-        console.log('TODO OPEN Modal', item)
+        setShowDetails(!showDetails)
     }
 
     return (
@@ -15,6 +17,7 @@ export const TimelineItem = ({ item }) => {
                 <span style={{ backgroundImage: `url(${item.pictureHD})` }} className={styles.picture} />
                 {item.video && <PlayLogo className={styles.video} />}
             </a>
+            {showDetails && <Modal item={item} onClose={handleClick} />}
         </div>
     )
 }

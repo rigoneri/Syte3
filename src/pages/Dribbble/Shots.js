@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import Img from 'react-image'
 import { Logo } from 'components/Icons'
+import Modal from './Modal'
 import styles from './Dribbble.module.css'
 
 export default function Shots() {
@@ -8,6 +9,7 @@ export default function Shots() {
     const [page, setPage] = useState(0)
     const [error, setError] = useState(false)
     const [empty, setEmpty] = useState(0)
+    const [postDetails, setPostDetails] = useState(null)
     const pageEl = useRef(null)
     let debouncing = false
 
@@ -55,7 +57,7 @@ export default function Shots() {
 
     const handleClick = (e, shot) => {
         e.preventDefault()
-        console.log('TODO OPEN MODAL', shot)
+        setPostDetails(shot)
     }
 
     return (
@@ -80,6 +82,7 @@ export default function Shots() {
                     ))}
                 </ul>
             ) : null}
+            {postDetails && <Modal item={postDetails} onClose={handleClick} />}
         </div>
     )
 }

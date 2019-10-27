@@ -101,4 +101,30 @@ describe('Shots', () => {
         component.unmount()
         global.fetch.mockRestore()
     })
+
+    it('should show a modal when clicking the instagram post', async () => {
+        const modalMount = global.document.createElement('div')
+        modalMount.setAttribute('id', 'modal-mount')
+        global.document.querySelector('body').appendChild(modalMount)
+
+        jest.spyOn(global, 'fetch').mockImplementation(() =>
+            Promise.resolve({
+                json: () => Promise.resolve([mockShot]),
+            })
+        )
+
+        let component = null
+        await act(async () => {
+            component = mount(<Shots />)
+        })
+        expect(global.fetch).toHaveBeenCalled()
+        component.update()
+
+        expect(component.find('Modal').exists()).toEqual(false)
+        component.find('.shot').simulate('click')
+        expect(component.find('Modal').exists()).toEqual(true)
+
+        component.unmount()
+        global.fetch.mockRestore()
+    })
 })
