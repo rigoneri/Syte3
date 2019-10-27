@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
 import Img from 'react-image'
 import { Logo, PlayLogo, HeartIcon, CommentIcon } from 'components/Icons'
+import Modal from './Modal'
 import styles from './Instagram.module.css'
 
 export default function Post({ post }) {
     const [videoVisible, setVideoVisible] = useState(false)
+    const [showDetails, setShowDetails] = useState(false)
     const handleClick = e => {
         e.preventDefault()
-        console.log('TODO OPEN Modal', post)
+        setShowDetails(!showDetails)
     }
 
     return (
@@ -37,6 +39,7 @@ export default function Post({ post }) {
                     </li>
                 </ul>
             </a>
+            {showDetails && <Modal item={post} onClose={handleClick} />}
         </li>
     )
 }

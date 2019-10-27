@@ -1,7 +1,8 @@
 import React, { Suspense } from 'react'
 import { BrowserRouter, Switch, Route, useLocation } from 'react-router-dom'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
-import Header from './components/Header'
+import Header from 'components/Header'
+import { ModalMount } from 'components/Modal'
 import './App.css'
 
 const Home = React.lazy(() => import('./pages/Home'))
@@ -20,6 +21,7 @@ function App() {
                 <Header />
                 <AppContent />
             </div>
+            <ModalMount />
         </BrowserRouter>
     )
 }

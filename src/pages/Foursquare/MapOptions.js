@@ -5,7 +5,6 @@ export const mapOptions = maps => {
         maxZoom: 12,
         panControl: false,
         mapTypeControl: false,
-        scrollwheel: false,
         disableDefaultUI: true,
         styles: [
             { featureType: 'all', elementType: 'labels.text.fill', stylers: [{ color: '#162122' }, { lightness: '40' }] },

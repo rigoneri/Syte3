@@ -1,0 +1,100 @@
+.overlay {
+    position: fixed;
+    z-index: 101;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    overflow: scroll;
+}
+
+.close {
+    background: transparent;
+    border: 0;
+    color: #fff;
+    position: absolute;
+    top: 5px;
+    right: 2px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.content {
+    background-color: var(--background-color);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+    width: 400px;
+    margin: 30px 0;
+}
+
+.media {
+    display: block;
+    width: 100%;
+    outline: none;
+}
+
+.details {
+    padding: 15px 10px;
+    position: relative;
+}
+
+.details h4 {
+    margin: 0 0 10px 50px;
+    font-weight: 400;
+    line-height: 40px;
+}
+
+.avatar {
+    display: block;
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+    transition: all 320ms ease-out;
+    position: absolute;
+    top: 15px;
+    left: 10px;
+}
+
+.avatar:hover {
+    transform: scale(1.07);
+}
+
+.avatar img {
+    width: 40px;
+    height: 40px;
+}
+
+.date {
+    color: var(--alt-text-color);
+    font-size: 12px;
+    line-height: 40px;
+    position: absolute;
+    top: 15px;
+    right: 10px;
+}
+
+.stats {
+    list-style: none;
+    margin: 0 0 10px 5px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    fill: #fff;
+}
+
+.stats svg {
+    width: 12px;
+    height: 12px;
+    margin-right: 7px;
+}
+
+.stats span {
+    margin-right: 15px;
+}
