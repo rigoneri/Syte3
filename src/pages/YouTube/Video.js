@@ -2,13 +2,15 @@ import React, { useState } from 'react'
 import Img from 'react-image'
 import { parseISO, formatDistanceToNow } from 'date-fns'
 import { Logo, PlayLogo } from 'components/Icons'
+import Modal from './Modal'
 import styles from './YouTube.module.css'
 
 export default function Video({ video }) {
     const [videoVisible, setVideoVisible] = useState(false)
+    const [showDetails, setShowDetails] = useState(false)
     const handleClick = e => {
         e.preventDefault()
-        console.log('TODO OPEN Modal', video)
+        setShowDetails(!showDetails)
     }
 
     return (
@@ -32,6 +34,7 @@ export default function Video({ video }) {
                 <div className={styles.title}>{video.title}</div>
                 <div className={styles.date}>{formatDistanceToNow(parseISO(video.date))} ago</div>
             </div>
+            {showDetails && <Modal item={video} onClose={handleClick} />}
         </li>
     )
 }

@@ -15,12 +15,12 @@ export const Nav = ({ handleOpened, opened }) => {
             <nav>
                 <ul className={styles.nav}>
                     <NavItem to="Twitter" handleClick={handleClick} />
+                    <NavItem to="Foursquare" handleClick={handleClick} />
+                    <NavItem to="Instagram" handleClick={handleClick} />
+                    <NavItem to="Spotify" handleClick={handleClick} />
                     <NavItem to="Github" handleClick={handleClick} />
                     <NavItem to="Dribbble" handleClick={handleClick} />
-                    <NavItem to="Spotify" handleClick={handleClick} />
-                    <NavItem to="Instagram" handleClick={handleClick} />
                     <NavItem to="YouTube" handleClick={handleClick} />
-                    <NavItem to="Foursquare" handleClick={handleClick} />
                 </ul>
                 <a href="https://github.com/rigoneri/Syte2" className={styles.about}>
                     About this site

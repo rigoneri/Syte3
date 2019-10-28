@@ -1,5 +1,5 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { shallow, mount } from 'enzyme'
 import Video from '../Video'
 
 export const mockVideo = {
@@ -32,5 +32,17 @@ describe('Video', () => {
         now.setDate(now.getDate() - 30)
         component = shallow(<Video video={{ ...mockVideo, date: now.toISOString() }} />)
         expect(component.find('.date').text()).toEqual('about 1 month ago')
+    })
+
+    it('should show a modal when clicking on the video image', () => {
+        const modalMount = global.document.createElement('div')
+        modalMount.setAttribute('id', 'modal-mount')
+        global.document.querySelector('body').appendChild(modalMount)
+
+        const component = mount(<Video video={mockVideo} />)
+        expect(component.find('Modal').exists()).toEqual(false)
+        component.find('a').simulate('click')
+        expect(component.find('Modal').exists()).toEqual(true)
+        component.unmount()
     })
 })

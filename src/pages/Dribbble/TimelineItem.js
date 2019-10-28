@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './Dribbble.module.css'
+import Modal from './Modal'
 
 export const TimelineItem = ({ item }) => {
+    const [showDetails, setShowDetails] = useState(false)
     const handleClick = e => {
         e.preventDefault()
-        console.log('TODO OPEN Modal', item)
+        setShowDetails(!showDetails)
     }
 
     return (
@@ -13,6 +15,7 @@ export const TimelineItem = ({ item }) => {
             <a href={item.url} onClick={handleClick}>
                 <span style={{ backgroundImage: `url(${item.picture})` }} className={styles.picture} />
             </a>
+            {showDetails && <Modal item={item} onClose={handleClick} />}
         </div>
     )
 }

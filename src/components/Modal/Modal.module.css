@@ -30,10 +30,18 @@
     margin: 30px 0;
 }
 
+.content.wide {
+    width: 500px;
+}
+
 .media {
     display: block;
     width: 100%;
     outline: none;
+}
+
+iframe.media {
+    height: 300px;
 }
 
 .details {
@@ -45,6 +53,10 @@
     margin: 0 0 10px 50px;
     font-weight: 400;
     line-height: 40px;
+}
+
+.stacked h4 {
+    margin-left: 0;
 }
 
 .avatar {
@@ -79,7 +91,7 @@
     right: 10px;
 }
 
-.date.noAvatar {
+.stacked .date {
     position: relative;
     right: auto;
     top: 0;
