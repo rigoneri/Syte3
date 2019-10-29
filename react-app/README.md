@@ -23,4 +23,4 @@ Backend TODOs:
 -   [ ] Port DB from MongoDB to DynamoDB
 -   [ ] Add Cache Layer
 -   [ ] Rewrite API
--   [ ] Setup CloudFormation templates andDeploy to AWS
+-   [ ] Setup CloudFormation templates and Deploy to AWS
