@@ -444,11 +444,6 @@
         display: grid;
     }
 
-    .recentTracks ul .date {
-        position: absolute;
-        right: 20px;
-    }
-
     .top {
         margin: 0;
     }
