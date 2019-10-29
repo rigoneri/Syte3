@@ -22,7 +22,7 @@ export const Nav = ({ handleOpened, opened }) => {
                     <NavItem to="Dribbble" handleClick={handleClick} />
                     <NavItem to="YouTube" handleClick={handleClick} />
                 </ul>
-                <a href="https://github.com/rigoneri/Syte2" className={styles.about}>
+                <a href="https://github.com/rigoneri/Syte3" className={styles.about}>
                     About this site
                 </a>
             </nav>
