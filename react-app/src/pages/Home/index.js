@@ -34,6 +34,7 @@ export default function Home() {
             }
             debouncing.current = false
         } catch (error) {
+            console.log('Error', error)
             setError(true)
         }
     }
