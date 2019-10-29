@@ -3,7 +3,7 @@ var express = require('express'),
     Spotify = require('../models/spotify');
 
 var SPOTIFY_AUTH_URL = 'https://accounts.spotify.com/authorize',
-    SPOTIFY_AUTH_REDIRECT_URL = 'http://localhost:4000/api/spotify/auth';
+    SPOTIFY_AUTH_REDIRECT_URL = 'http://rigoneri.com/api/spotify/auth';
 
 router.get('/top', function(req, res) {
     Spotify.topActivity(function(error, data) {
