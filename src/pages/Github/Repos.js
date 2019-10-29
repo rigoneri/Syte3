@@ -33,10 +33,10 @@ export default function Repos() {
                             <ul className={styles.stats}>
                                 <li>{repo.language}</li>
                                 <li>
-                                    <GitIcons type="git-stars" /> {repo.favorites}
+                                    <GitIcons type="git-stars" /> {repo.favorites ? repo.favorites.toLocaleString() : '0'}
                                 </li>
                                 <li>
-                                    <GitIcons type="git-branch" /> {repo.forks}
+                                    <GitIcons type="git-branch" /> {repo.forks ? repo.forks.toLocaleString() : '0'}
                                 </li>
                             </ul>
                         </li>

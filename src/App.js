@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react'
+import React, { Suspense, useEffect } from 'react'
 import { BrowserRouter, Switch, Route, useLocation } from 'react-router-dom'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import Header from 'components/Header'
@@ -31,7 +31,13 @@ function AppContent() {
 
     return (
         <TransitionGroup className="app-content">
-            <CSSTransition key={location.key} classNames="fade" timeout={{ enter: 2000, exit: 400 }}>
+            <CSSTransition
+                key={location.key}
+                classNames="fade"
+                timeout={{ enter: 2000, exit: 400 }}
+                onExited={() => {
+                    window.scrollTo(0, 0)
+                }}>
                 <section className="routes">
                     <Suspense fallback={null}>
                         <Routes location={location} />

@@ -19,13 +19,13 @@ export default function Profile({ user }) {
             {user.description && user.description.length && <p>{user.description}</p>}
             <ul className={styles.stats}>
                 <li>
-                    Tweets <strong>{user.statuses}</strong>
+                    Tweets <strong>{user.statuses ? user.statuses.toLocaleString() : '0'}</strong>
                 </li>
                 <li>
-                    Following <strong>{user.following}</strong>
+                    Following <strong>{user.following ? user.following.toLocaleString() : '0'}</strong>
                 </li>
                 <li>
-                    Followers <strong>{user.followers}</strong>
+                    Followers <strong>{user.followers ? user.followers.toLocaleString() : '0'}</strong>
                 </li>
             </ul>
             {user.pictures && <Photos username={user.username} photos={user.pictures} />}

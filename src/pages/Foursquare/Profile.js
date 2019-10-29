@@ -12,10 +12,10 @@ export default function Profile({ user }) {
             <span className={styles.location}>{user.location}</span>
             <ul className={styles.stats}>
                 <li>
-                    Check-ins <strong>{user.checkins}</strong>
+                    Check-ins <strong>{user.checkins ? user.checkins.toLocaleString() : '0'}</strong>
                 </li>
                 <li>
-                    Friends <strong>{user.friends}</strong>
+                    Friends <strong>{user.friends ? user.friends.toLocaleString() : '0'}</strong>
                 </li>
             </ul>
         </div>

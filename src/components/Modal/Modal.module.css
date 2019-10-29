@@ -34,7 +34,13 @@
     width: 500px;
 }
 
-.media {
+img.media {
+    display: block;
+    width: 100%;
+    outline: none;
+}
+
+video.media {
     display: block;
     width: 100%;
     outline: none;
@@ -42,6 +48,48 @@
 
 iframe.media {
     height: 300px;
+    width: 100%;
+    display: block;
+}
+
+div.media {
+    position: relative;
+    display: flex;
+    width: 100%;
+}
+
+div.media img {
+    width: 100%;
+    display: block;
+    outline: none;
+}
+
+div.media video {
+    width: 100%;
+    display: block;
+    outline: none;
+}
+
+.leftIcon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    margin-top: -16px;
+    fill: #fff;
+    opacity: 0.9;
+    cursor: pointer;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.7));
+}
+
+.rightIcon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    margin-top: -16px;
+    fill: #fff;
+    opacity: 0.9;
+    cursor: pointer;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.7));
 }
 
 .details {
@@ -116,4 +164,20 @@ iframe.media {
 
 .stats span {
     margin-right: 15px;
+}
+
+@media (max-width: 520px) {
+    .content.wide {
+        width: 97%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (max-width: 420px) {
+    .content {
+        width: 97%;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }

@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Img from 'react-image'
 import { PlayLogo } from 'components/Icons'
+import Modal from './Modal'
 import styles from './Twitter.module.css'
 
 export const TimelineItem = ({ item }) => {
-    const handleClick = () => {
-        console.log('TODO OPEN Modal', item)
+    const [showDetails, setShowDetails] = useState(false)
+    const handleClick = e => {
+        e.preventDefault()
+        setShowDetails(!showDetails)
     }
 
     return (
@@ -24,6 +27,7 @@ export const TimelineItem = ({ item }) => {
                     ))}
                 </ul>
             )}
+            {showDetails && <Modal item={item} onClose={handleClick} />}
         </div>
     )
 }

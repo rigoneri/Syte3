@@ -236,10 +236,6 @@
     grid-row-end: span 2;
 }
 
-.topArtists ul li:nth-child(1) a {
-    height: 287px;
-}
-
 .topArtists li {
     position: relative;
     overflow: hidden;

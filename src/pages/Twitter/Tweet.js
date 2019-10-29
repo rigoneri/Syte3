@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Img from 'react-image'
 import { parseISO, formatDistanceToNow } from 'date-fns'
 import { PlayLogo } from 'components/Icons'
+import Modal from './Modal'
 import styles from './Twitter.module.css'
 
 export default function Tweet({ tweet }) {
-    const handleClick = tweet => {
-        console.log('TODO OPEN Modal', tweet)
+    const [showDetails, setShowDetails] = useState(false)
+    const handleClick = e => {
+        e.preventDefault()
+        setShowDetails(!showDetails)
     }
 
     return (
@@ -21,7 +24,7 @@ export default function Tweet({ tweet }) {
                     </a>
                     <span className={styles.date}>{formatDistanceToNow(parseISO(tweet.date))} ago</span>
                 </h4>
-                <p dangerouslySetInnerHTML={{ __html: tweet.text }}></p>
+                <p dangerouslySetInnerHTML={{ __html: tweet.originalText ? tweet.originalText : tweet.text }}></p>
                 {tweet.pictures && (
                     <ul className={styles.pictures}>
                         {tweet.pictures.map(picture => (
@@ -33,6 +36,7 @@ export default function Tweet({ tweet }) {
                     </ul>
                 )}
             </div>
+            {showDetails && <Modal item={tweet} onClose={handleClick} />}
         </li>
     )
 }

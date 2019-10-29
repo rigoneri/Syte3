@@ -18,10 +18,10 @@ export default function Profile({ user }) {
                     Repos <strong>{user.repos}</strong>
                 </li>
                 <li>
-                    Following <strong>{user.following}</strong>
+                    Following <strong>{user.following ? user.following.toLocaleString() : '0'}</strong>
                 </li>
                 <li>
-                    Followers <strong>{user.followers}</strong>
+                    Followers <strong>{user.followers ? user.followers.toLocaleString() : '0'}</strong>
                 </li>
             </ul>
         </div>

@@ -37,6 +37,12 @@
     transition: opacity 350ms ease-out;
 }
 
+@media (min-width: 1600px) {
+    .app {
+        max-width: 1600px;
+    }
+}
+
 @media (max-width: 1035px) {
     .app {
         width: 100%;

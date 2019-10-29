@@ -14,7 +14,7 @@ export default function Profile({ user }) {
             <h2>{user.name}</h2>
             <ul className={styles.stats}>
                 <li>
-                    <strong>{user.subscribers}</strong> Subscribers
+                    <strong>{user.subscribers ? user.subscribers.toLocaleString() : '0'}</strong> Subscribers
                 </li>
             </ul>
         </div>

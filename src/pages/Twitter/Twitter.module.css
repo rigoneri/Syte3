@@ -264,6 +264,12 @@
     margin-left: 10px;
 }
 
+ul.pictures {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
 ul.pictures li {
     padding: 0;
     border: 0;
@@ -324,6 +330,7 @@ ul.pictures .video {
 .timelineTweet .pictures .picture {
     width: 120px;
     height: 120px;
+    margin-top: 0;
 }
 
 .timelineTweet .pictures .video {

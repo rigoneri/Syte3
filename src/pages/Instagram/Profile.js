@@ -15,13 +15,13 @@ export default function Profile({ user }) {
             {user.bio && user.bio.length && <p dangerouslySetInnerHTML={{ __html: user.bio }}></p>}
             <ul className={styles.stats}>
                 <li>
-                    Posts <strong>{user.counts.media}</strong>
+                    Posts <strong>{user.counts.media ? user.counts.media.toLocaleString() : '0'}</strong>
                 </li>
                 <li>
-                    Following <strong>{user.counts.follows}</strong>
+                    Following <strong>{user.counts.follows ? user.counts.follows.toLocaleString() : '0'}</strong>
                 </li>
                 <li>
-                    Followers <strong>{user.counts.followed_by}</strong>
+                    Followers <strong>{user.counts.followed_by ? user.counts.followed_by.toLocaleString() : '0'}</strong>
                 </li>
             </ul>
         </div>

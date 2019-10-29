@@ -27,6 +27,7 @@ import { ReactComponent as PauseLogo } from './PauseLogo.svg'
 import { ReactComponent as StarIcon } from './StarIcon.svg'
 import { ReactComponent as HeartIcon } from './HeartIcon.svg'
 import { ReactComponent as CommentIcon } from './CommentIcon.svg'
+import { ReactComponent as LoopIcon } from './LoopIcon.svg'
 import { ReactComponent as GitBranchIcon } from './GitBranchIcon.svg'
 import { ReactComponent as GitClosedIcon } from './GitClosedIcon.svg'
 import { ReactComponent as GitCommentIcon } from './GitCommentIcon.svg'
@@ -128,4 +129,4 @@ const GitIcons = ({ type }) => {
     }
 }
 
-export { Logo, Icon, PlayLogo, PauseLogo, GitIcons, HeartIcon, CommentIcon, LeftIcon, RightIcon }
+export { Logo, Icon, PlayLogo, PauseLogo, GitIcons, HeartIcon, CommentIcon, LoopIcon, LeftIcon, RightIcon }

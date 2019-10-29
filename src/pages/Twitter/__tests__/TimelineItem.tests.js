@@ -1,5 +1,5 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { shallow, mount } from 'enzyme'
 import { mockTweet } from './Tweet.tests'
 import { TimelineItem } from '../TimelineItem'
 
@@ -33,4 +33,17 @@ it('should not display pictures or videos if not in tweet', () => {
     const component = shallow(<TimelineItem item={tweet} />)
     expect(component.find('.pictures').exists()).toEqual(false)
     expect(component.find('.video').exists()).toEqual(false)
+})
+
+it('should show a modal when clicking the twitter picture', () => {
+    const modalMount = global.document.createElement('div')
+    modalMount.setAttribute('id', 'modal-mount')
+    global.document.querySelector('body').appendChild(modalMount)
+
+    const tweet = { ...mockTweet, video: null }
+    const component = mount(<TimelineItem item={tweet} />)
+    expect(component.find('Modal').exists()).toEqual(false)
+    component.find('ul li').simulate('click')
+    expect(component.find('Modal').exists()).toEqual(true)
+    component.unmount()
 })

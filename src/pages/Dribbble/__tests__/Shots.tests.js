@@ -102,7 +102,7 @@ describe('Shots', () => {
         global.fetch.mockRestore()
     })
 
-    it('should show a modal when clicking the instagram post', async () => {
+    it('should show a modal when clicking the dribbble shot', async () => {
         const modalMount = global.document.createElement('div')
         modalMount.setAttribute('id', 'modal-mount')
         global.document.querySelector('body').appendChild(modalMount)
