@@ -259,7 +259,7 @@ function _fetchTopTracks(cb) {
 }
 
 var SPOTIFY_TOKEN_URL = 'https://accounts.spotify.com/api/token',
-    SPOTIFY_AUTH_REDIRECT_URL = 'http://rigoneri.com/api/spotify/auth';
+    SPOTIFY_AUTH_REDIRECT_URL = 'http://localhost:4000/api/spotify/auth';
 
 exports.getToken = function(code, cb) {
     request(
