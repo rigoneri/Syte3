@@ -11,9 +11,9 @@
 /react-app/coverage
 
 # production
-/build
-/old-api/build
-/react-app/build
+# /build
+# /old-api/build
+# /react-app/build
 
 # misc
 .DS_Store
