@@ -25,6 +25,10 @@ app.set('mongodbURL', process.env.MONGODB_URI);
 
 app.use(express.static(path.join(__dirname, '/build')));
 
+app.get('/*', (req, res) => {
+    res.sendFile(__dirname + '/build/index.html');
+});
+
 // production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
