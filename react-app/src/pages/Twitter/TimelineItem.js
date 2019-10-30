@@ -16,7 +16,11 @@ export const TimelineItem = ({ item }) => {
             <a href={item.url} className={styles.avatar}>
                 <Img src={item.user.picture} alt="Avatar" />
             </a>
-            <p dangerouslySetInnerHTML={{ __html: item.text }}></p>
+            <span className={styles.username}>
+                {item.text.substring(0, 2) === 'RT' ? <span>RT </span> : null}
+                <a href={item.url}>@{item.user.username}</a>
+            </span>
+            <p dangerouslySetInnerHTML={{ __html: item.originalText ? item.originalText : item.text }}></p>
             {item.pictures && (
                 <ul className={styles.pictures}>
                     {item.pictures.map(picture => (

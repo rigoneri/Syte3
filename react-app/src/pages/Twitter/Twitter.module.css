@@ -256,6 +256,7 @@
     font-weight: 300;
     font-size: 13px;
     margin-left: 5px;
+    color: var(--primary-color);
 }
 
 .tweets h4 .date {
@@ -338,6 +339,15 @@ ul.pictures .video {
     top: 39px;
     width: 42px;
     height: 42px;
+}
+
+.timelineTweet .username {
+    display: flex;
+    align-items: center;
+}
+
+.timelineTweet .username span {
+    margin-right: 5px;
 }
 
 @media (max-width: 900px) {
