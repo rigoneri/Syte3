@@ -388,7 +388,7 @@ exports.likes = function(cb) {
                 if (item.kind == 'youtube#video') {
                     var post = {
                         id: item.id,
-                        date: item.snippet.publishedAt,
+                        date: new Date().toISOString(),
                         published: item.snippet.publishedAt,
                         title: item.snippet.title,
                         channel: item.snippet.channelTitle,
@@ -413,7 +413,9 @@ exports.likes = function(cb) {
                     var post = likedPosts[i];
                     bulk.find({ id: post.id })
                         .upsert()
-                        .updateOne(post);
+                        .updateOne({
+                            $setOnInsert: post,
+                        });
                 }
                 bulk.execute(function(err, result) {
                     if (err) {
