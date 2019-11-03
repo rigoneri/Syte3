@@ -13,6 +13,7 @@ const Github = React.lazy(() => import('./pages/Github'))
 const Instagram = React.lazy(() => import('./pages/Instagram'))
 const Spotify = React.lazy(() => import('./pages/Spotify'))
 const YouTube = React.lazy(() => import('./pages/YouTube'))
+const Crunchyroll = React.lazy(() => import('./pages/Crunchyroll'))
 
 function App() {
     return (
@@ -74,6 +75,9 @@ function Routes({ location }) {
             </Route>
             <Route path="/youtube">
                 <YouTube />
+            </Route>
+            <Route path="/crunchyroll">
+                <Crunchyroll />
             </Route>
         </Switch>
     )

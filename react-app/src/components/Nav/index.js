@@ -21,6 +21,7 @@ export const Nav = ({ handleOpened, opened }) => {
                     <NavItem to="Github" handleClick={handleClick} />
                     <NavItem to="Dribbble" handleClick={handleClick} />
                     <NavItem to="YouTube" handleClick={handleClick} />
+                    <NavItem to="Crunchyroll" handleClick={handleClick} />
                 </ul>
                 <a href="https://github.com/rigoneri/Syte3" className={styles.about}>
                     About this site

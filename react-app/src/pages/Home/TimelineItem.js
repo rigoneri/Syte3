@@ -8,6 +8,7 @@ import { TimelineItem as FoursquareItem } from 'pages/Foursquare/TimelineItem'
 import { TimelineItem as InstagramItem } from 'pages/Instagram/TimelineItem'
 import { TimelineItem as DribbbleItem } from 'pages/Dribbble/TimelineItem'
 import { TimelineItem as YouTubeItem } from 'pages/YouTube/TimelineItem'
+import { TimelineItem as CrunchyrollItem } from 'pages/Crunchyroll/TimelineItem'
 
 export default function TimelineItem({ item }) {
     const renderItem = () => {
@@ -27,8 +28,10 @@ export default function TimelineItem({ item }) {
                 return <DribbbleItem item={item} />
             case 'youtube':
                 return <YouTubeItem item={item} />
+            case 'crunchyroll':
+                return <CrunchyrollItem item={item} />
             default:
-                return <span>content...</span>
+                return <span />
         }
     }
 

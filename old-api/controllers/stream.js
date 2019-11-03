@@ -8,7 +8,8 @@ var express = require('express'),
     Tumblr = require('../models/tumblr'),
     Github = require('../models/github'),
     Lastfm = require('../models/lastfm'),
-    YouTube = require('../models/youtube');
+    YouTube = require('../models/youtube'),
+    Crunchyroll = require('../models/crunchyroll');
 
 var streamPosts;
 
@@ -46,6 +47,9 @@ router.get('/setup', function(req, res) {
             },
             function(cb) {
                 YouTube.setup(cb);
+            },
+            function(cb) {
+                Crunchyroll.setup(cb);
             },
         ],
         function(err, results) {
@@ -85,6 +89,9 @@ router.get('/:page', function(req, res) {
             },
             function(cb) {
                 YouTube.monthActivity(page, cb);
+            },
+            function(cb) {
+                Crunchyroll.monthActivity(page, cb);
             },
         ],
         function(err, results) {

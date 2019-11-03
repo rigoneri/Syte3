@@ -14,8 +14,28 @@ describe('Check-ins', () => {
         }
     })
 
+    const RealDate = Date
+    function mockDate(isoDate) {
+        global.Date = class extends RealDate {
+            constructor(...theArgs) {
+                if (theArgs.length) {
+                    return new RealDate(...theArgs)
+                }
+                return new RealDate(isoDate)
+            }
+
+            static now() {
+                return new RealDate(isoDate).getTime()
+            }
+        }
+    }
+
     beforeEach(() => {
         jest.resetAllMocks()
+    })
+
+    afterEach(() => {
+        global.Date = RealDate
     })
 
     afterAll(() => {
@@ -69,6 +89,8 @@ describe('Check-ins', () => {
             })
         )
 
+        mockDate('2019-11-20T11:01:58.135Z')
+
         let component = null
         await act(async () => {
             component = mount(<Checkins />)
@@ -100,6 +122,24 @@ describe('Check-ins', () => {
             component = mount(<Checkins />)
         })
         expect(global.fetch).toHaveBeenCalledTimes(3)
+
+        component.unmount()
+        global.fetch.mockRestore()
+    })
+
+    it('should fetch the last 2 months of checkins if it is the first half of the month', async () => {
+        jest.spyOn(global, 'fetch').mockImplementation(() =>
+            Promise.resolve({
+                json: () => Promise.resolve([mockCheckin]),
+            })
+        )
+
+        mockDate('2019-11-01T11:01:58.135Z')
+        let component = null
+        await act(async () => {
+            component = mount(<Checkins />)
+        })
+        expect(global.fetch).toHaveBeenCalledTimes(2)
 
         component.unmount()
         global.fetch.mockRestore()

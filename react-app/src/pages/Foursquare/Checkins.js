@@ -43,6 +43,8 @@ export default function Checkins() {
             if (pageCheckins.length === 0 && empty < 2) {
                 setEmpty(empty + 1)
                 setPage(page + 1)
+            } else if (page === 0 && new Date().getDate() < 15) {
+                setPage(page + 1)
             }
             debouncing.current = false
         } catch (error) {

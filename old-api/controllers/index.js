@@ -42,4 +42,8 @@ if (process.env.YOUTUBE_INTEGRATION_DISABLED != 'true') {
     router.use('/api/youtube', require('./youtube'));
 }
 
+if (process.env.CRUNCHYROLL_INTEGRATION_DISABLED != 'true') {
+    router.use('/api/crunchyroll', require('./crunchyroll'));
+}
+
 module.exports = router;

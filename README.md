@@ -16,6 +16,7 @@ Front-End TODOs:
 -   [x] Home Timeline
 -   [x] Add modal for viewing details
 -   [ ] Show YouTube likes in the home timeline
+-   [x] Crunchyroll Integration
 
 Backend TODOs:
 

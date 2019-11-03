@@ -40,6 +40,8 @@ import { ReactComponent as GitTagIcon } from './GitTagIcon.svg'
 import { ReactComponent as GitPRIcon } from './GitPRIcon.svg'
 import { ReactComponent as LeftIcon } from './LeftIcon.svg'
 import { ReactComponent as RightIcon } from './RightIcon.svg'
+import { ReactComponent as CrunchyrollLogo } from './CrunchyrollLogo.svg'
+import { ReactComponent as CrunchyrollIcon } from './CrunchyrollIcon.svg'
 
 const Logo = ({ type }) => {
     switch (type) {
@@ -65,6 +67,8 @@ const Logo = ({ type }) => {
             return <FlickrLogo />
         case 'LinkedIn':
             return <LinkedInLogo />
+        case 'Crunchyroll':
+            return <CrunchyrollLogo />
         default:
             return null
     }
@@ -95,6 +99,8 @@ const Icon = ({ type }) => {
             return <FlickrIcon />
         case 'linkedin':
             return <LinkedInIcon />
+        case 'crunchyroll':
+            return <CrunchyrollIcon />
         default:
             return null
     }

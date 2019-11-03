@@ -1,0 +1,260 @@
+.profile {
+    padding: 40px 0 30px 0;
+    display: grid;
+    grid-template-columns: 80px 200px auto auto;
+    grid-template-rows: 60px auto;
+    align-items: center;
+}
+
+.profile .picture {
+    display: inline-block;
+    grid-column: 1;
+    grid-row: 1;
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+    border-radius: 40px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+    opacity: 0;
+    animation: scaleIn 350ms var(--animation-delay) forwards;
+}
+
+:global(.fade-exit) .profile .picture {
+    animation: scaleIn 350ms reverse;
+}
+
+.picture img {
+    width: 60px;
+    height: 60px;
+}
+
+.profile h2 {
+    grid-column: 2;
+    grid-row: 1;
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 400;
+    position: relative;
+    opacity: 0;
+    animation: moveIn 350ms var(--animation-delay) forwards;
+}
+
+h3 {
+    position: relative;
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    line-height: 28px;
+    font-weight: 400;
+    opacity: 0;
+    animation: moveIn 350ms var(--animation-delay) forwards;
+}
+
+:global(.fade-exit) .repos h3 {
+    animation: moveOut 350ms;
+}
+
+.activities ul {
+    list-style: none;
+    margin: 0;
+    padding: 0 20px 0 0;
+}
+
+.activities li {
+    display: flex;
+    padding: 20px 0 20px 0;
+    border-top: 1px solid var(--line-color);
+    position: relative;
+}
+
+.activities .image {
+    display: block;
+    width: 160px;
+    height: 90px;
+    margin-right: 20px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+    transition: all 320ms ease-out;
+}
+
+.activities .image:hover {
+    transform: scale(1.07);
+}
+
+.activities ul li:nth-child(-n + 10) .image {
+    opacity: 0;
+    animation: scaleIn 350ms var(--animation-delay) forwards;
+}
+
+:global(.fade-exit) .activities ul li:nth-child(-n + 10) .image {
+    animation: scaleIn 350ms reverse;
+}
+
+.activities h4 {
+    font-size: 14px;
+    line-height: 26px;
+    font-weight: 500;
+    margin: 0;
+    position: relative;
+}
+
+.activities ul li:nth-child(-n + 10) h4 {
+    opacity: 0;
+    animation: moveIn 350ms var(--animation-delay) forwards;
+}
+
+:global(.fade-exit) .activities ul li:nth-child(-n + 10) h4 {
+    animation: moveOut 350ms;
+}
+
+.activities p {
+    position: relative;
+}
+
+.activities ul li:nth-child(-n + 10) p {
+    opacity: 0;
+    animation: moveIn 450ms var(--animation-delay) forwards;
+}
+
+:global(.fade-exit) .activities ul li:nth-child(-n + 10) p {
+    animation: moveOut 350ms;
+}
+
+.activities .date {
+    position: relative;
+    color: var(--alt-text-color);
+    font-size: 12px;
+}
+
+.activities ul li:nth-child(-n + 10) .date {
+    opacity: 0;
+    animation: moveIn 500ms var(--animation-delay) forwards;
+}
+
+:global(.fade-exit) .activities ul li:nth-child(-n + 10) .date {
+    animation: moveOut 350ms;
+}
+
+.timelinePost a {
+    position: relative;
+}
+
+.timelinePost p {
+    margin: 0;
+}
+
+.timelinePost .description {
+    color: var(--alt-text-color);
+    font-size: 13px;
+    margin: 0 0 10px 0;
+}
+
+.timelinePost .picture {
+    width: 160px;
+    height: 90px;
+    display: block;
+    margin: 10px 5px 10px 0;
+    background-size: cover;
+    background-position: 50% 50%;
+    cursor: pointer;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+    transition: all 320ms ease-out;
+}
+
+.timelinePost .picture:hover {
+    transform: scale(1.07);
+}
+
+@media (max-width: 550px) {
+    .activities li {
+        display: block;
+    }
+
+    .activities li .image {
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile {
+        padding: 60px 10px 20px 10px;
+    }
+
+    .activities {
+        padding: 10px;
+    }
+
+    h3 {
+        margin: 0 10px;
+    }
+
+    .activities ul {
+        padding: 0;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes scaleIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes halfScaleIn {
+    0% {
+        transform: scale(0.7);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes moveIn {
+    0% {
+        left: -20px;
+        opacity: 0;
+    }
+
+    100% {
+        left: 0px;
+        opacity: 1;
+    }
+}
+
+@keyframes moveOut {
+    0% {
+        left: 0;
+        opacity: 1;
+    }
+
+    100% {
+        left: 20px;
+        opacity: 0;
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
