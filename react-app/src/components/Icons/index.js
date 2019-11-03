@@ -88,6 +88,7 @@ const Icon = ({ type }) => {
         case 'lastfm':
             return <SpotifyIcon />
         case 'youtube':
+        case 'youtube-like':
             return <YouTubeIcon />
         case 'foursquare':
             return <FoursquareIcon />

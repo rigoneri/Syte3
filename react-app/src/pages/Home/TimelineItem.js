@@ -27,6 +27,7 @@ export default function TimelineItem({ item }) {
             case 'dribbble':
                 return <DribbbleItem item={item} />
             case 'youtube':
+            case 'youtube-like':
                 return <YouTubeItem item={item} />
             case 'crunchyroll':
                 return <CrunchyrollItem item={item} />

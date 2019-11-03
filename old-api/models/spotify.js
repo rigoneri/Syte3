@@ -1,5 +1,6 @@
 var request = require('request'),
     moment = require('moment'),
+    db = require('../db'),
     async = require('async'),
     cache = require('memory-cache');
 
@@ -22,12 +23,12 @@ exports.user = function(cb) {
         return;
     }
 
-    validToken(function() {
+    validToken(function(access_token) {
         request(
             {
                 url: SPOTIFY_API_URL + 'me',
                 headers: {
-                    Authorization: 'Bearer ' + cache.get('spotify-at'),
+                    Authorization: 'Bearer ' + access_token,
                 },
             },
             function(error, response, body) {
@@ -76,12 +77,12 @@ exports.recentActivity = function(cb) {
         return;
     }
 
-    validToken(function() {
+    validToken(function(access_token) {
         request(
             {
                 url: SPOTIFY_API_URL + 'me/player/recently-played?limit=50',
                 headers: {
-                    Authorization: 'Bearer ' + cache.get('spotify-at'),
+                    Authorization: 'Bearer ' + access_token,
                 },
             },
             function(error, response, body) {
@@ -151,7 +152,11 @@ exports.topActivity = function(cb) {
         cb(null, cachedActivity);
         return;
     }
-    validToken(function() {
+    validToken(function(access_token) {
+        if (!access_token) {
+            return cb(true, null);
+        }
+
         async.series([_fetchTopArtists, _fetchTopTracks], function(err, results) {
             if (!err && results[0] && results[1]) {
                 var topActivity = {
@@ -169,97 +174,100 @@ exports.topActivity = function(cb) {
 };
 
 function _fetchTopArtists(cb) {
-    request(
-        {
-            url: SPOTIFY_API_URL + 'me/top/artists?limit=5&time_range=medium_term',
-            headers: {
-                Authorization: 'Bearer ' + cache.get('spotify-at'),
+    validToken(function(access_token) {
+        request(
+            {
+                url: SPOTIFY_API_URL + 'me/top/artists?limit=5&time_range=medium_term',
+                headers: {
+                    Authorization: 'Bearer ' + access_token,
+                },
             },
-        },
-        function(error, response, body) {
-            if (!error && response.statusCode == 200) {
-                body = JSON.parse(body);
-                var topArtists = [];
-                for (var i = 0; i < body.items.length; i++) {
-                    var item = body.items[i];
-                    var artist = {
-                        name: item.name,
-                        count: 0,
-                        url: item.external_urls.spotify,
-                        id: item.id,
-                        genres: item.genres,
-                    };
+            function(error, response, body) {
+                if (!error && response.statusCode == 200) {
+                    body = JSON.parse(body);
+                    var topArtists = [];
+                    for (var i = 0; i < body.items.length; i++) {
+                        var item = body.items[i];
+                        var artist = {
+                            name: item.name,
+                            count: 0,
+                            url: item.external_urls.spotify,
+                            id: item.id,
+                            genres: item.genres,
+                        };
 
-                    if (item.images) {
-                        if (item.images.length > 1) {
-                            artist.image = item.images[1].url;
-                        } else {
-                            artist.image = item.images[0].url;
+                        if (item.images) {
+                            if (item.images.length > 1) {
+                                artist.image = item.images[1].url;
+                            } else {
+                                artist.image = item.images[0].url;
+                            }
                         }
+
+                        topArtists.push(artist);
                     }
 
-                    topArtists.push(artist);
+                    cb(null, topArtists);
+                } else {
+                    cb(error, null);
                 }
-
-                cb(null, topArtists);
-            } else {
-                cb(error, null);
             }
-        }
-    );
+        );
+    });
 }
 
 function _fetchTopTracks(cb) {
-    request(
-        {
-            url: SPOTIFY_API_URL + 'me/top/tracks?limit=10&time_range=medium_term',
-            headers: {
-                Authorization: 'Bearer ' + cache.get('spotify-at'),
+    validToken(function(access_token) {
+        request(
+            {
+                url: SPOTIFY_API_URL + 'me/top/tracks?limit=10&time_range=medium_term',
+                headers: {
+                    Authorization: 'Bearer ' + access_token,
+                },
             },
-        },
-        function(error, response, body) {
-            if (!error && response.statusCode == 200) {
-                body = JSON.parse(body);
+            function(error, response, body) {
+                if (!error && response.statusCode == 200) {
+                    body = JSON.parse(body);
 
-                var topTracks = [];
-                for (var i = 0; i < body.items.length; i++) {
-                    var item = body.items[i];
-                    var track = {
-                        id: item.id,
-                        name: item.name,
-                        count: 0,
-                        url: item.external_urls.spotify,
-                    };
+                    var topTracks = [];
+                    for (var i = 0; i < body.items.length; i++) {
+                        var item = body.items[i];
+                        var track = {
+                            id: item.id,
+                            name: item.name,
+                            count: 0,
+                            url: item.external_urls.spotify,
+                        };
 
-                    if (item.artists) {
-                        track.artist = item.artists[0].name;
-                    }
-
-                    if (item.album) {
-                        if (item.album.images.length > 1) {
-                            track.image = item.album.images[1].url;
-                        } else {
-                            track.image = item.album.images[0].url;
+                        if (item.artists) {
+                            track.artist = item.artists[0].name;
                         }
+
+                        if (item.album) {
+                            if (item.album.images.length > 1) {
+                                track.image = item.album.images[1].url;
+                            } else {
+                                track.image = item.album.images[0].url;
+                            }
+                        }
+
+                        if (item.preview_url) {
+                            track.preview_url = item.preview_url;
+                        }
+
+                        topTracks.push(track);
                     }
 
-                    if (item.preview_url) {
-                        track.preview_url = item.preview_url;
-                    }
-
-                    topTracks.push(track);
+                    cb(null, topTracks);
+                } else {
+                    cb(error, null);
                 }
-
-                cb(null, topTracks);
-            } else {
-                cb(error, null);
             }
-        }
-    );
+        );
+    });
 }
 
-var SPOTIFY_TOKEN_URL = 'https://accounts.spotify.com/api/token',
-    SPOTIFY_AUTH_REDIRECT_URL = 'http://rigoneri.com/api/spotify/auth';
+var SPOTIFY_TOKEN_URL = 'https://accounts.spotify.com/api/token';
 
 exports.getToken = function(code, cb) {
     request(
@@ -270,7 +278,7 @@ exports.getToken = function(code, cb) {
                 client_id: process.env.SPOTIFY_CLIENT_ID,
                 client_secret: process.env.SPOTIFY_CLIENT_SECRET,
                 grant_type: 'authorization_code',
-                redirect_uri: SPOTIFY_AUTH_REDIRECT_URL,
+                redirect_uri: process.env.SPOTIFY_AUTH_REDIRECT_URL,
                 scope: 'user-top-read user-read-recently-played',
                 code: code,
             },
@@ -278,11 +286,11 @@ exports.getToken = function(code, cb) {
         function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 body = JSON.parse(body);
-                console.log(body);
-                //TODO! handle refresh token!!!
                 if (body.access_token) {
-                    cache.put('spotify-at', body.access_token);
-                    cache.put('spotify-rt', body.refresh_token);
+                    db.storeSetting('spotify-auth', {
+                        at: body.access_token,
+                        rt: body.refresh_token,
+                    });
                     cache.put('spotify-expires', moment());
                     cb({ access_token: body.access_token });
                 } else {
@@ -296,61 +304,58 @@ exports.getToken = function(code, cb) {
 };
 
 function validToken(cb) {
-    var token = cache.get('spotify-at');
-    console.log('SPOTIFY TOKEN', token);
-    var tokenExpires = cache.get('spotify-expires');
-    console.log('TOKEN', tokenExpires);
+    db.getSetting('spotify-auth', function(result) {
+        var tokenExpires = cache.get('spotify-expires');
 
-    var needsUpdate = true;
-    if (tokenExpires) {
-        var seconds = moment().diff(tokenExpires, 'seconds');
-        console.log('seconds', seconds);
-        if (seconds < 3600) {
-            needsUpdate = false;
-        }
-    }
-
-    if (!needsUpdate) {
-        cb();
-        return;
-    }
-
-    if (!cache.get('spotify-rt')) {
-        cb();
-        return;
-    }
-
-    request(
-        {
-            url: SPOTIFY_TOKEN_URL,
-            method: 'POST',
-            form: {
-                grant_type: 'refresh_token',
-                refresh_token: cache.get('spotify-rt'),
-            },
-            headers: {
-                Authorization: 'Basic ' + Buffer.from(process.env.SPOTIFY_CLIENT_ID + ':' + process.env.SPOTIFY_CLIENT_SECRET).toString('base64'),
-            },
-        },
-        function(error, response, body) {
-            if (!error && response.statusCode == 200) {
-                body = JSON.parse(body);
-                console.log('REFRESH TOKEN', body);
-                //TODO! handle refresh token!!!
-                if (body.access_token) {
-                    cache.put('spotify-at', body.access_token);
-                    if (body.refresh_token) {
-                        cache.put('spotify-rt', body.refresh_token);
-                    }
-                    cache.put('spotify-expires', moment());
-                    cb();
-                } else {
-                    cb();
-                }
-            } else {
-                console.log('REFRESH TOKEN ERROR', body);
-                cb();
+        var needsUpdate = true;
+        if (tokenExpires) {
+            var seconds = moment().diff(tokenExpires, 'seconds');
+            console.log('seconds', seconds);
+            if (seconds < 3600) {
+                needsUpdate = false;
             }
         }
-    );
+
+        if (!needsUpdate) {
+            cb(result.at);
+            return;
+        }
+
+        if (!result.rt) {
+            cb(result.at);
+            return;
+        }
+
+        request(
+            {
+                url: SPOTIFY_TOKEN_URL,
+                method: 'POST',
+                form: {
+                    grant_type: 'refresh_token',
+                    refresh_token: result.rt,
+                },
+                headers: {
+                    Authorization: 'Basic ' + Buffer.from(process.env.SPOTIFY_CLIENT_ID + ':' + process.env.SPOTIFY_CLIENT_SECRET).toString('base64'),
+                },
+            },
+            function(error, response, body) {
+                if (!error && response.statusCode == 200) {
+                    body = JSON.parse(body);
+                    if (body.access_token) {
+                        db.storeSetting('spotify-auth', {
+                            at: body.access_token,
+                            rt: body.refresh_token,
+                        });
+                        cache.put('spotify-expires', moment());
+                        cb(body.access_token);
+                    } else {
+                        cb(result.at);
+                    }
+                } else {
+                    console.log('REFRESH TOKEN ERROR', body);
+                    cb(result.at);
+                }
+            }
+        );
+    });
 }

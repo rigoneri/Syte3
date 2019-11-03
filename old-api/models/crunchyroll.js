@@ -113,7 +113,7 @@ exports.update = function(cb) {
                         if (!err) {
                             lastUpdated = new Date();
                         }
-                        cb(false);
+                        cb(true);
                     });
                 } else {
                     cb(false);

@@ -91,6 +91,9 @@ router.get('/:page', function(req, res) {
                 YouTube.monthActivity(page, cb);
             },
             function(cb) {
+                YouTube.monthLikesActivity(page, cb);
+            },
+            function(cb) {
                 Crunchyroll.monthActivity(page, cb);
             },
         ],

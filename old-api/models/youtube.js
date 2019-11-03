@@ -1,6 +1,7 @@
 var request = require('request'),
     moment = require('moment'),
     db = require('../db'),
+    async = require('async'),
     dates = require('../utils/dates'),
     cache = require('memory-cache');
 
@@ -61,59 +62,67 @@ exports.monthActivity = function(page, cb) {
 };
 
 var lastUpdatedRecentActivity;
-var allPosts = [];
-var allLikes = [];
+var allPosts = {};
 var limit = 10;
 
-exports.recentActivity = function(page, cb) {
+exports.recentActivity = function(page, callback) {
     var needUpdate = true;
     if (lastUpdatedRecentActivity) {
         var minutes = moment().diff(lastUpdatedRecentActivity, 'minutes');
         if (minutes < process.env.YOUTUBE_UPDATE_FREQ_MINUTES) {
             needUpdate = false;
         }
-    } else {
-        allLikes = cache.get('youtube-likes') || [];
     }
 
-    var query = {};
-    if (needUpdate && page == 0) {
-        allPosts = [];
-        allLikes = cache.get('youtube-likes') || [];
-    } else {
-        var start = page * limit;
-        var end = start + limit;
+    if (!needUpdate && allPosts[page]) {
+        callback(null, allPosts[page]);
+        return;
+    } else if (needUpdate) {
+        allPosts = {};
+    }
 
-        if (allPosts.slice(start, end).length) {
-            cb(null, {
-                uploads: allPosts.slice(start, end),
-                likes: allLikes.slice(start, end).length ? allLikes.slice(start, end) : [],
+    function fetchPosts(cb) {
+        db.collection('youtubedb')
+            .find()
+            .skip(page > 0 ? page * limit : 0)
+            .limit(limit)
+            .sort({ date: -1 })
+            .toArray(function(err, posts) {
+                if (!err && posts.length) {
+                    cb(null, posts);
+                } else {
+                    cb(err, []);
+                }
             });
-            return;
-        }
-
-        if (allPosts.length > 0) {
-            var lastPost = allPosts[allPosts.length - 1];
-            query = { date: { $lt: lastPost.date } };
-        }
     }
 
-    db.collection('youtubedb')
-        .find(query)
-        .limit(limit)
-        .sort({ date: -1 })
-        .toArray(function(err, posts) {
-            if (!err && posts.length) {
-                allPosts = allPosts.concat(posts);
-                lastUpdatedRecentActivity = new Date();
-                cb(null, {
-                    uploads: posts,
-                    likes: allLikes.slice(page * limit, page * limit + limit),
-                });
-            } else {
-                cb(err, {});
-            }
-        });
+    function fetchLikes(cb) {
+        db.collection('youtubelikesdb')
+            .find()
+            .skip(page > 0 ? page * limit : 0)
+            .limit(limit)
+            .toArray(function(err, posts) {
+                if (!err && posts.length) {
+                    cb(null, posts);
+                } else {
+                    cb(err, []);
+                }
+            });
+    }
+
+    async.series([fetchPosts, fetchLikes], function(err, results) {
+        if (!err && results) {
+            var recentActivity = {
+                uploads: results[0],
+                likes: results[1],
+            };
+            lastUpdatedRecentActivity = new Date();
+            allPosts[page] = recentActivity;
+            callback(err, recentActivity);
+        } else {
+            callback(err, {});
+        }
+    });
 };
 
 exports.update = function(cb) {
@@ -363,9 +372,8 @@ exports.likes = function(cb) {
         }
     }
 
-    var cachedLikes = cache.get('youtube-likes');
-    if (!needUpdate && cachedLikes) {
-        cb(null, cachedLikes);
+    if (!needUpdate) {
+        cb(null, false);
         return;
     }
 
@@ -376,15 +384,15 @@ exports.likes = function(cb) {
             body = JSON.parse(body);
 
             var likedPosts = [];
-
             body.items.forEach(item => {
                 if (item.kind == 'youtube#video') {
                     var post = {
                         id: item.id,
                         date: item.snippet.publishedAt,
+                        published: item.snippet.publishedAt,
                         title: item.snippet.title,
                         channel: item.snippet.channelTitle,
-                        type: 'youtube',
+                        type: 'youtube-like',
                     };
 
                     if (item.snippet.thumbnails.medium) {
@@ -400,7 +408,18 @@ exports.likes = function(cb) {
             });
 
             if (likedPosts.length) {
-                cache.put('youtube-likes', likedPosts);
+                var bulk = db.collection('youtubelikesdb').initializeUnorderedBulkOp();
+                for (var i = 0; i < likedPosts.length; i++) {
+                    var post = likedPosts[i];
+                    bulk.find({ id: post.id })
+                        .upsert()
+                        .updateOne(post);
+                }
+                bulk.execute(function(err, result) {
+                    if (err) {
+                        console.log('Youtube Bulk Error', err);
+                    }
+                });
                 lastUpdatedLikes = new Date();
             }
             cb(null, likedPosts);
@@ -414,6 +433,59 @@ exports.likes = function(cb) {
             });
         } else {
             cb(error, response);
+        }
+    });
+};
+
+exports.monthLikesActivity = function(page, cb) {
+    if (process.env.YOUTUBE_INTEGRATION_DISABLED == 'true') {
+        cb(null, []);
+        return;
+    }
+
+    dates.monthRange(page, function(start, end) {
+        var cacheKey = 'youtube-likes-' + moment(start).format('YYYY-MM-DD');
+        if (page == 0) {
+            //if it's the first month check if data needs to be updated
+            exports.likes(function(updated) {
+                var cachedData = cache.get(cacheKey);
+                if (!updated && cachedData) {
+                    console.log('Youtube Likes page', page, 'used cache:', cachedData.length);
+                    cb(null, cachedData);
+                } else {
+                    db.collection('youtubelikesdb')
+                        .find({
+                            date: { $gte: start, $lte: end },
+                        })
+                        .sort({ date: -1 })
+                        .toArray(function(err, posts) {
+                            console.log('Youtube Likes page', page, 'used db:', posts.length);
+                            if (!err && posts.length) {
+                                cache.put(cacheKey, posts);
+                            }
+                            cb(err, posts);
+                        });
+                }
+            });
+        } else {
+            var cachedData = cache.get(cacheKey);
+            if (cachedData) {
+                console.log('Youtube Likes page', page, 'used cache:', cachedData.length);
+                cb(null, cachedData);
+            } else {
+                db.collection('youtubelikesdb')
+                    .find({
+                        date: { $gte: start, $lte: end },
+                    })
+                    .sort({ date: -1 })
+                    .toArray(function(err, posts) {
+                        console.log('Youtube Likes page', page, 'used db:', posts.length);
+                        if (!err && posts.length) {
+                            cache.put(cacheKey, posts);
+                        }
+                        cb(err, posts);
+                    });
+            }
         }
     });
 };

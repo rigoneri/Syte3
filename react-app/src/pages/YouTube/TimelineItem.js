@@ -12,6 +12,7 @@ export const TimelineItem = ({ item }) => {
 
     return (
         <div className={styles.timelinePost}>
+            <h4>{item.type === 'youtube-like' ? 'Liked on YouTube' : 'Posted to YouTube'}</h4>
             <p>{item.title}</p>
             <a href={item.url} onClick={handleClick}>
                 <span style={{ backgroundImage: `url(${item.image})` }} className={styles.picture} />

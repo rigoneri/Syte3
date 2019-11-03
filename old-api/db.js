@@ -64,3 +64,26 @@ exports.setLastUpdatedDate = function(id, cb) {
         }
     );
 };
+
+exports.storeSetting = function(key, value) {
+    state.db.collection('settingsdb').updateOne(
+        { id: key },
+        {
+            id: key,
+            value: value,
+            lastUpdated: moment().toISOString(),
+        },
+        { upsert: true },
+        function(err, results) {
+            if (err) {
+                console.log('storeSetting error', id, err);
+            }
+        }
+    );
+};
+
+exports.getSetting = function(key, cb) {
+    state.db.collection('settingsdb').findOne({ id: key }, function(err, result) {
+        cb(result ? result.value : null);
+    });
+};

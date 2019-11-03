@@ -15,7 +15,7 @@ Front-End TODOs:
 -   [x] Foursquare Integration
 -   [x] Home Timeline
 -   [x] Add modal for viewing details
--   [ ] Show YouTube likes in the home timeline
+-   [x] Show YouTube likes in the home timeline
 -   [x] Crunchyroll Integration
 
 Backend TODOs:

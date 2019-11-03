@@ -5,6 +5,7 @@ import { TimelineItem } from '../TimelineItem'
 
 it('should display a youtube video', () => {
     const component = shallow(<TimelineItem item={mockVideo} />)
+    expect(component.find('h4').exists()).toEqual(true)
     expect(component.find('p').exists()).toEqual(true)
     expect(component.find('a').exists()).toEqual(true)
     expect(component.find('.picture').exists()).toEqual(true)
