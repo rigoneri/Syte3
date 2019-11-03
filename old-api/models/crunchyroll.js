@@ -209,16 +209,14 @@ function _save_history(history) {
     var bulk = db.collection('crunchyrolldb').initializeUnorderedBulkOp();
     for (var i = 0; i < history.length; i++) {
         var post = history[i];
-        console.log('save post', post);
         bulk.find({ id: post.id })
             .upsert()
             .updateOne({
-                $set: { lastUpdated: new Date().toISOString() },
                 $setOnInsert: post,
             });
     }
     bulk.execute(function(err, result) {
-        console.log(result);
+        console.log('result:', result.toJSON());
     });
 }
 
