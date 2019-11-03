@@ -48,6 +48,42 @@
     opacity: 0.5;
 }
 
+.themes {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    margin: 20px;
+    bottom: 60px;
+    font-size: 12px;
+    animation: fadeIn 500ms ease-in 1200ms backwards;
+}
+
+.themes button {
+    overflow: hidden;
+    text-indent: -100px;
+    width: 25px;
+    height: 15px;
+    border: 2px solid var(--primary-color);
+    margin-left: 5px;
+    border-radius: 3px;
+    background-color: #202a2f;
+    cursor: pointer;
+    outline: none;
+}
+
+.themes button.light {
+    background-color: #fff;
+    border-color: var(--line-color);
+}
+
+:global(.light-theme) .themes button.light {
+    border-color: var(--primary-color);
+}
+
+:global(.light-theme) .themes button.dark {
+    border-color: var(--line-color);
+}
+
 .about {
     display: inline-block;
     position: absolute;
@@ -70,6 +106,22 @@
     }
 
     .about {
+        display: none;
+    }
+
+    .themes {
+        position: relative;
+        bottom: auto;
+        margin: 0;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .themes button {
+        margin: 0 0 10px 0;
+    }
+
+    .themes span {
         display: none;
     }
 }
@@ -125,6 +177,20 @@
     .navButton.opened .bar3 {
         margin-top: -10px;
         transform: rotate(-45deg);
+    }
+
+    .themes {
+        justify-content: left;
+        flex-direction: row;
+        margin: 0 20px;
+    }
+
+    .themes button {
+        margin: 0 0 0 10px;
+    }
+
+    .themes span {
+        display: inline-block;
     }
 }
 

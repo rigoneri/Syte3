@@ -114,7 +114,7 @@ div.media video {
     height: 40px;
     overflow: hidden;
     border-radius: 20px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, var(--shadow-opacity));
     transition: all 320ms ease-out;
     position: absolute;
     top: 15px;

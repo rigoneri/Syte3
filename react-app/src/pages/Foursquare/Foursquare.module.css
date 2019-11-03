@@ -28,7 +28,7 @@
     height: 60px;
     overflow: hidden;
     border-radius: 40px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, var(--shadow-opacity));
     opacity: 0;
     animation: scaleIn 350ms var(--animation-delay) forwards;
 }
@@ -195,6 +195,10 @@ div.checkin {
     height: 32px;
     margin-top: 8px;
     opacity: 0.7;
+}
+
+:global(.light-theme) .icon img {
+    filter: invert(1);
 }
 
 .checkins ul li:nth-child(-n + 10) .icon {

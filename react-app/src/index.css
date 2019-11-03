@@ -5,6 +5,7 @@ html {
     padding: 0;
     height: 100%;
     font-size: 62.5%;
+    font-weight: 300;
 
     --background-color: #202a2f;
     --background-color-dark: #182125;
@@ -13,6 +14,18 @@ html {
     --alt-text-color: #5d7679;
     --line-color: #263435;
     --animation-delay: 1000ms;
+    --shadow-opacity: 0.6;
+}
+
+html.light-theme {
+    --background-color: #fff;
+    --background-color-dark: #dfe8e8;
+    --primary-color: #1aabad;
+    --text-color: #202a2f;
+    --alt-text-color: #92b4b7;
+    --line-color: #dfe8e8;
+    font-weight: 400;
+    --shadow-opacity: 0.3;
 }
 
 body {
@@ -25,7 +38,6 @@ body {
     background-color: var(--background-color);
     font-size: 14px;
     line-height: 24px;
-    font-weight: 300;
     color: var(--text-color);
 }
 

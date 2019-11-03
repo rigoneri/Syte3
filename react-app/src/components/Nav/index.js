@@ -10,6 +10,10 @@ export const Nav = ({ handleOpened, opened }) => {
         }
     }
 
+    const changeStyle = () => {
+        document.getElementsByTagName('html')[0].classList.toggle('light-theme')
+    }
+
     return (
         <>
             <nav>
@@ -23,6 +27,15 @@ export const Nav = ({ handleOpened, opened }) => {
                     <NavItem to="YouTube" handleClick={handleClick} />
                     <NavItem to="Crunchyroll" handleClick={handleClick} />
                 </ul>
+                <div className={styles.themes}>
+                    <span>Themes:</span>
+                    <button onClick={changeStyle} className={styles.light}>
+                        Light Theme
+                    </button>
+                    <button onClick={changeStyle} className={styles.dark}>
+                        Dark Theme
+                    </button>
+                </div>
                 <a href="https://github.com/rigoneri/Syte3" className={styles.about}>
                     About this site
                 </a>

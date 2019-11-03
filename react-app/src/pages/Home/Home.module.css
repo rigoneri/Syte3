@@ -65,6 +65,11 @@
     fill: var(--alt-text-color);
 }
 
+:global(.light-theme) .timeline .icon svg {
+    fill: var(--text-color);
+    opacity: 0.7;
+}
+
 :global(.fade-exit) .timeline li .icon {
     animation: scaleOut 350ms;
 }

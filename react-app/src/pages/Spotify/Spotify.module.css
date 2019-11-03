@@ -27,7 +27,7 @@
     height: 60px;
     overflow: hidden;
     border-radius: 40px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, var(--shadow-opacity));
     opacity: 0;
     animation: scaleIn 350ms var(--animation-delay) forwards;
 }
@@ -98,13 +98,8 @@
     height: 50px;
     border-radius: 5px;
     overflow: hidden;
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.6);
-    transition: all 350ms ease-out;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, var(--shadow-opacity));
     position: relative;
-}
-
-.recentTracks ul .album:hover {
-    transform: scale(1.04);
 }
 
 .recentTracks ul .album img {
@@ -340,7 +335,7 @@
     margin-right: 5px;
     border-radius: 4px;
     overflow: hidden;
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, var(--shadow-opacity));
     transition: all 350ms ease-out;
     position: relative;
 }
@@ -363,7 +358,7 @@
 }
 
 .topTracks ul .playIcon svg {
-    fill: #fff;
+    fill: var(--text-color);
     width: 22px;
     height: 22px;
 }
@@ -386,7 +381,7 @@
     height: 32px;
     border-radius: 4px;
     overflow: hidden;
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, var(--shadow-opacity));
     transition: all 350ms ease-out;
 }
 

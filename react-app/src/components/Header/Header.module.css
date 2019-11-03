@@ -38,7 +38,7 @@
     overflow: hidden;
     display: inline-block;
     margin-right: 20px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, var(--shadow-opacity));
     transition: all 320ms ease-out;
 }
 
@@ -61,7 +61,8 @@
         margin-left: 0;
         position: fixed;
         height: 50px;
-        background: rgba(24, 33, 37, 0.9);
+        background-color: var(--background-color-dark);
+        opacity: 0.9;
     }
 
     .Header h1 {
@@ -98,13 +99,19 @@
     }
 }
 
-@media (max-height: 400px) and (min-width: 480px) {
+@media (max-height: 460px) and (min-width: 480px) {
     .Header {
         margin-top: 0px;
     }
 
     .Header h1 {
         display: none;
+    }
+}
+
+@media (max-width: 480px) and (max-height: 480px) {
+    .Header {
+        margin-top: 0;
     }
 }
 

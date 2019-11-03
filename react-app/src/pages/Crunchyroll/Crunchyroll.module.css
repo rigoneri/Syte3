@@ -14,7 +14,7 @@
     height: 60px;
     overflow: hidden;
     border-radius: 40px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, var(--shadow-opacity));
     opacity: 0;
     animation: scaleIn 350ms var(--animation-delay) forwards;
 }
@@ -66,25 +66,25 @@ h3 {
     position: relative;
 }
 
-.activities .image {
+.activities .image img {
     display: block;
     width: 160px;
     height: 90px;
     margin-right: 20px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, var(--shadow-opacity));
     transition: all 320ms ease-out;
 }
 
-.activities .image:hover {
+.activities .image:hover img {
     transform: scale(1.07);
 }
 
-.activities ul li:nth-child(-n + 10) .image {
+.activities ul li:nth-child(-n + 10) a {
     opacity: 0;
     animation: scaleIn 350ms var(--animation-delay) forwards;
 }
 
-:global(.fade-exit) .activities ul li:nth-child(-n + 10) .image {
+:global(.fade-exit) .activities ul li:nth-child(-n + 10) a {
     animation: scaleIn 350ms reverse;
 }
 
@@ -155,7 +155,7 @@ h3 {
     background-size: cover;
     background-position: 50% 50%;
     cursor: pointer;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, var(--shadow-opacity));
     transition: all 320ms ease-out;
 }
 
