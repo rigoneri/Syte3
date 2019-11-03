@@ -12,7 +12,7 @@ it('should display a navigation menu', () => {
 it('should open a new page when a navigation item is clicked', () => {
     const handleOpened = jest.fn()
     const component = shallow(<NavItem to="/some-page" handleClick={handleOpened} />)
-    expect(component.find('Link').exists()).toEqual(true)
-    component.find('Link').simulate('click')
+    expect(component.find('NavLink').exists()).toEqual(true)
+    component.find('NavLink').simulate('click')
     expect(handleOpened).toHaveBeenCalled()
 })

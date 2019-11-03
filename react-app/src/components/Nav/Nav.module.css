@@ -4,12 +4,14 @@
     padding: 0;
 }
 
-.nav li {
+.nav a {
+    display: flex;
     padding: 10px 13px;
 }
 
-.nav a {
-    display: flex;
+.nav .active {
+    background-color: var(--background-color-dark);
+    border-radius: 4px;
 }
 
 .nav svg {
@@ -77,7 +79,7 @@
         margin: 0 0 20px 0;
     }
 
-    .nav li {
+    .nav a {
         padding: 10px 20px;
     }
 
@@ -135,7 +137,7 @@
         margin-top: 10px;
     }
 
-    .nav li {
+    .nav a {
         padding: 7px 10px;
     }
 }

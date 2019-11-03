@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { Logo } from 'components/Icons'
 import styles from './Nav.module.css'
 
@@ -35,10 +35,10 @@ export const Nav = ({ handleOpened, opened }) => {
 export const NavItem = ({ to, handleClick }) => {
     return (
         <li key={to}>
-            <Link to={`/${to.toLowerCase()}`} onClick={handleClick}>
+            <NavLink to={`/${to.toLowerCase()}`} onClick={handleClick} activeClassName={styles.active}>
                 <Logo type={to} />
                 <span className={styles.link}>{to}</span>
-            </Link>
+            </NavLink>
         </li>
     )
 }
