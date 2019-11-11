@@ -230,13 +230,14 @@
 
 .timelinePost a {
     position: relative;
+    display: inline-block;
+    margin: 10px 5px 10px 0;
 }
 
 .timelinePost .picture {
     width: 120px;
     height: 120px;
     display: block;
-    margin: 10px 5px 10px 0;
     background-size: cover;
     background-position: 50% 50%;
     cursor: pointer;

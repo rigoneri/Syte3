@@ -65,6 +65,10 @@
         opacity: 0.9;
     }
 
+    :global(.light-theme) .Header {
+        opacity: 1;
+    }
+
     .Header h1 {
         display: block;
         text-align: center;

@@ -26,6 +26,10 @@ export default function Tweets() {
             if (pageTweets.length > 0) {
                 setTweets(tweets.concat(pageTweets))
                 setEmpty(0)
+
+                if (page === 0 && new Date().getDate() < 15) {
+                    setPage(page + 1)
+                }
             } else if (empty < 2) {
                 setEmpty(empty + 1)
                 setPage(page + 1)

@@ -287,6 +287,7 @@ exports.getToken = function(code, cb) {
             if (!error && response.statusCode == 200) {
                 body = JSON.parse(body);
                 if (body.access_token) {
+                    console.log('auth body refresh token', body.refresh_token);
                     db.storeSetting('spotify-auth', {
                         at: body.access_token,
                         rt: body.refresh_token,
@@ -342,9 +343,10 @@ function validToken(cb) {
                 if (!error && response.statusCode == 200) {
                     body = JSON.parse(body);
                     if (body.access_token) {
+                        console.log('body refresh token', body.refresh_token);
                         db.storeSetting('spotify-auth', {
                             at: body.access_token,
-                            rt: body.refresh_token,
+                            rt: body.refresh_token ? body.refresh_token : result.rt,
                         });
                         cache.put('spotify-expires', moment());
                         cb(body.access_token);

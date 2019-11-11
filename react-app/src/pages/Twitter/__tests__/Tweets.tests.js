@@ -5,8 +5,28 @@ import { mockTweet } from './Tweet.tests'
 import Tweets from '../Tweets'
 
 describe('Tweets', () => {
+    const RealDate = Date
+    function mockDate(isoDate) {
+        global.Date = class extends RealDate {
+            constructor(...theArgs) {
+                if (theArgs.length) {
+                    return new RealDate(...theArgs)
+                }
+                return new RealDate(isoDate)
+            }
+
+            static now() {
+                return new RealDate(isoDate).getTime()
+            }
+        }
+    }
+
     beforeEach(() => {
         jest.resetAllMocks()
+    })
+
+    afterEach(() => {
+        global.Date = RealDate
     })
 
     afterAll(() => {
@@ -19,6 +39,8 @@ describe('Tweets', () => {
                 json: () => Promise.resolve([mockTweet]),
             })
         )
+
+        mockDate('2019-11-20T11:01:58.135Z')
 
         let component = null
         await act(async () => {
@@ -35,6 +57,8 @@ describe('Tweets', () => {
 
     it('should display an error message if it fails to fetch tweets', async () => {
         jest.spyOn(global, 'fetch').mockImplementation(() => Promise.reject())
+
+        mockDate('2019-11-20T11:01:58.135Z')
 
         let component = null
         await act(async () => {
@@ -54,9 +78,11 @@ describe('Tweets', () => {
     it('should load more tweets when scrolling to the end of the page', async () => {
         jest.spyOn(global, 'fetch').mockImplementation(() =>
             Promise.resolve({
-                json: () => Promise.resolve([{ ...mockTweet, id: `${new Date().getTime()}` }]),
+                json: () => Promise.resolve([{ ...mockTweet, id: `${Math.round(Math.random() * 10000)}`, pictures: null }]),
             })
         )
+
+        mockDate('2019-11-20T11:01:58.135Z')
 
         let component = null
         await act(async () => {
@@ -84,11 +110,31 @@ describe('Tweets', () => {
             })
         )
 
+        mockDate('2019-11-20T11:01:58.135Z')
+
         let component = null
         await act(async () => {
             component = mount(<Tweets />)
         })
         expect(global.fetch).toHaveBeenCalledTimes(3)
+
+        component.unmount()
+        global.fetch.mockRestore()
+    })
+
+    it('should fetch the last 2 months of tweets if it is the first half of the month', async () => {
+        jest.spyOn(global, 'fetch').mockImplementation(() =>
+            Promise.resolve({
+                json: () => Promise.resolve([{ ...mockTweet, id: `${Math.round(Math.random() * 10000)}`, pictures: null }]),
+            })
+        )
+
+        mockDate('2019-11-01T11:01:58.135Z')
+        let component = null
+        await act(async () => {
+            component = mount(<Tweets />)
+        })
+        expect(global.fetch).toHaveBeenCalledTimes(2)
 
         component.unmount()
         global.fetch.mockRestore()

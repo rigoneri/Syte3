@@ -225,13 +225,13 @@
 
 .timelinePost a {
     position: relative;
+    display: inline-block;
 }
 
 .timelinePost .picture {
     width: 200px;
     height: 113px;
     display: block;
-    margin: 10px 5px 10px 0;
     background-size: cover;
     background-position: 50% 50%;
     cursor: pointer;

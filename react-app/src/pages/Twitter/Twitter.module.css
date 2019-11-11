@@ -327,6 +327,8 @@ ul.pictures .video {
     top: 4px;
     left: -18px;
     z-index: 3;
+    opacity: 0;
+    animation: halfScaleIn 400ms ease-in var(--animation-delay) forwards;
 }
 
 .timelineTweet .pictures .picture {
@@ -372,7 +374,7 @@ ul.pictures .video {
     }
 
     .timelineTweet .avatar {
-        top: -30px;
+        top: -32px;
         left: -60px;
     }
 }
