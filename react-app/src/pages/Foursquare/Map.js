@@ -14,6 +14,7 @@ const Marker = ({ $hover, title }) => {
 export default function Map({ markers, month }) {
     const [map, setMap] = useState(null)
     const [maps, setMaps] = useState(null)
+    const [options, setOptions] = useState(mapOptions())
 
     useEffect(() => {
         if (map && maps && markers && markers.length) {
@@ -25,13 +26,25 @@ export default function Map({ markers, month }) {
         }
     }, [month, markers, map, maps])
 
+    useEffect(() => {
+        const changeStyle = () => {
+            console.log(mapOptions())
+            setOptions(mapOptions())
+        }
+
+        window.addEventListener('theme-changed', changeStyle)
+        return () => {
+            window.removeEventListener('theme-changed', changeStyle)
+        }
+    }, [])
+
     return (
         <div style={{ height: '300px', width: '100%' }}>
             <GoogleMapReact
                 bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_KEY }}
                 defaultCenter={defaultCenter}
                 defaultZoom={defaultZoom}
-                options={mapOptions}
+                options={options}
                 hoverDistance={10}
                 yesIWantToUseGoogleMapApiInternals
                 onGoogleApiLoaded={({ map: gMap, maps: gMaps }) => {

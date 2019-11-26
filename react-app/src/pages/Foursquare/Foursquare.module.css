@@ -345,9 +345,10 @@ div.checkin {
     height: 4px;
     left: -2px;
     top: -2px;
-    border: 2px solid #3b5d60;
+    border: 2px solid var(--line-color);
     border-radius: 4px;
     background-color: var(--primary-color);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, var(--shadow-opacity));
     cursor: pointer;
 }
 
@@ -362,7 +363,7 @@ div.checkin {
     opacity: 0;
     font-weight: 400;
     transform: scale(0.7);
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.75);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, var(--shadow-opacity));
     transition: all 200ms ease-in 50ms;
     pointer-events: none;
 }

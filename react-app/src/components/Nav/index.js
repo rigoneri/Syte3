@@ -12,6 +12,7 @@ export const Nav = ({ handleOpened, opened }) => {
 
     const changeStyle = () => {
         document.getElementsByTagName('html')[0].classList.toggle('light-theme')
+        window.dispatchEvent(new CustomEvent('theme-changed'))
     }
 
     return (
