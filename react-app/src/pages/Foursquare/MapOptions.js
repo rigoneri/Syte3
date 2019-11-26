@@ -2,10 +2,11 @@ export const defaultCenter = { lat: 39.1362, lng: -94.5725 }
 export const defaultZoom = 9
 
 const cssVariable = (elm, variable) => {
-    return window
+    let color = window
         .getComputedStyle(elm)
         .getPropertyValue(`--${variable}`)
         .trim()
+    return color.length === 4 ? color + color.substring(1) : color
 }
 
 export const mapOptions = () => {

@@ -18,7 +18,7 @@ html {
 }
 
 html.light-theme {
-    --background-color: #ffffff;
+    --background-color: #fff;
     --background-color-dark: #deecf1;
     --primary-color: #00a2c7;
     --text-color: #313e44;
