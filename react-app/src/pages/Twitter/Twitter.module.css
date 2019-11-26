@@ -242,6 +242,10 @@
     font-weight: 300;
 }
 
+:global(html.light-theme) .tweets .content {
+    font-weight: 400;
+}
+
 .tweets h4 {
     margin: 0;
     font-size: 14px;

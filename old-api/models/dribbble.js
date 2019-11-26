@@ -147,7 +147,9 @@ exports.update = function(cb) {
                         var post = posts[i];
                         bulk.find({ id: post.id })
                             .upsert()
-                            .updateOne(post);
+                            .updateOne({
+                                $setOnInsert: post,
+                            });
                     }
                     bulk.execute(function(err, result) {
                         if (err) {
@@ -197,7 +199,9 @@ exports.setup = function(cb) {
                     var post = posts[i];
                     bulk.find({ id: post.id })
                         .upsert()
-                        .updateOne(post);
+                        .updateOne({
+                            $setOnInsert: post,
+                        });
                 }
                 bulk.execute(function(err, result) {
                     page++;
