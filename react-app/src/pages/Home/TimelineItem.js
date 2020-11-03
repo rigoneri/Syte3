@@ -33,6 +33,11 @@ const TimelineItem = ({ item }) => {
         }
     }
 
+    //Only show git commits in the timeline
+    if (item.type === 'github' && item.icon !== 'git-commit') {
+        return null
+    }
+
     return (
         <li>
             {!['lastfm', 'spotify'].includes(item.type) ? <h3>{item.time}</h3> : null}
