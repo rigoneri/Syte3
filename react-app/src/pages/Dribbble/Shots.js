@@ -4,54 +4,60 @@ import { Logo } from 'components/Icons'
 import Modal from './Modal'
 import styles from './Dribbble.module.css'
 
-export default function Shots() {
+const Shots = () => {
     const [shots, setShots] = useState([])
-    const [page, setPage] = useState(0)
+    const [page, setPage] = useState(null)
+    const nextPage = useRef(null)
     const [error, setError] = useState(false)
-    const [empty, setEmpty] = useState(0)
     const [postDetails, setPostDetails] = useState(null)
     const pageEl = useRef(null)
-    let debouncing = false
+    let debouncing = useRef(false)
 
     useEffect(() => {
-        fetchShots()
+        const fetchShots = async () => {
+            nextPage.current = null
+            try {
+                let url = `/api/dribbble/activity`
+                if (page) {
+                    url += `?page=${page}`
+                }
+
+                const response = await fetch(url)
+                const result = await response.json()
+                if (result.data && result.data.length > 0) {
+                    setShots(shots.concat(result.data))
+                    if (result.nextPage) {
+                        nextPage.current = result.nextPage
+                    }
+                }
+                debouncing.current = false
+            } catch (error) {
+                setError(true)
+            }
+        }
+
+        if (page === nextPage.current) {
+            fetchShots()
+        }
 
         window.addEventListener('scroll', handleScroll)
         return () => {
             window.removeEventListener('scroll', handleScroll)
         }
-    }, [page])
-
-    const fetchShots = async () => {
-        try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/dribbble/${page}`)
-            const pageShots = await response.json()
-            if (pageShots.length > 0) {
-                setShots(shots.concat(pageShots))
-                setEmpty(0)
-            } else if (empty < 2) {
-                setEmpty(empty + 1)
-                setPage(page + 1)
-                //TODO: change api to not return empty pages...
-            }
-            debouncing = false
-        } catch (error) {
-            setError(true)
-        }
-    }
+    }, [page]) // eslint-disable-line react-hooks/exhaustive-deps
 
     const handleScroll = () => {
-        if (debouncing) {
+        if (debouncing.current) {
             return
         }
 
-        debouncing = true
+        debouncing.current = true
         window.requestAnimationFrame(() => {
             if (window.scrollY + window.innerHeight > pageEl.current.clientHeight - 200) {
-                setPage(page + 1)
+                setPage(nextPage.current)
                 return
             }
-            debouncing = false
+            debouncing.current = false
         })
     }
 
@@ -86,3 +92,5 @@ export default function Shots() {
         </div>
     )
 }
+
+export default Shots

@@ -45,7 +45,7 @@ describe('Check-ins', () => {
     it('should fetch and display a list of check-ins', async () => {
         jest.spyOn(global, 'fetch').mockImplementation(() =>
             Promise.resolve({
-                json: () => Promise.resolve([mockCheckin]),
+                json: () => Promise.resolve({ data: [mockCheckin] }),
             })
         )
 
@@ -85,7 +85,7 @@ describe('Check-ins', () => {
     it('should load more check-ins when scrolling to the end of the page', async () => {
         jest.spyOn(global, 'fetch').mockImplementation(() =>
             Promise.resolve({
-                json: () => Promise.resolve([{ ...mockCheckin, id: `${new Date().getTime()}` }]),
+                json: () => Promise.resolve({ data: [{ ...mockCheckin, id: `${new Date().getTime()}` }] }),
             })
         )
 
@@ -113,7 +113,7 @@ describe('Check-ins', () => {
     it('should attempt to fetch more pages if empty results', async () => {
         jest.spyOn(global, 'fetch').mockImplementation(() =>
             Promise.resolve({
-                json: () => Promise.resolve([]),
+                json: () => Promise.resolve({ data: [] }),
             })
         )
 
@@ -130,7 +130,7 @@ describe('Check-ins', () => {
     it('should fetch the last 2 months of checkins if it is the first half of the month', async () => {
         jest.spyOn(global, 'fetch').mockImplementation(() =>
             Promise.resolve({
-                json: () => Promise.resolve([mockCheckin]),
+                json: () => Promise.resolve({ data: [mockCheckin] }),
             })
         )
 

@@ -5,7 +5,7 @@ import Profile from './Profile'
 import Checkins from './Checkins'
 import styles from './Foursquare.module.css'
 
-export default function Foursquare() {
+const Foursquare = () => {
     const [user, error] = useUser('foursquare')
 
     if (error) {
@@ -19,3 +19,5 @@ export default function Foursquare() {
         </div>
     )
 }
+
+export default Foursquare

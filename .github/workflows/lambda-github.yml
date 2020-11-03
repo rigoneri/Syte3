@@ -1,0 +1,99 @@
+name: Deploy Github Lambda
+on:
+    push:
+        paths:
+            - 'services/github/**'
+            - '.github/workflows/lambda-github.yml'
+        branches: [master]
+
+jobs:
+    lambda:
+        runs-on: ubuntu-latest
+        defaults:
+            run:
+                working-directory: services/github
+        steps:
+            - name: Checking out code
+              uses: actions/checkout@master
+
+            - name: Setting up node
+              uses: actions/setup-node@master
+              with:
+                  node-version: '12'
+
+            - name: Installing dependencies
+              run: npm install --production
+
+            - name: Loading package.json file
+              id: configs
+              run: |
+                  content=`cat package.json | tr '\n' ' '`
+                  echo "::set-output name=config::$content"
+
+            - name: Zipping directory
+              run: zip -r lambda.zip *
+
+            - name: Configuring AWS credentials
+              uses: aws-actions/configure-aws-credentials@master
+              with:
+                  aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                  aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                  aws-region: ${{ secrets.AWS_REGION }}
+
+            # This must be created prior. TODO: look into adding in a different job/step
+            - name: Getting the AWS Lambda IAM Role
+              id: role
+              run: |
+                  content=`aws iam get-role \
+                  --role-name Lambda-Dynamo | tr '\n' ' '`
+                  echo "::set-output name=role::$content"
+
+            - name: Deploying AWS Lambda
+              run: |
+                  aws lambda create-function \
+                  --function-name ${{fromJson(steps.configs.outputs.config).name}} \
+                  --handler "${{fromJson(steps.configs.outputs.config).handler}}" \
+                  --runtime "${{fromJson(steps.configs.outputs.config).runtime}}" \
+                  --role "${{fromJson(steps.role.outputs.role).Role.Arn}}" \
+                  --zip-file fileb://lambda.zip \
+                  || aws lambda update-function-code \
+                  --function-name ${{fromJson(steps.configs.outputs.config).name}} \
+                  --zip-file fileb://lambda.zip
+
+            - name: Updating AWS Lambda Configuration
+              id: lambda
+              run: |
+                  content=`aws lambda update-function-configuration --region ${{ secrets.AWS_REGION }} \
+                  --function-name ${{fromJson(steps.configs.outputs.config).name}} \
+                  --description "${{fromJson(steps.configs.outputs.config).description}}" \
+                  --handler "${{fromJson(steps.configs.outputs.config).handler}}" \
+                  --timeout "${{fromJson(steps.configs.outputs.config).timeout}}" \
+                  --memory-size "${{fromJson(steps.configs.outputs.config).memory}}" \
+                  --runtime "${{fromJson(steps.configs.outputs.config).runtime}}" | tr '\n' ' '`
+                  echo "::set-output name=lambda::$content"
+
+            - name: Creating Schedule Rule
+              id: rule
+              if: fromJson(steps.configs.outputs.config).schedule
+              run: |
+                  content=`aws events put-rule \
+                  --name ${{fromJson(steps.configs.outputs.config).name}}-schedule \
+                  --schedule-expression "${{fromJson(steps.configs.outputs.config).schedule}}" | tr '\n' ' '`
+                  echo "::set-output name=rule::$content"
+
+            - name: Adding Lambda Permissions
+              if: fromJson(steps.rule.outputs.rule).RuleArn
+              run: |
+                  aws lambda add-permission \
+                  --function-name ${{fromJson(steps.configs.outputs.config).name}} \
+                  --statement-id ${{fromJson(steps.configs.outputs.config).name}}-event \
+                  --action 'lambda:InvokeFunction' \
+                  --principal events.amazonaws.com \
+                  --source-arn ${{fromJson(steps.rule.outputs.rule).RuleArn}} \
+                  || echo "Lambda permission already exists"
+
+            - name: Setting Scheduled Rule to Run Lambda
+              if: fromJson(steps.configs.outputs.config).schedule
+              run: |
+                  aws events put-targets --rule ${{fromJson(steps.configs.outputs.config).name}}-schedule \
+                  --targets "Id"="1","Arn"="${{fromJson(steps.lambda.outputs.lambda).FunctionArn}}"

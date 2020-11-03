@@ -1,7 +1,7 @@
 .profile {
     padding: 40px 0 0 0;
     display: grid;
-    grid-template-columns: 80px 200px auto auto;
+    grid-template-columns: 80px 200px 100px auto;
     grid-template-rows: 30px 36px auto;
 }
 
@@ -105,8 +105,8 @@
     margin: 0;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(4, 180px);
-    grid-auto-rows: 180px;
+    grid-template-columns: repeat(3, 270px);
+    grid-auto-rows: 270px;
     grid-gap: 30px;
 }
 

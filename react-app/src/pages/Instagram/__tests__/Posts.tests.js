@@ -12,19 +12,9 @@ export const mockPost = {
         width: 640,
         height: 800,
         url: 'https://scontent.cdninstagram.com/v/7713e4.mp4',
-        id: '1806534',
     },
     picture: 'https://scontent.cdninstagram.com/vp/d2c3e07f3.jpg',
-    pictureHD: 'https://scontent.cdninstagram.com/vp/b91ec857c.jpg',
-    likes: 3,
-    comments: 0,
     text: 'Some description <a href="http://instagram.com/explore/tags/tag" target="_blank">#tag</a>',
-    user: {
-        id: '1326084',
-        full_name: 'Syte User',
-        profile_picture: 'https://scontent.cdninstagram.com/vp/8bf19924.jpg',
-        username: 'syte3',
-    },
 }
 
 describe('Posts', () => {
@@ -39,7 +29,7 @@ describe('Posts', () => {
     it('should fetch and display a list of instagram posts', async () => {
         jest.spyOn(global, 'fetch').mockImplementation(() =>
             Promise.resolve({
-                json: () => Promise.resolve([mockPost]),
+                json: () => Promise.resolve({ data: [mockPost], nextPage: null }),
             })
         )
 

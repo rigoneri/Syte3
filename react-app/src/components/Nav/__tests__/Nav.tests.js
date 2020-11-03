@@ -1,6 +1,7 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { shallow, mount } from 'enzyme'
 import { Nav, NavItem } from '../index'
+import { MemoryRouter } from 'react-router-dom'
 
 it('should display a navigation menu', () => {
     const component = shallow(<Nav />)
@@ -11,7 +12,11 @@ it('should display a navigation menu', () => {
 
 it('should open a new page when a navigation item is clicked', () => {
     const handleOpened = jest.fn()
-    const component = shallow(<NavItem to="/some-page" handleClick={handleOpened} />)
+    const component = mount(
+        <MemoryRouter>
+            <NavItem to="/some-page" handleClick={handleOpened} />
+        </MemoryRouter>
+    )
     expect(component.find('NavLink').exists()).toEqual(true)
     component.find('NavLink').simulate('click')
     expect(handleOpened).toHaveBeenCalled()

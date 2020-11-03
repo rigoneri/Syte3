@@ -2,44 +2,46 @@ import React, { useState, useEffect, useRef } from 'react'
 import Tweet from './Tweet'
 import styles from './Twitter.module.css'
 
-export default function Tweets() {
+const Tweets = () => {
     const [tweets, setTweets] = useState([])
-    const [page, setPage] = useState(0)
+    const [page, setPage] = useState(null)
+    const nextPage = useRef(null)
     const [error, setError] = useState(false)
-    const [empty, setEmpty] = useState(0)
     const pageEl = useRef(null)
     let debouncing = useRef(false)
 
     useEffect(() => {
-        fetchTweets()
+        const fetchTweets = async () => {
+            nextPage.current = null
+            try {
+                let url = `/api/twitter/activity`
+                if (page) {
+                    url += `?page=${page}`
+                }
+
+                const response = await fetch(url)
+                const result = await response.json()
+                if (result.data && result.data.length > 0) {
+                    setTweets(tweets.concat(result.data))
+                    if (result.nextPage) {
+                        nextPage.current = result.nextPage
+                    }
+                }
+                debouncing.current = false
+            } catch (error) {
+                setError(true)
+            }
+        }
+
+        if (page === nextPage.current) {
+            fetchTweets()
+        }
 
         window.addEventListener('scroll', handleScroll)
         return () => {
             window.removeEventListener('scroll', handleScroll)
         }
-    }, [page])
-
-    const fetchTweets = async () => {
-        try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/twitter/${page}`)
-            const pageTweets = await response.json()
-            if (pageTweets.length > 0) {
-                setTweets(tweets.concat(pageTweets))
-                setEmpty(0)
-
-                if (page === 0 && new Date().getDate() < 15) {
-                    setPage(page + 1)
-                }
-            } else if (empty < 2) {
-                setEmpty(empty + 1)
-                setPage(page + 1)
-                //TODO: change api to not return empty pages...
-            }
-            debouncing.current = false
-        } catch (error) {
-            setError(true)
-        }
-    }
+    }, [page]) // eslint-disable-line react-hooks/exhaustive-deps
 
     const handleScroll = () => {
         if (debouncing.current) {
@@ -49,7 +51,7 @@ export default function Tweets() {
         debouncing.current = true
         window.requestAnimationFrame(() => {
             if (window.scrollY + window.innerHeight > pageEl.current.clientHeight - 200) {
-                setPage(page + 1)
+                setPage(nextPage.current)
                 return
             }
             debouncing.current = false
@@ -70,3 +72,5 @@ export default function Tweets() {
         </div>
     )
 }
+
+export default Tweets

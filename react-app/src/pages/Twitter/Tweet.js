@@ -5,7 +5,7 @@ import { PlayLogo } from 'components/Icons'
 import Modal from './Modal'
 import styles from './Twitter.module.css'
 
-export default function Tweet({ tweet }) {
+const Tweet = ({ tweet }) => {
     const [showDetails, setShowDetails] = useState(false)
     const handleClick = e => {
         e.preventDefault()
@@ -40,3 +40,5 @@ export default function Tweet({ tweet }) {
         </li>
     )
 }
+
+export default Tweet

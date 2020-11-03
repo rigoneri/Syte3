@@ -3,7 +3,7 @@ import Photos from './Photos'
 import Img from 'react-image'
 import styles from './Twitter.module.css'
 
-export default function Profile({ user }) {
+const Profile = ({ user }) => {
     return (
         <div className={styles.profile}>
             <div className={styles.banner} style={{ backgroundImage: `url(${user.banner})` }}>
@@ -32,3 +32,5 @@ export default function Profile({ user }) {
         </div>
     )
 }
+
+export default Profile

@@ -1,29 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { GitIcons } from 'components/Icons'
 import styles from './Github.module.css'
 
-export default function Repos() {
-    const [repos, setRepos] = useState([])
-    const [error, setError] = useState(false)
-
-    const fetchRepos = async () => {
-        try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/github/repos`)
-            const repos = await response.json()
-            setRepos(repos)
-        } catch (error) {
-            setError(true)
-        }
-    }
-
-    useEffect(() => {
-        fetchRepos()
-    }, [])
-
+const Repos = ({ repos }) => {
     return (
         <div className={styles.repos}>
             <h3>Repositories</h3>
-            {error && <p className={styles.error}>Unable to fetch repositories.</p>}
             {repos && repos.length ? (
                 <ul>
                     {repos.map(repo => (
@@ -33,7 +15,8 @@ export default function Repos() {
                             <ul className={styles.stats}>
                                 <li>{repo.language}</li>
                                 <li>
-                                    <GitIcons type="git-stars" /> {repo.favorites ? repo.favorites.toLocaleString() : '0'}
+                                    <GitIcons type="git-stars" />{' '}
+                                    {repo.favorites ? repo.favorites.toLocaleString() : '0'}
                                 </li>
                                 <li>
                                     <GitIcons type="git-branch" /> {repo.forks ? repo.forks.toLocaleString() : '0'}
@@ -46,3 +29,5 @@ export default function Repos() {
         </div>
     )
 }
+
+export default Repos

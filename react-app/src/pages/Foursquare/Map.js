@@ -11,10 +11,11 @@ const Marker = ({ $hover, title }) => {
     )
 }
 
-export default function Map({ markers, month }) {
+const Map = ({ markers, month }) => {
     const [map, setMap] = useState(null)
     const [maps, setMaps] = useState(null)
     const [options, setOptions] = useState(mapOptions())
+    const googleMapsKey = process.env.REACT_APP_GOOGLE_MAPS_KEY
 
     useEffect(() => {
         if (map && maps && markers && markers.length) {
@@ -41,7 +42,7 @@ export default function Map({ markers, month }) {
     return (
         <div style={{ height: '300px', width: '100%' }}>
             <GoogleMapReact
-                bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_KEY }}
+                bootstrapURLKeys={{ key: googleMapsKey }}
                 defaultCenter={defaultCenter}
                 defaultZoom={defaultZoom}
                 options={options}
@@ -53,8 +54,13 @@ export default function Map({ markers, month }) {
                         setMaps(gMaps)
                     }
                 }}>
-                {markers && markers.map(marker => <Marker key={marker.id} lat={marker.lat} lng={marker.lng} title={marker.title} />)}
+                {markers &&
+                    markers.map(marker => (
+                        <Marker key={marker.id} lat={marker.lat} lng={marker.lng} title={marker.title} />
+                    ))}
             </GoogleMapReact>
         </div>
     )
 }
+
+export default Map

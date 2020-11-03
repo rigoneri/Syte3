@@ -11,7 +11,7 @@ html {
     --background-color-dark: #182125;
     --primary-color: #79d4d5;
     --text-color: #eee;
-    --alt-text-color: #5d7679;
+    --alt-text-color: #6c8183;
     --line-color: #263435;
     --animation-delay: 1000ms;
     --shadow-opacity: 0.6;
@@ -19,19 +19,19 @@ html {
 
 html.light-theme {
     --background-color: #fff;
-    --background-color-dark: #deecf1;
-    --primary-color: #00a2c7;
-    --text-color: #313e44;
-    --alt-text-color: #92abb7;
-    --line-color: #ddebef;
+    --background-color-dark: #e8f0f7;
+    --primary-color: #2d8cbf;
+    --text-color: #48575f;
+    --alt-text-color: #92a2b7;
+    --line-color: #e8f0f7;
     font-weight: 400;
     --shadow-opacity: 0.1;
 }
 
 body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-        sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+        'Droid Sans', 'Helvetica Neue', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: auto;
 
@@ -39,6 +39,10 @@ body {
     font-size: 14px;
     line-height: 24px;
     color: var(--text-color);
+}
+
+html.light-theme body {
+    -webkit-font-smoothing: unset;
 }
 
 ::selection {

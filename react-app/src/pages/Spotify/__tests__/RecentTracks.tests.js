@@ -27,7 +27,11 @@ describe('RecentTracks', () => {
     it('should fetch and display a recent tracks', async () => {
         jest.spyOn(global, 'fetch').mockImplementation(() =>
             Promise.resolve({
-                json: () => Promise.resolve([mockTrack]),
+                json: () =>
+                    Promise.resolve({
+                        data: [mockTrack],
+                        nextPage: null,
+                    }),
             })
         )
 
@@ -84,7 +88,11 @@ describe('RecentTracks', () => {
     it('should play an audio when album is clicked', async () => {
         jest.spyOn(global, 'fetch').mockImplementation(() =>
             Promise.resolve({
-                json: () => Promise.resolve([mockTrack]),
+                json: () =>
+                    Promise.resolve({
+                        data: [mockTrack],
+                        nextpPage: null,
+                    }),
             })
         )
 
@@ -118,7 +126,11 @@ describe('RecentTracks', () => {
     it('should display that the audio is playing', async () => {
         jest.spyOn(global, 'fetch').mockImplementation(() =>
             Promise.resolve({
-                json: () => Promise.resolve([mockTrack]),
+                json: () =>
+                    Promise.resolve({
+                        data: [mockTrack],
+                        nextPage: null,
+                    }),
             })
         )
 

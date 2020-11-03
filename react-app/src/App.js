@@ -3,9 +3,13 @@ import { BrowserRouter, Switch, Route, useLocation } from 'react-router-dom'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import Header from 'components/Header'
 import { ModalMount } from 'components/Modal'
+import Error from 'components/Error'
+import Login from './pages/Admin/Login'
+import { isAuthed } from './utils'
 import './App.css'
 
 const Home = React.lazy(() => import('./pages/Home'))
+const Admin = React.lazy(() => import('./pages/Admin'))
 const Twitter = React.lazy(() => import('./pages/Twitter'))
 const Dribbble = React.lazy(() => import('./pages/Dribbble'))
 const Foursquare = React.lazy(() => import('./pages/Foursquare'))
@@ -13,9 +17,8 @@ const Github = React.lazy(() => import('./pages/Github'))
 const Instagram = React.lazy(() => import('./pages/Instagram'))
 const Spotify = React.lazy(() => import('./pages/Spotify'))
 const YouTube = React.lazy(() => import('./pages/YouTube'))
-const Crunchyroll = React.lazy(() => import('./pages/Crunchyroll'))
 
-function App() {
+const App = () => {
     return (
         <BrowserRouter>
             <div className="app">
@@ -27,7 +30,7 @@ function App() {
     )
 }
 
-function AppContent() {
+const AppContent = () => {
     let location = useLocation()
 
     return (
@@ -49,12 +52,21 @@ function AppContent() {
     )
 }
 
-function Routes({ location }) {
+const Routes = ({ location }) => {
     return (
         <Switch location={location}>
             <Route exact path="/">
                 <Home />
             </Route>
+            {isAuthed() ? (
+                <Route path="/admin/:service?">
+                    <Admin />
+                </Route>
+            ) : (
+                <Route path="/admin">
+                    <Login />
+                </Route>
+            )}
             <Route path="/twitter">
                 <Twitter />
             </Route>
@@ -76,8 +88,8 @@ function Routes({ location }) {
             <Route path="/youtube">
                 <YouTube />
             </Route>
-            <Route path="/crunchyroll">
-                <Crunchyroll />
+            <Route>
+                <Error message="Page Not Found" />
             </Route>
         </Switch>
     )

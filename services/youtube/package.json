@@ -1,0 +1,23 @@
+{
+    "name": "lambda-youtube",
+    "description": "Fetches youtube profile and recent activity and stores it in DynamoDB",
+    "version": "1.0.0",
+    "author": "@rigoneri",
+    "private": true,
+    "scripts": {
+        "start": "node -e \"require('./index').handler({})\""
+    },
+    "dependencies": {
+        "date-fns": "^2.15.0",
+        "syte-common": "file:../../common",
+        "node-fetch": "^2.6.0"
+    },
+    "devDependencies": {
+        "aws-sdk": "^2.734.0"
+    },
+    "runtime": "nodejs12.x",
+    "handler": "index.handler",
+    "memory": "128",
+    "timeout": "60",
+    "schedule": "rate(6 hours)"
+}

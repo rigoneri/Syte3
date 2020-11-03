@@ -4,7 +4,7 @@ import { PlayContext } from './PlayContext'
 import { PlayLogo, PauseLogo } from 'components/Icons'
 import styles from './Spotify.module.css'
 
-export default function TopTracks({ tracks }) {
+const TopTracks = ({ tracks }) => {
     const context = useContext(PlayContext)
     return (
         <div className={styles.topTracks}>
@@ -18,7 +18,9 @@ export default function TopTracks({ tracks }) {
                             </a>
                             {track.preview_url && (
                                 <span
-                                    className={`${styles.playIcon} ${context.playing && context.playing === track.id ? styles.playing : ''}`}
+                                    className={`${styles.playIcon} ${
+                                        context.playing && context.playing === track.id ? styles.playing : ''
+                                    }`}
                                     onClick={() => {
                                         context.onPlayTrack(track)
                                     }}>
@@ -36,3 +38,5 @@ export default function TopTracks({ tracks }) {
         </div>
     )
 }
+
+export default TopTracks

@@ -5,7 +5,7 @@ import { HeartIcon, LoopIcon, LeftIcon, RightIcon } from 'components/Icons'
 import Modal from 'components/Modal'
 import styles from 'components/Modal/Modal.module.css'
 
-export default function TwitterModal({ item, onClose }) {
+const TwitterModal = ({ item, onClose }) => {
     const [pictureIndex, setPictureIndex] = useState(0)
     const [picture, setPicture] = useState(null)
 
@@ -26,7 +26,11 @@ export default function TwitterModal({ item, onClose }) {
     return (
         <Modal onClose={onClose}>
             <div className={styles.media}>
-                {item.video ? <video src={item.video} controls /> : picture ? <Img src={picture.url} alt="Twitter Picture" /> : null}
+                {item.video ? (
+                    <video src={item.video} controls />
+                ) : picture ? (
+                    <Img src={picture.url} alt="Twitter Picture" />
+                ) : null}
                 {item.pictures.length > 1 ? (
                     <>
                         <span
@@ -51,7 +55,9 @@ export default function TwitterModal({ item, onClose }) {
                 <a href={item.url} className={styles.avatar}>
                     <Img src={item.user.picture} alt="Avatar" />
                 </a>
-                <span className={styles.date}>{formatDistanceToNow(typeof item.date === 'string' ? parseISO(item.date) : item.date)} ago</span>
+                <span className={styles.date}>
+                    {formatDistanceToNow(typeof item.date === 'string' ? parseISO(item.date) : item.date)} ago
+                </span>
                 <ul className={styles.stats}>
                     <li>
                         <HeartIcon />
@@ -67,3 +73,5 @@ export default function TwitterModal({ item, onClose }) {
         </Modal>
     )
 }
+
+export default TwitterModal

@@ -42,6 +42,9 @@
 
 .navButton {
     display: none;
+    overflow: hidden;
+    text-indent: 10000px;
+    color: transparent;
 }
 
 .navButton:active {
@@ -196,6 +199,10 @@
 
 @media (max-height: 600px) {
     .about {
+        display: none;
+    }
+
+    .themes {
         display: none;
     }
 

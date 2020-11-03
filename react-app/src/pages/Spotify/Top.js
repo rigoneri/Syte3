@@ -3,14 +3,14 @@ import TopArtists from './TopArtists'
 import TopTracks from './TopTracks'
 import styles from './Spotify.module.css'
 
-export default function Top() {
+const Top = () => {
     const [top, setTop] = useState(null)
     const [error, setError] = useState(false)
 
     useEffect(() => {
         const fetchTop = async () => {
             try {
-                const response = await fetch(`${process.env.REACT_APP_API_URL}/spotify/top`)
+                const response = await fetch(`/api/spotify/top`)
                 const top = await response.json()
                 setTop(top)
             } catch (error) {
@@ -37,3 +37,5 @@ export default function Top() {
         </div>
     )
 }
+
+export default Top

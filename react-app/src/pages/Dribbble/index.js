@@ -4,7 +4,7 @@ import useUser from 'hooks/User'
 import Profile from './Profile'
 import Shots from './Shots'
 
-export default function Dribbble() {
+const Dribbble = () => {
     const [user, error] = useUser('dribbble')
 
     if (error) {
@@ -18,3 +18,5 @@ export default function Dribbble() {
         </>
     )
 }
+
+export default Dribbble

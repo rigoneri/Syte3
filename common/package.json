@@ -1,0 +1,11 @@
+{
+    "name": "syte-common",
+    "description": "Set of functions to be reused by syte's api and services",
+    "version": "1.0.0",
+    "author": "@rigoneri",
+    "private": true,
+    "main": "index.js",
+    "scripts": {},
+    "dependencies": {},
+    "devDependencies": {}
+}

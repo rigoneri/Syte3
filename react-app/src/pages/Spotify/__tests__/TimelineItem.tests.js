@@ -27,7 +27,9 @@ const mockItem = {
 it('should display a list of played tracks', () => {
     const component = shallow(<TimelineItem item={mockItem} />)
     expect(component.find(`a[href="${mockItem.tracks[0].url}"]`).exists()).toEqual(true)
-    expect(component.find('p').text()).toEqual('Listened to In This Love by Stick Figure and 23 other tracks on Spotify.')
+    expect(component.find('p').text()).toEqual(
+        'Listened to In This Love by Stick Figure and 23 other tracks on Spotify.'
+    )
     expect(component.find(`ul`).exists()).toEqual(true)
     expect(component.find(`Img`).exists()).toEqual(true)
 })

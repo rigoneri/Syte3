@@ -7,12 +7,7 @@ describe('Instagram Modal', () => {
     it('should render an instagram post details', () => {
         const component = shallow(<Modal item={mockPost} />)
         expect(component.find('video').exists()).toEqual(true)
-        expect(component.find('Img[alt="Instagram Post"]').exists()).toEqual(false)
         expect(component.find('.details').exists()).toEqual(true)
-        expect(component.find('h4').exists()).toEqual(true)
-        expect(component.find('Img[alt="Avatar"]').exists()).toEqual(true)
-        expect(component.find('.date').exists()).toEqual(true)
-        expect(component.find('.stats').exists()).toEqual(true)
         expect(component.find('p').exists()).toEqual(true)
     })
 

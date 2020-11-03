@@ -5,7 +5,7 @@ import Profile from './Profile'
 import Tweets from './Tweets'
 import styles from './Twitter.module.css'
 
-export default function Twitter() {
+const Twitter = () => {
     const [user, error] = useUser('twitter')
 
     if (error) {
@@ -19,3 +19,5 @@ export default function Twitter() {
         </div>
     )
 }
+
+export default Twitter

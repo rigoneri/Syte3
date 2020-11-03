@@ -19,13 +19,6 @@ describe('Post', () => {
         expect(component.find('.video').exists()).toEqual(true)
     })
 
-    it('should display stats about the post', () => {
-        const component = shallow(<Post post={mockPost} />)
-        expect(component.find('a').exists()).toEqual(true)
-        expect(component.find('Img[alt="Instagram Post"]').exists()).toEqual(true)
-        expect(component.find('.stats').exists()).toEqual(true)
-    })
-
     it('should show a modal when clicking the instagram post', () => {
         const modalMount = global.document.createElement('div')
         modalMount.setAttribute('id', 'modal-mount')

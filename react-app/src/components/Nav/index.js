@@ -1,5 +1,5 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { NavLink, useRouteMatch } from 'react-router-dom'
 import { Logo } from 'components/Icons'
 import styles from './Nav.module.css'
 
@@ -11,9 +11,20 @@ export const Nav = ({ handleOpened, opened }) => {
     }
 
     const changeStyle = () => {
-        document.getElementsByTagName('html')[0].classList.toggle('light-theme')
+        const html = document.getElementsByTagName('html')[0]
+        html.classList.toggle('light-theme')
         window.dispatchEvent(new CustomEvent('theme-changed'))
+
+        if (window.localStorage) {
+            window.localStorage.setItem('theme', html.classList.contains('light-theme') ? 'light' : 'dark')
+        }
     }
+
+    useEffect(() => {
+        if (window.localStorage && window.localStorage.getItem('theme') === 'light') {
+            changeStyle()
+        }
+    }, [])
 
     return (
         <>
@@ -26,7 +37,6 @@ export const Nav = ({ handleOpened, opened }) => {
                     <NavItem to="Github" handleClick={handleClick} />
                     <NavItem to="Dribbble" handleClick={handleClick} />
                     <NavItem to="YouTube" handleClick={handleClick} />
-                    <NavItem to="Crunchyroll" handleClick={handleClick} />
                 </ul>
                 <div className={styles.themes}>
                     <span>Themes:</span>
@@ -47,9 +57,13 @@ export const Nav = ({ handleOpened, opened }) => {
 }
 
 export const NavItem = ({ to, handleClick }) => {
+    const admin = useRouteMatch('/admin')
     return (
         <li key={to}>
-            <NavLink to={`/${to.toLowerCase()}`} onClick={handleClick} activeClassName={styles.active}>
+            <NavLink
+                to={`/${admin ? 'admin/' : ''}${to.toLowerCase()}`}
+                onClick={handleClick}
+                activeClassName={styles.active}>
                 <Logo type={to} />
                 <span className={styles.link}>{to}</span>
             </NavLink>
@@ -63,6 +77,7 @@ const NavButton = ({ handleClick, opened }) => {
             <span className={styles.bar1}></span>
             <span className={styles.bar2}></span>
             <span className={styles.bar3}></span>
+            Menu
         </button>
     )
 }

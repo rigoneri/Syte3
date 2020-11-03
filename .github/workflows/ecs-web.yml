@@ -1,0 +1,98 @@
+name: Deploy Web App
+on:
+    push:
+        paths:
+            - 'api/**'
+            - 'react-app/**'
+            - '.github/workflows/ecs-web.yml'
+        branches: [master]
+
+jobs:
+    app:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checking out code
+              uses: actions/checkout@master
+
+            - name: Setting up node
+              uses: actions/setup-node@master
+              with:
+                  node-version: '12'
+
+            - name: Building react app
+              run: |
+                  cd react-app
+                  echo 'REACT_APP_GOOGLE_MAPS_KEY=${{ secrets.REACT_APP_GOOGLE_MAPS_KEY }}' > .env
+                  ls -la | grep .env
+                  npm install
+                  npm run build
+
+            - name: Configuring AWS credentials
+              uses: aws-actions/configure-aws-credentials@master
+              with:
+                  aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                  aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                  aws-region: ${{ secrets.AWS_REGION }}
+
+            - name: Login to Amazon ECR
+              id: ecr
+              uses: aws-actions/amazon-ecr-login@v1
+
+            - name: Creating Amazon ECR Repository
+              run: aws ecr create-repository --repository-name syte3 || echo "syte3 ecr may exist already"
+
+            - name: Build, tag, and push image to Amazon ECR
+              id: build-image
+              env:
+                  ECR_REGISTRY: ${{ steps.ecr.outputs.registry }}
+                  ECR_REPOSITORY: syte3
+                  IMAGE_TAG: ${{ github.sha }}
+              run: |
+                  docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG . \
+                  --build-arg sadmin=${{ secrets.SYTE3ADMIN }} \
+                  --build-arg ssesh=${{ secrets.SYTE3SESH }} \
+                  --build-arg appurl=${{ secrets.APP_URL }}
+                  docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+                  echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+
+            - name: Making sure cluster exists
+              run: aws ecs create-cluster --cluster-name syte3 || echo "syte3 ecs cluster may exist already"
+
+            # This must be created prior. TODO: look into adding in a different job/step
+            - name: Getting the AWS ECS CloudWatch IAM Role
+              id: role
+              run: |
+                  content=`aws iam get-role \
+                  --role-name ECS-Web | tr '\n' ' '`
+                  echo "::set-output name=role::$content"
+
+            # TODO: programmatically create aws log group
+            - name: Update task-definition.json execution role arn
+              uses: jossef/action-set-json-field@v1
+              with:
+                  file: task-definition.json
+                  field: executionRoleArn
+                  value: ${{fromJson(steps.role.outputs.role).Role.Arn}}
+
+            - name: Update task-definition.json task role arn
+              uses: jossef/action-set-json-field@v1
+              with:
+                  file: task-definition.json
+                  field: taskRoleArn
+                  value: ${{fromJson(steps.role.outputs.role).Role.Arn}}
+
+            - name: Fill in the new image ID in the Amazon ECS task definition
+              id: task-def
+              uses: aws-actions/amazon-ecs-render-task-definition@v1
+              with:
+                  task-definition: task-definition.json
+                  container-name: syte3
+                  image: ${{ steps.build-image.outputs.image }}
+
+            # TODO figure out how to create ecs service & security group programmatically
+            - name: Deploy Amazon ECS task definition
+              uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+              with:
+                  task-definition: ${{ steps.task-def.outputs.task-definition }}
+                  cluster: syte3
+                  service: syte3

@@ -395,6 +395,35 @@
     transform: scale(1.04);
 }
 
+.timelineTracks .album .playIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    background: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    transition: opacity 350ms ease-out;
+}
+
+.timelineTracks .album .playIcon.playing {
+    opacity: 1;
+}
+
+.timelineTracks .album .playIcon svg {
+    fill: #fff;
+    width: 20px;
+    height: 20px;
+}
+
+.timelineTracks .album:hover .playIcon {
+    opacity: 1;
+}
+
 @media (max-width: 800px) {
     .topArtists ul {
         grid-template-columns: 25% 25% 25% 25%;

@@ -1,0 +1,28 @@
+{
+    "printWidth": 120,
+    "tabWidth": 4,
+    "singleQuote": true,
+    "jsxBracketSameLine": true,
+    "semi": false,
+    "trailingComma": "es5",
+    "overrides": [
+        {
+            "files": ".prettierrc",
+            "options": {
+                "parser": "json"
+            }
+        },
+        {
+            "files": ".babelrc",
+            "options": {
+                "parser": "json"
+            }
+        },
+        {
+            "files": ".eslintrc",
+            "options": {
+                "parser": "json"
+            }
+        }
+    ]
+}

@@ -6,7 +6,7 @@ import Repos from './Repos'
 import Activities from './Activities'
 import styles from './Github.module.css'
 
-export default function Github() {
+const Github = () => {
     const [user, error] = useUser('github')
 
     if (error) {
@@ -16,8 +16,10 @@ export default function Github() {
     return (
         <div className={styles.page}>
             {user && <Profile user={user} />}
-            <Repos />
+            {user && <Repos repos={user.repos} />}
             <Activities />
         </div>
     )
 }
+
+export default Github

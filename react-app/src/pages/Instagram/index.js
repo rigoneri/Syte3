@@ -5,7 +5,7 @@ import Profile from './Profile'
 import Posts from './Posts'
 import styles from './Instagram.module.css'
 
-export default function Instagram() {
+const Instagram = () => {
     const [user, error] = useUser('instagram')
 
     if (error) {
@@ -24,3 +24,5 @@ export default function Instagram() {
         </>
     )
 }
+
+export default Instagram

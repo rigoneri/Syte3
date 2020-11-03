@@ -7,7 +7,8 @@ const mockActivity = {
     id: '12345',
     icon: 'git-commit',
     date: '2019-10-16T02:21:11.000Z',
-    description: 'Pushed 1 commit to <strong>master</strong> at <a href="https://github.com/rigoneri/Syte3" target="_blank">rigoneri/Syte3</a> ',
+    description:
+        'Pushed 1 commit to <strong>master</strong> at <a href="https://github.com/rigoneri/Syte3" target="_blank">rigoneri/Syte3</a> ',
 }
 
 describe('Activities', () => {
@@ -22,7 +23,11 @@ describe('Activities', () => {
     it('should fetch the github recent activity', async () => {
         jest.spyOn(global, 'fetch').mockImplementation(() =>
             Promise.resolve({
-                json: () => Promise.resolve([mockActivity]),
+                json: () =>
+                    Promise.resolve({
+                        data: [mockActivity],
+                        nextPage: null,
+                    }),
             })
         )
 
@@ -63,7 +68,11 @@ describe('Activities', () => {
     it('should display an empty message if there is no recent activity', async () => {
         jest.spyOn(global, 'fetch').mockImplementation(() =>
             Promise.resolve({
-                json: () => Promise.resolve([]),
+                json: () =>
+                    Promise.resolve({
+                        data: [],
+                        nextPage: null,
+                    }),
             })
         )
 

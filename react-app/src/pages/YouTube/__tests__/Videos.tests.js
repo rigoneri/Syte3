@@ -18,8 +18,8 @@ describe('Videos', () => {
             Promise.resolve({
                 json: () =>
                     Promise.resolve({
-                        likes: [mockVideo],
-                        uploads: [mockVideo],
+                        data: [{ ...mockVideo, id: `${new Date().getTime()}` }],
+                        nextPage: null,
                     }),
             })
         )
@@ -28,7 +28,7 @@ describe('Videos', () => {
         await act(async () => {
             component = mount(<Videos />)
         })
-        expect(global.fetch).toHaveBeenCalled()
+        expect(global.fetch).toHaveBeenCalledTimes(2)
         component.update()
         expect(component.find('h3').exists()).toEqual(true)
         expect(component.find('.uploads').exists()).toEqual(true)
@@ -62,8 +62,8 @@ describe('Videos', () => {
             Promise.resolve({
                 json: () =>
                     Promise.resolve({
-                        likes: [{ ...mockVideo, id: `${new Date().getTime()}` }],
-                        uploads: [{ ...mockVideo, id: `${new Date().getTime()}-2` }],
+                        data: [{ ...mockVideo, id: `${new Date().getTime()}` }],
+                        nextPage: 123,
                     }),
             })
         )
@@ -72,7 +72,7 @@ describe('Videos', () => {
         await act(async () => {
             component = mount(<Videos />)
         })
-        expect(global.fetch).toHaveBeenCalledTimes(1)
+        expect(global.fetch).toHaveBeenCalledTimes(2)
         component.update()
 
         expect(component.find('.uploads').exists()).toEqual(true)
@@ -82,7 +82,7 @@ describe('Videos', () => {
             const customEvent = new Event('scroll')
             window.dispatchEvent(customEvent)
         })
-        expect(global.fetch).toHaveBeenCalledTimes(2)
+        expect(global.fetch).toHaveBeenCalledTimes(4)
 
         component.unmount()
         global.fetch.mockRestore()

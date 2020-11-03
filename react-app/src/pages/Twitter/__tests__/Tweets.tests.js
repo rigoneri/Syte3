@@ -36,7 +36,11 @@ describe('Tweets', () => {
     it('should fetch and display a list of tweets', async () => {
         jest.spyOn(global, 'fetch').mockImplementation(() =>
             Promise.resolve({
-                json: () => Promise.resolve([mockTweet]),
+                json: () =>
+                    Promise.resolve({
+                        data: [mockTweet],
+                        nextPage: null,
+                    }),
             })
         )
 
@@ -78,7 +82,11 @@ describe('Tweets', () => {
     it('should load more tweets when scrolling to the end of the page', async () => {
         jest.spyOn(global, 'fetch').mockImplementation(() =>
             Promise.resolve({
-                json: () => Promise.resolve([{ ...mockTweet, id: `${Math.round(Math.random() * 10000)}`, pictures: null }]),
+                json: () =>
+                    Promise.resolve({
+                        data: [{ ...mockTweet, id: `${Math.round(Math.random() * 10000)}`, pictures: null }],
+                        nextPage: 123,
+                    }),
             })
         )
 
@@ -96,43 +104,6 @@ describe('Tweets', () => {
         await act(async () => {
             const customEvent = new Event('scroll')
             window.dispatchEvent(customEvent)
-        })
-        expect(global.fetch).toHaveBeenCalledTimes(2)
-
-        component.unmount()
-        global.fetch.mockRestore()
-    })
-
-    it('should attempt to fetch more pages if empty results', async () => {
-        jest.spyOn(global, 'fetch').mockImplementation(() =>
-            Promise.resolve({
-                json: () => Promise.resolve([]),
-            })
-        )
-
-        mockDate('2019-11-20T11:01:58.135Z')
-
-        let component = null
-        await act(async () => {
-            component = mount(<Tweets />)
-        })
-        expect(global.fetch).toHaveBeenCalledTimes(3)
-
-        component.unmount()
-        global.fetch.mockRestore()
-    })
-
-    it('should fetch the last 2 months of tweets if it is the first half of the month', async () => {
-        jest.spyOn(global, 'fetch').mockImplementation(() =>
-            Promise.resolve({
-                json: () => Promise.resolve([{ ...mockTweet, id: `${Math.round(Math.random() * 10000)}`, pictures: null }]),
-            })
-        )
-
-        mockDate('2019-11-01T11:01:58.135Z')
-        let component = null
-        await act(async () => {
-            component = mount(<Tweets />)
         })
         expect(global.fetch).toHaveBeenCalledTimes(2)
 

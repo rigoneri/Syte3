@@ -1,0 +1,117 @@
+.admin {
+    padding: 40px 20px;
+}
+
+.admin h2 {
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 400;
+    text-transform: capitalize;
+    margin-bottom: 20px;
+}
+
+.error,
+.success,
+.loading {
+    font-style: italic;
+}
+
+.success {
+    color: var(--primary-color);
+    margin-bottom: 14px;
+}
+
+.error {
+    color: #f55a5a;
+    margin-bottom: 14px;
+}
+
+.input {
+    margin-bottom: 14px;
+}
+
+.input label {
+    display: block;
+    line-height: 24px;
+}
+
+.input input {
+    width: 300px;
+    border: 0;
+    padding: 10px;
+    border-radius: 4px;
+    background: var(--background-color-dark);
+    color: var(--alt-text-color);
+    border: 1px solid var(--background-color-dark);
+    -webkit-appearance: none;
+}
+
+.input input:focus {
+    outline: none;
+    border-color: rgba(0, 0, 0, 0.3);
+}
+
+.newField {
+    border-bottom: 1px solid var(--line-color);
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    width: 320px;
+    position: relative;
+}
+
+.newField input {
+    padding-right: 70px;
+    width: 240px;
+}
+
+.newField button {
+    position: absolute;
+    top: 1px;
+    right: -1px;
+}
+
+.buttons {
+    padding: 10px 0;
+    display: flex;
+}
+
+.admin button {
+    padding: 10px 15px;
+    border-radius: 4px;
+    border: 0;
+    cursor: pointer;
+}
+
+.admin button:focus {
+    outline: none;
+}
+
+button.primary {
+    color: var(--background-color);
+    background: var(--primary-color);
+}
+
+button.primary:hover {
+    filter: brightness(120%);
+}
+
+.buttons button.primary {
+    margin-right: 10px;
+}
+
+button.secondary {
+    color: var(--primary-color);
+    background: transparent;
+    border: 1px solid var(--primary-color);
+}
+
+button.secondary:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.extra {
+    border-top: 1px solid var(--line-color);
+    padding-top: 20px;
+    margin-top: 20px;
+    width: 320px;
+}

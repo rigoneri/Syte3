@@ -3,7 +3,7 @@ import Img from 'react-image'
 import { Logo } from 'components/Icons'
 import styles from './Spotify.module.css'
 
-export default function TopArtists({ artists }) {
+const TopArtists = ({ artists }) => {
     return (
         <div className={styles.topArtists}>
             <h3>Top Artists</h3>
@@ -25,7 +25,9 @@ export default function TopArtists({ artists }) {
                             <div className={styles.info}>
                                 <div className={styles.name}>{artist.name}</div>
                                 {artist.genres && artist.genres.length ? (
-                                    <div className={styles.genre}>{artist.genres.length === 1 ? artist.genres[0] : artist.genres[1]}</div>
+                                    <div className={styles.genre}>
+                                        {artist.genres.length === 1 ? artist.genres[0] : artist.genres[1]}
+                                    </div>
                                 ) : null}
                             </div>
                         </li>
@@ -35,3 +37,5 @@ export default function TopArtists({ artists }) {
         </div>
     )
 }
+
+export default TopArtists

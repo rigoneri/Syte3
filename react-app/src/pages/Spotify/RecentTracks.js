@@ -5,22 +5,23 @@ import { PlayContext } from './PlayContext'
 import { PlayLogo, PauseLogo } from 'components/Icons'
 import styles from './Spotify.module.css'
 
-export default function RecentTracks() {
+const RecentTracks = () => {
     const [tracks, setTracks] = useState([])
     const [error, setError] = useState(false)
     const context = useContext(PlayContext)
 
-    const fetchTracks = async () => {
-        try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/spotify/activity`)
-            const tracks = await response.json()
-            setTracks(tracks)
-        } catch (error) {
-            setError(true)
-        }
-    }
-
     useEffect(() => {
+        const fetchTracks = async () => {
+            try {
+                const response = await fetch(`/api/spotify/activity?limit=50`)
+                const result = await response.json()
+                if (result.data && result.data.length > 0) {
+                    setTracks(result.data)
+                }
+            } catch (error) {
+                setError(true)
+            }
+        }
         fetchTracks()
     }, [])
 
@@ -41,7 +42,10 @@ export default function RecentTracks() {
                                 }}>
                                 <Img src={track.image} alt={track.title} />
                                 {track.preview_url && (
-                                    <span className={`${styles.playIcon} ${context.playing && context.playing === track.id ? styles.playing : ''}`}>
+                                    <span
+                                        className={`${styles.playIcon} ${
+                                            context.playing && context.playing === track.id ? styles.playing : ''
+                                        }`}>
                                         {context.playing && context.playing === track.id ? <PauseLogo /> : <PlayLogo />}
                                     </span>
                                 )}
@@ -58,3 +62,5 @@ export default function RecentTracks() {
         </div>
     )
 }
+
+export default RecentTracks

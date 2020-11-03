@@ -26,7 +26,11 @@ describe('Shots', () => {
     it('should fetch and display a list of dribbble shots', async () => {
         jest.spyOn(global, 'fetch').mockImplementation(() =>
             Promise.resolve({
-                json: () => Promise.resolve([mockShot]),
+                json: () =>
+                    Promise.resolve({
+                        data: [mockShot],
+                        nextPage: null,
+                    }),
             })
         )
 
@@ -62,7 +66,11 @@ describe('Shots', () => {
     it('should load more tweets when scrolling to the end of the page', async () => {
         jest.spyOn(global, 'fetch').mockImplementation(() =>
             Promise.resolve({
-                json: () => Promise.resolve([{ ...mockShot, id: `${new Date().getTime()}` }]),
+                json: () =>
+                    Promise.resolve({
+                        data: [{ ...mockShot, id: `${new Date().getTime()}` }],
+                        nextPage: 123,
+                    }),
             })
         )
 
@@ -85,23 +93,6 @@ describe('Shots', () => {
         global.fetch.mockRestore()
     })
 
-    it('should attempt to fetch more pages if empty results', async () => {
-        jest.spyOn(global, 'fetch').mockImplementation(() =>
-            Promise.resolve({
-                json: () => Promise.resolve([]),
-            })
-        )
-
-        let component = null
-        await act(async () => {
-            component = mount(<Shots />)
-        })
-        expect(global.fetch).toHaveBeenCalledTimes(3)
-
-        component.unmount()
-        global.fetch.mockRestore()
-    })
-
     it('should show a modal when clicking the dribbble shot', async () => {
         const modalMount = global.document.createElement('div')
         modalMount.setAttribute('id', 'modal-mount')
@@ -109,7 +100,11 @@ describe('Shots', () => {
 
         jest.spyOn(global, 'fetch').mockImplementation(() =>
             Promise.resolve({
-                json: () => Promise.resolve([mockShot]),
+                json: () =>
+                    Promise.resolve({
+                        data: [mockShot],
+                        nextPage: null,
+                    }),
             })
         )
 

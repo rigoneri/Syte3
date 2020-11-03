@@ -3,7 +3,7 @@ import Img from 'react-image'
 import { parseISO, formatDistanceToNow } from 'date-fns'
 import styles from './Foursquare.module.css'
 
-export default function Checkin({ checkin }) {
+const Checkin = ({ checkin }) => {
     return (
         <li className={styles.checkin}>
             <a href={checkin.url} className={styles.icon}>
@@ -23,3 +23,5 @@ export default function Checkin({ checkin }) {
         </li>
     )
 }
+
+export default Checkin

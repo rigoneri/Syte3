@@ -6,13 +6,9 @@ import Instagram from '../index'
 export const mockUser = {
     id: '1326084',
     username: 'syte3',
-    profile_picture: 'https://scontent.cdninstagram.com/vp/picture.jpg',
     full_name: 'Syte User',
-    bio: 'Some description',
     counts: {
         media: 661,
-        follows: 270,
-        followed_by: 610,
     },
     url: 'https://instagram.com/syte3',
 }

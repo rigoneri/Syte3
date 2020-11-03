@@ -4,14 +4,18 @@ import { parseISO, formatDistanceToNow } from 'date-fns'
 import Modal from 'components/Modal'
 import styles from 'components/Modal/Modal.module.css'
 
-export default function DribbbleModal({ item, onClose }) {
+const DribbbleModal = ({ item, onClose }) => {
     return (
         <Modal onClose={onClose}>
             <Img src={item.pictureHD ? item.pictureHD : item.picture} alt="Dribbble Shot" className={styles.media} />
             <div className={`${styles.details} ${styles.stacked}`}>
-                <span className={styles.date}>{formatDistanceToNow(typeof item.date === 'string' ? parseISO(item.date) : item.date)} ago</span>
                 <p dangerouslySetInnerHTML={{ __html: item.text }}></p>
+                <span className={styles.date}>
+                    {formatDistanceToNow(typeof item.date === 'string' ? parseISO(item.date) : item.date)} ago
+                </span>
             </div>
         </Modal>
     )
 }
+
+export default DribbbleModal

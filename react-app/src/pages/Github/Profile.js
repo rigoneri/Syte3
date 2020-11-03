@@ -2,7 +2,7 @@ import React from 'react'
 import Img from 'react-image'
 import styles from './Github.module.css'
 
-export default function Profile({ user }) {
+const Profile = ({ user }) => {
     return (
         <div className={styles.profile}>
             <a href={user.url} className={styles.picture}>
@@ -15,7 +15,7 @@ export default function Profile({ user }) {
             {user.description && user.description.length && <p>{user.description}</p>}
             <ul className={styles.stats}>
                 <li>
-                    Repos <strong>{user.repos}</strong>
+                    Repos <strong>{user.repos.length}</strong>
                 </li>
                 <li>
                     Following <strong>{user.following ? user.following.toLocaleString() : '0'}</strong>
@@ -27,3 +27,5 @@ export default function Profile({ user }) {
         </div>
     )
 }
+
+export default Profile

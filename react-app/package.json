@@ -1,55 +1,57 @@
 {
-  "name": "Syte3",
-  "version": "0.0.1",
-  "private": true,
-  "devDependencies": {
-    "react-scripts": "3.2.0"
-  },
-  "dependencies": {
-    "date-fns": "^2.4.1",
-    "enzyme": "^3.10.0",
-    "enzyme-adapter-react-16": "^1.15.1",
-    "google-map-react": "^1.1.5",
-    "husky": "^3.0.8",
-    "lint-staged": "^9.4.2",
-    "prettier": "^1.18.2",
-    "react": "^16.10.2",
-    "react-dom": "^16.10.2",
-    "react-image": "^2.2.1",
-    "react-router-dom": "^5.1.2",
-    "react-test-renderer": "^16.10.2",
-    "react-transition-group": "^4.3.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "rm -rf ../old-api/build && react-scripts build && mv build ../old-api/",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
+    "name": "Syte3",
+    "description": "Syte3 is a personal website with interactive social integrations.",
+    "version": "1.0.0",
+    "private": true,
+    "devDependencies": {
+        "react-scripts": "3.2.0"
+    },
+    "dependencies": {
+        "date-fns": "^2.4.1",
+        "enzyme": "^3.10.0",
+        "enzyme-adapter-react-16": "^1.15.1",
+        "google-map-react": "^1.1.5",
+        "husky": "^3.0.8",
+        "lint-staged": "^9.4.2",
+        "prettier": "^1.18.2",
+        "react": "^16.10.2",
+        "react-dom": "^16.10.2",
+        "react-image": "^2.2.1",
+        "react-router-dom": "^5.1.2",
+        "react-test-renderer": "^16.10.2",
+        "react-transition-group": "^4.3.0"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "rm -rf ../api/dist/index.html && GENERATE_SOURCEMAP=false react-scripts build && mv -v build/* ../api/dist/",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject"
+    },
+    "proxy": "http://localhost:4000",
+    "eslintConfig": {
+        "extends": "react-app"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+            "prettier --write",
+            "git add"
+        ]
     }
-  },
-  "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
-      "prettier --write",
-      "git add"
-    ]
-  }
 }

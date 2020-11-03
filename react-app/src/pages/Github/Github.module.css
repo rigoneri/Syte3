@@ -267,8 +267,6 @@
 
 .activities .comment {
     opacity: 0.6;
-    margin-left: 40px;
-    opacity: 0;
     animation: moveIn 600ms var(--animation-delay) forwards;
 }
 

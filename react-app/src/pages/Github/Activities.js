@@ -2,26 +2,25 @@ import React, { useState, useEffect } from 'react'
 import Activity from './Activity'
 import styles from './Github.module.css'
 
-export default function Activities() {
+const Activities = () => {
     const [activities, setActivities] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(false)
 
     useEffect(() => {
+        const fetchActivities = async () => {
+            try {
+                const response = await fetch(`/api/github/activity`)
+                const result = await response.json()
+                setLoading(false)
+                setActivities(result.data)
+            } catch (error) {
+                setLoading(false)
+                setError(true)
+            }
+        }
         fetchActivities()
     }, [])
-
-    const fetchActivities = async () => {
-        try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/github/activity`)
-            const activities = await response.json()
-            setLoading(false)
-            setActivities(activities)
-        } catch (error) {
-            setLoading(false)
-            setError(true)
-        }
-    }
 
     return (
         <div className={styles.activities}>
@@ -39,3 +38,5 @@ export default function Activities() {
         </div>
     )
 }
+
+export default Activities

@@ -5,7 +5,7 @@ import Profile from './Profile'
 import Videos from './Videos'
 import styles from './YouTube.module.css'
 
-export default function YouTube() {
+const YouTube = () => {
     const [user, error] = useUser('youtube')
 
     if (error) {
@@ -19,3 +19,5 @@ export default function YouTube() {
         </div>
     )
 }
+
+export default YouTube

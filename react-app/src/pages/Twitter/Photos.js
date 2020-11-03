@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './Twitter.module.css'
 
-export default function Photos({ username, photos }) {
+const Photos = ({ username, photos }) => {
     if (!photos || photos.length === 0) {
         return null
     }
@@ -20,3 +20,5 @@ export default function Photos({ username, photos }) {
         </>
     )
 }
+
+export default Photos

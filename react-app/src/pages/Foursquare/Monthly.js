@@ -5,7 +5,7 @@ import { LeftIcon, RightIcon } from 'components/Icons'
 import Map from './Map'
 import styles from './Foursquare.module.css'
 
-export default function Monthly({ checkins, month, onMonthChange: changeMonth }) {
+const Monthly = ({ checkins, month, onMonthChange: changeMonth }) => {
     const [categories, setCategories] = useState(null)
 
     useEffect(() => {
@@ -77,3 +77,5 @@ export default function Monthly({ checkins, month, onMonthChange: changeMonth })
         </div>
     )
 }
+
+export default Monthly

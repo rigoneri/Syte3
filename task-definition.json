@@ -1,0 +1,34 @@
+{
+    "executionRoleArn": "",
+    "taskRoleArn": "",
+    "requiresCompatibilities": ["FARGATE"],
+    "containerDefinitions": [
+        {
+            "name": "syte3",
+            "image": "syte3:latest",
+            "memory": 256,
+            "cpu": 256,
+            "essential": true,
+            "portMappings": [
+                {
+                    "containerPort": 80,
+                    "protocol": "tcp"
+                }
+            ],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "ecs/syte3",
+                    "awslogs-region": "us-east-1",
+                    "awslogs-stream-prefix": "ecs"
+                }
+            }
+        }
+    ],
+    "volumes": [],
+    "networkMode": "awsvpc",
+    "placementConstraints": [],
+    "family": "syte3",
+    "memory": "512",
+    "cpu": "256"
+}

@@ -5,7 +5,7 @@ import { Logo, PlayLogo } from 'components/Icons'
 import Modal from './Modal'
 import styles from './YouTube.module.css'
 
-export default function Video({ video }) {
+const Video = ({ video }) => {
     const [videoVisible, setVideoVisible] = useState(false)
     const [showDetails, setShowDetails] = useState(false)
     const handleClick = e => {
@@ -38,3 +38,5 @@ export default function Video({ video }) {
         </li>
     )
 }
+
+export default Video

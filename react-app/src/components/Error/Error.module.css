@@ -6,6 +6,8 @@
     bottom: 0;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     z-index: 5;
     height: 100%;
     width: 100%;
@@ -13,19 +15,16 @@
 }
 
 .Error h3 {
-    display: flex;
-    justify-content: flex-end;
-    flex-direction: column;
-    flex: 1 1 auto;
     font-weight: 400;
-    font-size: 80px;
+    font-size: 70px;
+    line-height: 70px;
+    margin-bottom: 10px;
     text-align: center;
     padding: 0 20px;
     color: var(--alt-text-color);
 }
 
 .Error p {
-    flex: 1 1 auto;
     font-weight: 400;
     font-style: italic;
     font-size: 16px;
