@@ -8,7 +8,7 @@ const YouTubeModal = ({ item, onClose }) => {
         <Modal onClose={onClose} wide>
             <iframe
                 className={styles.media}
-                src={`https://www.youtube.com/embed/${item.id}`}
+                src={`https://www.youtube.com/embed/${item.videoId || item.id}`}
                 frameBorder="0"
                 allowFullScreen
                 title={item.title}

@@ -109,6 +109,10 @@ const fetchLikes = async (settings) => {
             post.image = thumbnails.high.default
         }
 
+        if (snippet.resourceId && snippet.resourceId.videoId) {
+            post.videoId = snippet.resourceId.videoId
+        }
+
         likedPosts.push(post)
     })
 

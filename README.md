@@ -18,7 +18,7 @@ it uses some of the latest technologies today: (Get ready for a bunch of AWS nom
 -   Each Lambda function is invoked on an interval that fetches for new data and saves into DynamoDB;
 -   The api & front-end is hosted on Amazon's Elastic Container Service (ECS) where it uses a Docker image created during deployment and hosts it on ECS FARGATE's virtual hosts;
 -   I then used Amazon's Elastic Load Balancer (ELB) to potentially scale the number of containers and load balance between them (it probably won't need to);
--   I then decided to use CloudFront (Content Delivery Network) act as a reverse proxy to ELB & ECS by using the HTTP response cache headers to cache responses in the CDN. This prevents the need to scale the number of containers;
+-   I then decided to use CloudFront (Content Delivery Network) to act as a reverse proxy to ELB & ECS by using the HTTP response cache headers to cache responses in the CDN. This prevents the need to scale the number of containers;
 -   And because it's 2020 I end up using AWS Certificate Manager to create a free SSL certificate and make my website run on HTTPS 😁
 -   The whole deployment is controlled via Github Actions. Every time I push or merge to master it automatically deploys the services to Lambda and does a rolling deployment to ECS (no downtime!);
 

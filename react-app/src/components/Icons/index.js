@@ -106,6 +106,7 @@ const GitIcons = ({ type }) => {
         case 'git-branch':
             return <GitBranchIcon />
         case 'git-stars':
+        case 'star':
             return <StarIcon />
         case 'git-commit':
             return <GitCommitIcon />
@@ -126,7 +127,7 @@ const GitIcons = ({ type }) => {
         case 'git-comment':
             return <GitCommentIcon />
         default:
-            break
+            return null
     }
 }
 
