@@ -2,7 +2,9 @@ import React from 'react'
 import { GitIcons } from 'components/Icons'
 import styles from './Github.module.css'
 
-const Repos = ({ repos }) => {
+type Props = { repos: Repo[] }
+
+const Repos = ({ repos }: Props) => {
     return (
         <div className={styles.repos}>
             <h3>Repositories</h3>

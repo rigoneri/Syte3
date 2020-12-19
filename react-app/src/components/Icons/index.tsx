@@ -41,7 +41,22 @@ import { ReactComponent as GitPRIcon } from './GitPRIcon.svg'
 import { ReactComponent as LeftIcon } from './LeftIcon.svg'
 import { ReactComponent as RightIcon } from './RightIcon.svg'
 
-const Logo = ({ type }) => {
+type LogoProps = {
+    type:
+        | 'Twitter'
+        | 'Dribbble'
+        | 'Instagram'
+        | 'Github'
+        | 'Spotify'
+        | 'YouTube'
+        | 'Foursquare'
+        | 'Tumblr'
+        | 'Facebook'
+        | 'Flickr'
+        | 'LinkedIn'
+}
+
+const Logo = ({ type }: LogoProps) => {
     switch (type) {
         case 'Twitter':
             return <TwitterLogo />
@@ -70,7 +85,9 @@ const Logo = ({ type }) => {
     }
 }
 
-const Icon = ({ type }) => {
+type IconProps = { type: SyteService }
+
+const Icon = ({ type }: IconProps) => {
     switch (type) {
         case 'twitter':
             return <TwitterIcon />
@@ -101,7 +118,9 @@ const Icon = ({ type }) => {
     }
 }
 
-const GitIcons = ({ type }) => {
+type GitProps = { type: GitIcon }
+
+const GitIcons = ({ type }: GitProps) => {
     switch (type) {
         case 'git-branch':
             return <GitBranchIcon />

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 
-export default function useUser(type) {
-    const [user, setUser] = useState(null)
+export default function useUser<T>(type: string): [T | null, boolean] {
+    const [user, setUser] = useState<T | null>(null)
     const [error, setError] = useState(false)
 
     useEffect(() => {

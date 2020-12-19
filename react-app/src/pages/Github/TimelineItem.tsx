@@ -1,6 +1,8 @@
 import React from 'react'
 
-export const TimelineItem = ({ item }) => {
+type Props = { item: GitActivity }
+
+export const TimelineItem = ({ item }: Props) => {
     if (!item.description) {
         return null
     }

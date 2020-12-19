@@ -3,7 +3,9 @@ import { parseISO, formatDistanceToNow } from 'date-fns'
 import { GitIcons } from 'components/Icons'
 import styles from './Github.module.css'
 
-const Activity = ({ activity }) => {
+type Props = { activity: GitActivity }
+
+const Activity = ({ activity }: Props) => {
     return (
         <li>
             <GitIcons type={activity.icon} />

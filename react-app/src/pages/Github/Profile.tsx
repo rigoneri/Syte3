@@ -2,16 +2,20 @@ import React from 'react'
 import Img from 'react-image'
 import styles from './Github.module.css'
 
-const Profile = ({ user }) => {
+type Props = { user: User }
+
+const Profile = ({ user }: Props) => {
     return (
         <div className={styles.profile}>
             <a href={user.url} className={styles.picture}>
                 <Img src={user.picture} alt="Github Profile" />
             </a>
             <h2>{user.name}</h2>
-            <a href={user.url} className={styles.username}>
-                {user.username}
-            </a>
+            {user.username && (
+                <a href={user.url} className={styles.username}>
+                    {user.username}
+                </a>
+            )}
             {user.description && user.description.length && <p>{user.description}</p>}
             <ul className={styles.stats}>
                 <li>

@@ -3,7 +3,7 @@ import Activity from './Activity'
 import styles from './Github.module.css'
 
 const Activities = () => {
-    const [activities, setActivities] = useState([])
+    const [activities, setActivities] = useState<GitActivity[]>([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(false)
 
@@ -28,7 +28,7 @@ const Activities = () => {
             {loading && <p>Loading...</p>}
             {!loading && error && <p className={styles.error}>Unable to fetch recent activity.</p>}
             {!loading && !activities.length && !error && <p className={styles.empty}>No recent activity.</p>}
-            {!loading && activities.length ? (
+            {activities.length ? (
                 <ul>
                     {activities.map(activity => (
                         <Activity key={activity.id} activity={activity} />
