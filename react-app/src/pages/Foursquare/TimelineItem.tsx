@@ -2,7 +2,9 @@ import React from 'react'
 import Img from 'react-image'
 import styles from './Foursquare.module.css'
 
-export const TimelineItem = ({ item }) => {
+type Props = { item: FoursquareActivity }
+
+export const TimelineItem = ({ item }: Props) => {
     return (
         <div className={styles.checkin}>
             <a href={item.url} className={styles.icon}>

@@ -3,7 +3,9 @@ import Img from 'react-image'
 import { parseISO, formatDistanceToNow } from 'date-fns'
 import styles from './Foursquare.module.css'
 
-const Checkin = ({ checkin }) => {
+type Props = { checkin: FoursquareActivity }
+
+const Checkin = ({ checkin }: Props) => {
     return (
         <li className={styles.checkin}>
             <a href={checkin.url} className={styles.icon}>

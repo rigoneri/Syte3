@@ -3,7 +3,14 @@ import GoogleMapReact from 'google-map-react'
 import { defaultCenter, defaultZoom, mapOptions } from './MapOptions'
 import styles from './Foursquare.module.css'
 
-const Marker = ({ $hover, title }) => {
+type MarkerProps = {
+    $hover?: boolean
+    title: string
+    lat?: number
+    lng?: number
+}
+
+const Marker = ({ $hover, title }: MarkerProps) => {
     return (
         <div className={`${styles.marker} ${$hover ? styles.hover : null}`}>
             <span>{title}</span>
@@ -11,11 +18,16 @@ const Marker = ({ $hover, title }) => {
     )
 }
 
-const Map = ({ markers, month }) => {
-    const [map, setMap] = useState(null)
-    const [maps, setMaps] = useState(null)
+type Props = {
+    markers: FoursquareActivity[] | null
+    month: number
+}
+
+const Map = ({ markers, month }: Props) => {
+    const [map, setMap] = useState<any>()
+    const [maps, setMaps] = useState<any>()
     const [options, setOptions] = useState(mapOptions())
-    const googleMapsKey = process.env.REACT_APP_GOOGLE_MAPS_KEY
+    const googleMapsKey = process.env.REACT_APP_GOOGLE_MAPS_KEY || ''
 
     useEffect(() => {
         if (map && maps && markers && markers.length) {

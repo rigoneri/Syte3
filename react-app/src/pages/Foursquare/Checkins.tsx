@@ -4,14 +4,18 @@ import Checkin from './Checkin'
 import { startOfMonth, endOfMonth, subMonths } from 'date-fns'
 import styles from './Foursquare.module.css'
 
+interface CheckinsResponse {
+    data: FoursquareActivity[]
+}
+
 const Checkins = () => {
-    const [checkins, setCheckins] = useState([])
+    const [checkins, setCheckins] = useState<FoursquareActivity[][]>([])
     const [page, setPage] = useState(0)
     const [error, setError] = useState(false)
     const [empty, setEmpty] = useState(0)
     const [month, setMonth] = useState(0)
     const [loadingMonth, setLoadingMonth] = useState(false)
-    const pageEl = useRef(null)
+    const pageEl = useRef<HTMLDivElement>(null!)
     let debouncing = useRef(false)
 
     useEffect(() => {
@@ -23,7 +27,7 @@ const Checkins = () => {
 
                 const url = `/api/foursquare/activity?start=${start}&end=${end}`
                 const response = await fetch(url)
-                const result = await response.json()
+                const result: CheckinsResponse = await response.json()
 
                 if (loadingMonth) {
                     setLoadingMonth(false)
@@ -31,7 +35,7 @@ const Checkins = () => {
                 }
 
                 if (result.data && result.data.length >= 0) {
-                    const ins = checkins.slice()
+                    const ins = [...checkins]
                     ins.push(result.data)
                     setCheckins(ins)
                     setEmpty(0)
@@ -71,7 +75,7 @@ const Checkins = () => {
         })
     }
 
-    const handleMonthChange = value => {
+    const handleMonthChange = (value: number) => {
         if (value > page) {
             setPage(value)
             setLoadingMonth(true)
@@ -88,7 +92,7 @@ const Checkins = () => {
                 {!error && (
                     <ul>
                         {checkins.length
-                            ? checkins.map(page =>
+                            ? checkins.map((page: FoursquareActivity[]) =>
                                   page.map(checkin => <Checkin key={`${page}-${checkin.id}`} checkin={checkin} />)
                               )
                             : null}

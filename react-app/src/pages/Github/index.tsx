@@ -7,7 +7,7 @@ import Activities from './Activities'
 import styles from './Github.module.css'
 
 const Github = () => {
-    const [user, error] = useUser<User>('github')
+    const [user, error] = useUser<GithubUser>('github')
 
     if (error) {
         return <Error message="Unable to fetch github profile." />

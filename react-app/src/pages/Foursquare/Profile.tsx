@@ -2,7 +2,9 @@ import React from 'react'
 import Img from 'react-image'
 import styles from './Foursquare.module.css'
 
-const Profile = ({ user }) => {
+type Props = { user: FoursquareUser }
+
+const Profile = ({ user }: Props) => {
     return (
         <div className={styles.profile}>
             <a href={user.url} className={styles.picture}>

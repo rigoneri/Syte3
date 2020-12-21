@@ -16,7 +16,7 @@ describe('Profile', () => {
     })
 
     it('should not display description if the user has no description', () => {
-        let user: User = { ...mockUser }
+        let user: GithubUser = { ...mockUser }
         delete user.description
         render(<Profile user={user} />)
         screen.getByRole('heading', { name: mockUser.name })

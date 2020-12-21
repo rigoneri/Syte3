@@ -1,7 +1,7 @@
 export const defaultCenter = { lat: 39.1362, lng: -94.5725 }
 export const defaultZoom = 9
 
-const cssVariable = (elm, variable) => {
+const cssVariable = (elm: HTMLHtmlElement, variable: string): string => {
     let color = window
         .getComputedStyle(elm)
         .getPropertyValue(`--${variable}`)

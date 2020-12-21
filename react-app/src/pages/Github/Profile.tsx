@@ -2,7 +2,7 @@ import React from 'react'
 import Img from 'react-image'
 import styles from './Github.module.css'
 
-type Props = { user: User }
+type Props = { user: GithubUser }
 
 const Profile = ({ user }: Props) => {
     return (

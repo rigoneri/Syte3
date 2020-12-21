@@ -6,7 +6,7 @@ import Checkins from './Checkins'
 import styles from './Foursquare.module.css'
 
 const Foursquare = () => {
-    const [user, error] = useUser('foursquare')
+    const [user, error] = useUser<FoursquareUser>('foursquare')
 
     if (error) {
         return <Error message="Unable to fetch foursquare profile." />

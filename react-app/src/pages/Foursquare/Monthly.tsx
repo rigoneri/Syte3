@@ -5,14 +5,27 @@ import { LeftIcon, RightIcon } from 'components/Icons'
 import Map from './Map'
 import styles from './Foursquare.module.css'
 
-const Monthly = ({ checkins, month, onMonthChange: changeMonth }) => {
-    const [categories, setCategories] = useState(null)
+type Props = {
+    checkins: FoursquareActivity[] | null
+    month: number
+    onMonthChange(month: number): void
+}
+
+type Dict = {
+    [key: string]: any
+}
+
+const Monthly = ({ checkins, month, onMonthChange: changeMonth }: Props) => {
+    const [categories, setCategories] = useState<Dict | null>(null)
 
     useEffect(() => {
-        const groupedCheckins = {}
+        const groupedCheckins: Dict = {}
         if (checkins) {
             checkins.forEach(checkin => {
                 const category = checkin.category
+                if (!category) {
+                    return
+                }
                 if (groupedCheckins[category]) {
                     groupedCheckins[category].count += 1
                 } else {
@@ -39,7 +52,8 @@ const Monthly = ({ checkins, month, onMonthChange: changeMonth }) => {
                     className={styles.leftIcon}
                     onClick={() => {
                         changeMonth(month + 1)
-                    }}>
+                    }}
+                    data-testid="prev-month">
                     <LeftIcon />
                 </span>
                 {month > 0 && (
@@ -47,12 +61,13 @@ const Monthly = ({ checkins, month, onMonthChange: changeMonth }) => {
                         className={styles.rightIcon}
                         onClick={() => {
                             changeMonth(month - 1)
-                        }}>
+                        }}
+                        data-testid="next-month">
                         <RightIcon />
                     </span>
                 )}
             </header>
-            <section className={styles.map}>
+            <section className={styles.map} data-testid="map">
                 <Map markers={checkins} month={month} />
             </section>
             {categories ? (
@@ -61,7 +76,7 @@ const Monthly = ({ checkins, month, onMonthChange: changeMonth }) => {
                         {Object.values(categories)
                             .sort((a, b) => (a.count > b.count ? -1 : 1))
                             .map(category => (
-                                <li key={category.category}>
+                                <li key={category.category} data-testid="category">
                                     <span className={styles.icon}>
                                         <Img src={category.icon} alt={category.category} />
                                     </span>
