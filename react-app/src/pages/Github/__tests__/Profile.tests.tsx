@@ -7,7 +7,7 @@ describe('Profile', () => {
     it('should display the github user', () => {
         render(<Profile user={mockUser} />)
         screen.getByRole('heading', { name: mockUser.name })
-        expect(screen.getByRole('link', { name: '' })).toHaveAttribute('href', mockUser.url)
+        expect(screen.getByAltText('Github Profile')).toHaveAttribute('src', mockUser.picture)
         expect(screen.getByRole('link', { name: mockUser.username })).toHaveAttribute('href', mockUser.url)
         screen.getByText(mockUser.description)
         expect(screen.getByText('Repos').textContent).toEqual('Repos 1')

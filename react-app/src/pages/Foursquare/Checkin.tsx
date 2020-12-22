@@ -9,7 +9,7 @@ const Checkin = ({ checkin }: Props) => {
     return (
         <li className={styles.checkin}>
             <a href={checkin.url} className={styles.icon}>
-                <Img src={checkin.icon} alt={checkin.title} />
+                <Img src={checkin.icon} alt={`${checkin.title} Icon`} />
             </a>
             <a href={checkin.url} className={styles.title}>
                 {checkin.title}

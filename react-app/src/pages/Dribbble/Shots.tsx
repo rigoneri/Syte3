@@ -4,18 +4,24 @@ import { Logo } from 'components/Icons'
 import Modal from './Modal'
 import styles from './Dribbble.module.css'
 
+interface ShotsResponse {
+    data: DribbbleActivity[]
+    nextPage: number
+}
+
+type ClickEvent = React.MouseEvent<HTMLAnchorElement, MouseEvent>
+
 const Shots = () => {
-    const [shots, setShots] = useState([])
-    const [page, setPage] = useState(null)
-    const nextPage = useRef(null)
+    const [shots, setShots] = useState<DribbbleActivity[]>([])
+    const [page, setPage] = useState(0)
+    const nextPage = useRef(0)
     const [error, setError] = useState(false)
-    const [postDetails, setPostDetails] = useState(null)
-    const pageEl = useRef(null)
+    const [postDetails, setPostDetails] = useState<DribbbleActivity | null>(null)
+    const pageEl = useRef<HTMLDivElement>(null!)
     let debouncing = useRef(false)
 
     useEffect(() => {
         const fetchShots = async () => {
-            nextPage.current = null
             try {
                 let url = `/api/dribbble/activity`
                 if (page) {
@@ -23,7 +29,7 @@ const Shots = () => {
                 }
 
                 const response = await fetch(url)
-                const result = await response.json()
+                const result: ShotsResponse = await response.json()
                 if (result.data && result.data.length > 0) {
                     setShots(shots.concat(result.data))
                     if (result.nextPage) {
@@ -61,7 +67,7 @@ const Shots = () => {
         })
     }
 
-    const handleClick = (e, shot) => {
+    const handleClick = (e: ClickEvent, shot: DribbbleActivity) => {
         e.preventDefault()
         setPostDetails(shot)
     }
@@ -88,7 +94,7 @@ const Shots = () => {
                     ))}
                 </ul>
             ) : null}
-            {postDetails && <Modal item={postDetails} onClose={handleClick} />}
+            {postDetails && <Modal item={postDetails} onClose={() => setPostDetails(null)} />}
         </div>
     )
 }

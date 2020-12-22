@@ -2,9 +2,12 @@ import React, { useState } from 'react'
 import styles from './Dribbble.module.css'
 import Modal from './Modal'
 
-export const TimelineItem = ({ item }) => {
+type Props = { item: DribbbleActivity }
+type ClickEvent = React.MouseEvent<HTMLAnchorElement, MouseEvent>
+
+export const TimelineItem = ({ item }: Props) => {
     const [showDetails, setShowDetails] = useState(false)
-    const handleClick = e => {
+    const handleClick = (e: ClickEvent) => {
         e.preventDefault()
         setShowDetails(!showDetails)
     }
@@ -15,7 +18,7 @@ export const TimelineItem = ({ item }) => {
             <a href={item.url} onClick={handleClick}>
                 <span style={{ backgroundImage: `url(${item.picture})` }} className={styles.picture} />
             </a>
-            {showDetails && <Modal item={item} onClose={handleClick} />}
+            {showDetails && <Modal item={item} onClose={() => setShowDetails(false)} />}
         </div>
     )
 }

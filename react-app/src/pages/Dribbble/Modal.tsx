@@ -4,7 +4,12 @@ import { parseISO, formatDistanceToNow } from 'date-fns'
 import Modal from 'components/Modal'
 import styles from 'components/Modal/Modal.module.css'
 
-const DribbbleModal = ({ item, onClose }) => {
+type Props = {
+    item: DribbbleActivity
+    onClose(): void
+}
+
+const DribbbleModal = ({ item, onClose }: Props) => {
     return (
         <Modal onClose={onClose}>
             <Img src={item.pictureHD ? item.pictureHD : item.picture} alt="Dribbble Shot" className={styles.media} />

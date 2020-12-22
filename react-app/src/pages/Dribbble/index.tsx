@@ -5,7 +5,7 @@ import Profile from './Profile'
 import Shots from './Shots'
 
 const Dribbble = () => {
-    const [user, error] = useUser('dribbble')
+    const [user, error] = useUser<DribbbleUser>('dribbble')
 
     if (error) {
         return <Error message="Unable to fetch dribbble profile." />

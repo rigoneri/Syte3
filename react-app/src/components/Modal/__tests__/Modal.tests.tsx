@@ -1,49 +1,53 @@
 import React from 'react'
-import { mount } from 'enzyme'
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import Modal from '../index'
 
 describe('Modal', () => {
     const modalMount = global.document.createElement('div')
     modalMount.setAttribute('id', 'modal-mount')
-    global.document.querySelector('body').appendChild(modalMount)
 
     const MockChild = () => <div>mock child</div>
 
+    beforeEach(() => {
+        document.body.appendChild(modalMount)
+    })
+    afterEach(() => {
+        document.body.removeChild(modalMount)
+    })
+
     it('should render a modal', () => {
-        let component = mount(
-            <Modal>
+        render(
+            <Modal onClose={jest.fn()}>
                 <MockChild />
             </Modal>
         )
 
-        expect(component.find('.overlay').exists()).toEqual(true)
-        expect(component.find('.content').exists()).toEqual(true)
-        expect(component.find('.close').exists()).toEqual(true)
-        component.unmount()
+        screen.getByRole('dialog')
+        screen.getByRole('document')
+        screen.getByText('mock child')
+        screen.getByLabelText('Close Modal', { selector: 'button' })
     })
 
     it('should close the modal when overlay is clicked', () => {
         const handleClose = jest.fn()
-        let component = mount(
+        render(
             <Modal onClose={handleClose}>
                 <MockChild />
             </Modal>
         )
-        component.find('.overlay').simulate('click')
+        const overlay = screen.getByRole('dialog')
+        userEvent.click(overlay)
         expect(handleClose).toHaveBeenCalledTimes(1)
-        component.unmount()
     })
 
     it('should mount the modal in the expected location', () => {
-        const modalMount = global.document.getElementById('modal-mount')
         expect(modalMount.hasChildNodes()).toEqual(false)
-        let component = mount(
-            <Modal>
+        render(
+            <Modal onClose={jest.fn()}>
                 <MockChild />
             </Modal>
         )
         expect(modalMount.hasChildNodes()).toEqual(true)
-        component.unmount()
-        expect(modalMount.hasChildNodes()).toEqual(false)
     })
 })

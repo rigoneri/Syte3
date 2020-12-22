@@ -8,7 +8,7 @@ export const TimelineItem = ({ item }: Props) => {
     return (
         <div className={styles.checkin}>
             <a href={item.url} className={styles.icon}>
-                <Img src={item.icon} alt={item.title} />
+                <Img src={item.icon} alt={`${item.title} icon`} />
             </a>
             <a href={item.url} className={styles.title}>
                 {item.title}

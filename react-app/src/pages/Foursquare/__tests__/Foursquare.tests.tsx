@@ -1,7 +1,5 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
-import { act } from 'react-dom/test-utils'
-import { mockCheckin } from './Checkin.tests'
 import Foursquare from '../index'
 
 export const mockUser = {
