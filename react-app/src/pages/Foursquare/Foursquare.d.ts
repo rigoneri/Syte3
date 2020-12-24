@@ -12,7 +12,7 @@ interface FoursquareUser {
 interface FoursquareActivity {
     id: string
     date: string
-    type: string
+    type: 'foursquare'
     title: string
     event: string | null
     lat?: number

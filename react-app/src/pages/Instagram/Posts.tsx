@@ -2,12 +2,17 @@ import React, { useState, useEffect, useRef } from 'react'
 import Post from './Post'
 import styles from './Instagram.module.css'
 
+interface PostsResponse {
+    data: InstagramActivity[]
+    nextPage: number
+}
+
 const Posts = () => {
-    const [posts, setPosts] = useState([])
-    const [page, setPage] = useState(null)
-    const nextPage = useRef(null)
+    const [posts, setPosts] = useState<InstagramActivity[]>([])
+    const [page, setPage] = useState<number | string | null>(null)
+    const nextPage = useRef<number | string | null>(null)
     const [error, setError] = useState(false)
-    const pageEl = useRef(null)
+    const pageEl = useRef<HTMLDivElement>(null!)
     let debouncing = useRef(false)
 
     useEffect(() => {
@@ -22,7 +27,7 @@ const Posts = () => {
                 }
 
                 const response = await fetch(url)
-                const result = await response.json()
+                const result: PostsResponse = await response.json()
                 if (result.data && result.data.length > 0) {
                     setPosts(posts.concat(result.data))
                     if (result.nextPage) {

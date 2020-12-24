@@ -6,7 +6,7 @@ import Posts from './Posts'
 import styles from './Instagram.module.css'
 
 const Instagram = () => {
-    const [user, error] = useUser('instagram')
+    const [user, error] = useUser<InstagramUser>('instagram')
 
     if (error) {
         return <Error message="Unable to fetch instagram profile." />

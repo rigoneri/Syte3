@@ -3,14 +3,16 @@ import Img from 'react-image'
 import pic from 'images/pic.jpg'
 import styles from './Instagram.module.css'
 
-const Profile = ({ user }) => {
+type Props = { user: InstagramUser }
+
+const Profile = ({ user }: Props) => {
     return (
         <div className={styles.profile}>
             <a href={user.url} className={styles.picture}>
-                {user.profile_picture ? (
-                    <Img src={user.profile_picture} alt="Instagram Profile" />
+                {user.picture ? (
+                    <Img src={user.picture} alt="Instagram Profile" />
                 ) : (
-                    <img src={pic} width="65" heigh="60" alt="Instagram Profile" />
+                    <img src={pic} width="65" height="60" alt="Instagram Profile" />
                 )}
             </a>
             <h2>{user.full_name}</h2>

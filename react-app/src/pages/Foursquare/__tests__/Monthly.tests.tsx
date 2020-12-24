@@ -19,7 +19,7 @@ describe('Monthly', () => {
         render(<Monthly checkins={[mockCheckin]} month={0} onMonthChange={jest.fn} />)
         screen.getByRole('heading', { name: format(new Date(), 'MMMM yyyy') })
         screen.getByTestId('map')
-        screen.getByText(mockCheckin.category)
+        screen.getByText(mockCheckin.category!)
         screen.getByText('1 time')
     })
 

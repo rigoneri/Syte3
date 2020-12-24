@@ -9,7 +9,7 @@ describe('Profile', () => {
         screen.getByRole('heading', { name: mockUser.name })
         expect(screen.getByAltText('Dribbble Profile')).toHaveAttribute('src', mockUser.picture)
         expect(screen.getByRole('link', { name: `@${mockUser.username}` })).toHaveAttribute('href', mockUser.url)
-        screen.getByText(mockUser.bio)
+        screen.getByText(mockUser.bio!)
         expect(screen.getByText('Followers').textContent).toEqual(`Followers ${mockUser.followers.toLocaleString()}`)
     })
 
@@ -18,6 +18,6 @@ describe('Profile', () => {
         delete user.bio
         render(<Profile user={user} />)
         screen.getByRole('heading', { name: mockUser.name })
-        expect(screen.queryByText(mockUser.bio)).not.toBeInTheDocument()
+        expect(screen.queryByText(mockUser.bio!)).not.toBeInTheDocument()
     })
 })

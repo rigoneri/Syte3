@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react'
 import { mockShot } from './Shots.tests'
 import Dribbble from '../index'
 
-export const mockUser = {
+export const mockUser: DribbbleUser = {
     id: 12345,
     name: 'Syte User',
     username: 'syte3',

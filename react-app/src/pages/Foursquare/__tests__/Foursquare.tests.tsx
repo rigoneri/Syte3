@@ -2,7 +2,7 @@ import React from 'react'
 import { render, screen } from '@testing-library/react'
 import Foursquare from '../index'
 
-export const mockUser = {
+export const mockUser: FoursquareUser = {
     id: '8786308',
     name: 'Syte User',
     url: 'https://foursquare.com/syteuser',

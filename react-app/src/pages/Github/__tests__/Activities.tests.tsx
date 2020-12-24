@@ -1,14 +1,15 @@
 import React from 'react'
 import fetchMock from 'jest-fetch-mock'
-import { render, screen, act } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import Activities from '../Activities'
 
-const mockActivity = {
+export const mockActivity: GitActivity = {
     id: '12345',
-    icon: 'git-commit',
+    icon: 'git-commit' as GitIcon,
     date: '2019-10-16T02:21:11.000Z',
+    type: 'github',
     description:
-        'Pushed 1 commit to <strong>master</strong> at <a href="https://github.com/rigoneri/Syte3" target="_blank">rigoneri/Syte3</a> ',
+        'Pushed 1 commit to <strong>master</strong> at <a href="https://github.com/rigoneri/Syte3" target="_blank">rigoneri/Syte3</a>',
 }
 
 describe('Activities', () => {

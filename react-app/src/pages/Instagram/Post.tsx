@@ -4,10 +4,13 @@ import { Logo, PlayLogo } from 'components/Icons'
 import Modal from './Modal'
 import styles from './Instagram.module.css'
 
-const Post = ({ post }) => {
+type Props = { post: InstagramActivity }
+type ClickEvent = React.MouseEvent<HTMLAnchorElement, MouseEvent>
+
+const Post = ({ post }: Props) => {
     const [videoVisible, setVideoVisible] = useState(false)
     const [showDetails, setShowDetails] = useState(false)
-    const handleClick = e => {
+    const handleClick = (e: ClickEvent) => {
         e.preventDefault()
         setShowDetails(!showDetails)
     }
@@ -27,9 +30,13 @@ const Post = ({ post }) => {
                         setVideoVisible(true)
                     }}
                 />
-                {post.video && <span className={styles.video}>{videoVisible && <PlayLogo />}</span>}
+                {post.video && (
+                    <span className={styles.video} role="figure">
+                        {videoVisible && <PlayLogo />}
+                    </span>
+                )}
             </a>
-            {showDetails && <Modal item={post} onClose={handleClick} />}
+            {showDetails && <Modal item={post} onClose={() => setShowDetails(false)} />}
         </li>
     )
 }

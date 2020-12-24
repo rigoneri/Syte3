@@ -1,4 +1,5 @@
 interface GithubUser {
+    id: number
     name: string
     username?: string
     description?: string
@@ -24,6 +25,7 @@ interface Repo {
 interface GitActivity {
     id: string
     date: string
+    type: 'github'
     icon: GitIcon
     description: string
     comment?: string

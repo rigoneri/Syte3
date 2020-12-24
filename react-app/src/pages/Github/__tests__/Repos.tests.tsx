@@ -2,7 +2,7 @@ import React from 'react'
 import { render, screen } from '@testing-library/react'
 import Repos from '../Repos'
 
-const mockRepo = {
+const mockRepo: Repo = {
     id: 12345,
     name: 'Repo',
     url: 'https://github.com/some/repo',
@@ -18,6 +18,6 @@ it('should display a list of repos', async () => {
     screen.getByRole('heading', { name: 'Repositories' })
     expect(screen.getByRole('link')).toHaveAttribute('href', mockRepo.url)
     expect(screen.getByRole('link').textContent).toEqual(mockRepo.name)
-    screen.getByText(mockRepo.description)
+    screen.getByText(mockRepo.description!)
     screen.getByText(mockRepo.language)
 })

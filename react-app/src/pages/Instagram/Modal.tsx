@@ -4,17 +4,24 @@ import { parseISO, formatDistanceToNow } from 'date-fns'
 import Modal from 'components/Modal'
 import styles from 'components/Modal/Modal.module.css'
 
-const InstagramModal = ({ item, onClose }) => {
+type Props = {
+    item: InstagramActivity
+    onClose(): void
+}
+
+const InstagramModal = ({ item, onClose }: Props) => {
     return (
         <Modal onClose={onClose}>
             {item.video ? (
-                <video src={item.video.url} className={styles.media} poster={item.pictureHD} controls />
-            ) : (
-                <Img
-                    src={item.pictureHD ? item.pictureHD : item.picture}
-                    alt="Instagram Post"
+                <video
+                    aria-label="video"
+                    src={item.video.url}
                     className={styles.media}
+                    poster={item.picture}
+                    controls
                 />
+            ) : (
+                <Img src={item.picture} alt="Instagram Post" className={styles.media} />
             )}
             <div className={`${styles.details} ${styles.stacked}`}>
                 <p dangerouslySetInnerHTML={{ __html: item.text }}></p>

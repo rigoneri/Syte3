@@ -2,8 +2,8 @@ import React from 'react'
 import { render, screen } from '@testing-library/react'
 import Github from '../index'
 
-export const mockUser = {
-    id: '1234',
+export const mockUser: GithubUser = {
+    id: 1234,
     name: 'Syte3 User',
     username: 'syte3',
     followers: 189,

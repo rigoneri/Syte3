@@ -1,4 +1,5 @@
 interface DribbbleUser {
+    id: number
     name: string
     username?: string
     url: string
@@ -12,6 +13,7 @@ interface DribbbleUser {
 interface DribbbleActivity {
     id: number
     date: string
+    type: 'dribbble'
     title: string
     text: string
     url: string

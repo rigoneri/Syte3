@@ -3,7 +3,7 @@ import { render, screen, act } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import Shots from '../Shots'
 
-export const mockShot = {
+export const mockShot: DribbbleActivity = {
     id: 2676728,
     date: '2016-04-26T21:03:47.000Z',
     type: 'dribbble',
@@ -50,7 +50,7 @@ describe('Shots', () => {
         expect(screen.queryByAltText(mockShot.title)).not.toBeInTheDocument()
     })
 
-    it('should load more tweets when scrolling to the end of the page', async () => {
+    it('should load more shots when scrolling to the end of the page', async () => {
         fetchMock.mockResponses(
             [
                 JSON.stringify({

@@ -2,7 +2,7 @@ import React from 'react'
 import { render, screen } from '@testing-library/react'
 import Checkin from '../Checkin'
 
-export const mockCheckin = {
+export const mockCheckin: FoursquareActivity = {
     id: '5daba2a840fb4b00080acc80',
     date: '2019-10-19T23:56:24.000Z',
     type: 'foursquare',
@@ -23,7 +23,7 @@ describe('Check-in', () => {
         render(<Checkin checkin={mockCheckin} />)
         expect(screen.getByRole('img')).toHaveAttribute('src', mockCheckin.icon)
         expect(screen.getByRole('link', { name: mockCheckin.title })).toHaveAttribute('href', mockCheckin.url)
-        screen.getByText(mockCheckin.category)
+        screen.getByText(`${mockCheckin.category}`)
         screen.getByText(`${mockCheckin.city}, ${mockCheckin.state}`)
     })
 
