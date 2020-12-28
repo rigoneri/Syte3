@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
-import Img from 'react-image'
 import { parseISO, formatDistanceToNow } from 'date-fns'
+import Img from 'react-image'
 import { PlayLogo } from 'components/Icons'
 import Modal from './Modal'
 import styles from './Twitter.module.css'
 
-const Tweet = ({ tweet }) => {
+type Props = { tweet: TwitterActivity }
+type ClickEvent = React.MouseEvent<HTMLElement, MouseEvent>
+
+const Tweet = ({ tweet }: Props) => {
     const [showDetails, setShowDetails] = useState(false)
-    const handleClick = e => {
+    const handleClick = (e: ClickEvent) => {
         e.preventDefault()
         setShowDetails(!showDetails)
     }
@@ -30,13 +33,13 @@ const Tweet = ({ tweet }) => {
                         {tweet.pictures.map(picture => (
                             <li key={picture.id} onClick={handleClick}>
                                 <span style={{ backgroundImage: `url(${picture.url})` }} className={styles.picture} />
-                                {tweet.video && <PlayLogo className={styles.video} />}
+                                {tweet.video && <PlayLogo role="figure" className={styles.video} />}
                             </li>
                         ))}
                     </ul>
                 )}
             </div>
-            {showDetails && <Modal item={tweet} onClose={handleClick} />}
+            {showDetails && <Modal item={tweet} onClose={() => setShowDetails(false)} />}
         </li>
     )
 }

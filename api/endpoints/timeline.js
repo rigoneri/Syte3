@@ -17,6 +17,7 @@ router.get('/', async (req, res) => {
         getActivityByRange('youtube-likes', req.query.start, req.query.end),
         getActivityByRange('youtube-uploads', req.query.start, req.query.end),
         getActivityByRange('dribbble', req.query.start, req.query.end),
+        getActivityByRange('instagram', req.query.start, req.query.end),
     ])
 
     let result = []

@@ -6,7 +6,7 @@ import Tweets from './Tweets'
 import styles from './Twitter.module.css'
 
 const Twitter = () => {
-    const [user, error] = useUser('twitter')
+    const [user, error] = useUser<TwitterUser>('twitter')
 
     if (error) {
         return <Error message="Unable to fetch twitter profile." />

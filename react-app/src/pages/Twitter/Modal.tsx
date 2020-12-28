@@ -5,12 +5,17 @@ import { HeartIcon, LoopIcon, LeftIcon, RightIcon } from 'components/Icons'
 import Modal from 'components/Modal'
 import styles from 'components/Modal/Modal.module.css'
 
-const TwitterModal = ({ item, onClose }) => {
+type Props = {
+    item: TwitterActivity
+    onClose(): void
+}
+
+const TwitterModal = ({ item, onClose }: Props) => {
     const [pictureIndex, setPictureIndex] = useState(0)
-    const [picture, setPicture] = useState(null)
+    const [picture, setPicture] = useState<TwitterPicture | null>(null)
 
     useEffect(() => {
-        if (!item.pictures.length) {
+        if (!item.pictures || !item.pictures.length) {
             return
         }
 
@@ -27,11 +32,11 @@ const TwitterModal = ({ item, onClose }) => {
         <Modal onClose={onClose}>
             <div className={styles.media}>
                 {item.video ? (
-                    <video src={item.video} controls />
+                    <video aria-label="video" src={item.video} controls />
                 ) : picture ? (
                     <Img src={picture.url} alt="Twitter Picture" />
                 ) : null}
-                {item.pictures.length > 1 ? (
+                {item.pictures && item.pictures.length > 1 ? (
                     <>
                         <span
                             className={styles.leftIcon}

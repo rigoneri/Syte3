@@ -13,6 +13,7 @@ export const mockUser = {
     followers: 100,
     following: 100,
     statuses: 100,
+    location: null,
     picture: 'https://pbs.twimg.com/profile_images/test-1.png',
     banner: 'https://pbs.twimg.com/profile_banners/test-1',
     pictures: [

@@ -2,12 +2,17 @@ import React, { useState, useEffect, useRef } from 'react'
 import Tweet from './Tweet'
 import styles from './Twitter.module.css'
 
+interface TweetsResponse {
+    data: TwitterActivity[]
+    nextPage: number
+}
+
 const Tweets = () => {
-    const [tweets, setTweets] = useState([])
-    const [page, setPage] = useState(null)
-    const nextPage = useRef(null)
+    const [tweets, setTweets] = useState<TwitterActivity[]>([])
+    const [page, setPage] = useState<number | null>(null)
+    const nextPage = useRef<number | null>(null)
     const [error, setError] = useState(false)
-    const pageEl = useRef(null)
+    const pageEl = useRef<HTMLDivElement>(null!)
     let debouncing = useRef(false)
 
     useEffect(() => {
@@ -20,7 +25,7 @@ const Tweets = () => {
                 }
 
                 const response = await fetch(url)
-                const result = await response.json()
+                const result: TweetsResponse = await response.json()
                 if (result.data && result.data.length > 0) {
                     setTweets(tweets.concat(result.data))
                     if (result.nextPage) {

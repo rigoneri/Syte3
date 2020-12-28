@@ -4,9 +4,12 @@ import { PlayLogo } from 'components/Icons'
 import Modal from './Modal'
 import styles from './Twitter.module.css'
 
-export const TimelineItem = ({ item }) => {
+type Props = { item: TwitterActivity }
+type ClickEvent = React.MouseEvent<HTMLElement, MouseEvent>
+
+export const TimelineItem = ({ item }: Props) => {
     const [showDetails, setShowDetails] = useState(false)
-    const handleClick = e => {
+    const handleClick = (e: ClickEvent) => {
         e.preventDefault()
         setShowDetails(!showDetails)
     }
@@ -26,12 +29,19 @@ export const TimelineItem = ({ item }) => {
                     {item.pictures.map(picture => (
                         <li key={picture.id} onClick={handleClick}>
                             <span style={{ backgroundImage: `url(${picture.url})` }} className={styles.picture} />
-                            {item.video && <PlayLogo className={styles.video} />}
+                            {item.video && <PlayLogo className={styles.video} role="figure" />}
                         </li>
                     ))}
                 </ul>
             )}
-            {showDetails && <Modal item={item} onClose={handleClick} />}
+            {showDetails && (
+                <Modal
+                    item={item}
+                    onClose={() => {
+                        setShowDetails(false)
+                    }}
+                />
+            )}
         </div>
     )
 }

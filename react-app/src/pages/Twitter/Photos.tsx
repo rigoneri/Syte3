@@ -1,7 +1,12 @@
 import React from 'react'
 import styles from './Twitter.module.css'
 
-const Photos = ({ username, photos }) => {
+type Props = {
+    username: string
+    photos: TwitterPicture[] | null
+}
+
+const Photos = ({ username, photos }: Props) => {
     if (!photos || photos.length === 0) {
         return null
     }
