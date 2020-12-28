@@ -2,19 +2,24 @@ import React, { useState, useEffect, useRef } from 'react'
 import Video from './Video'
 import styles from './YouTube.module.css'
 
+interface VideosResponse {
+    data: YouTubeActivity[]
+    nextPage: number
+}
+
 const Videos = () => {
-    const [uploads, setUploads] = useState([])
-    const [liked, setLiked] = useState([])
-    const [page, setPage] = useState(null)
-    const nextUploadsPage = useRef(null)
-    const nextLikedPage = useRef(null)
+    const [uploads, setUploads] = useState<YouTubeActivity[]>([])
+    const [liked, setLiked] = useState<YouTubeActivity[]>([])
+    const [page, setPage] = useState<number | null>(null)
+    const nextUploadsPage = useRef<number | null>(null)
+    const nextLikedPage = useRef<number | null>(null)
     const [error, setError] = useState(false)
 
-    const pageEl = useRef(null)
+    const pageEl = useRef<HTMLDivElement>(null!)
     let debouncing = useRef(false)
 
     useEffect(() => {
-        const fetchActivity = async (service, nextPage) => {
+        const fetchActivity = async (service: 'youtube-uploads' | 'youtube-likes', nextPage: number | null) => {
             try {
                 let url = `/api/${service}/activity`
                 if (nextPage) {
@@ -22,7 +27,7 @@ const Videos = () => {
                 }
 
                 const response = await fetch(url)
-                const result = await response.json()
+                const result: VideosResponse = await response.json()
                 return result
             } catch (error) {
                 setError(true)
@@ -31,7 +36,7 @@ const Videos = () => {
         }
 
         const fetchLiked = async () => {
-            const likes = await fetchActivity('youtube-likes', nextLikedPage.current)
+            const likes: VideosResponse | null = await fetchActivity('youtube-likes', nextLikedPage.current)
             if (likes && likes.data && likes.data.length > 0) {
                 setLiked(values => values.concat(likes.data))
                 nextLikedPage.current = likes.nextPage

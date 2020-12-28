@@ -3,9 +3,12 @@ import { PlayLogo } from 'components/Icons'
 import styles from './YouTube.module.css'
 import Modal from './Modal'
 
-export const TimelineItem = ({ item }) => {
+type Props = { item: YouTubeActivity }
+type ClickEvent = React.MouseEvent<HTMLAnchorElement, MouseEvent>
+
+export const TimelineItem = ({ item }: Props) => {
     const [showDetails, setShowDetails] = useState(false)
-    const handleClick = e => {
+    const handleClick = (e: ClickEvent) => {
         e.preventDefault()
         setShowDetails(!showDetails)
     }
@@ -14,11 +17,11 @@ export const TimelineItem = ({ item }) => {
         <div className={styles.timelinePost}>
             <h4>{item.type === 'youtube-like' ? 'Liked on YouTube' : 'Posted to YouTube'}</h4>
             <p>{item.title}</p>
-            <a href={item.url} onClick={handleClick}>
-                <span style={{ backgroundImage: `url(${item.image})` }} className={styles.picture} />
+            <a href="/youtube" onClick={handleClick}>
+                <span style={{ backgroundImage: `url(${item.image})` }} className={styles.picture} role="img" />
                 <PlayLogo className={styles.video} />
             </a>
-            {showDetails && <Modal item={item} onClose={handleClick} />}
+            {showDetails && <Modal item={item} onClose={() => setShowDetails(false)} />}
         </div>
     )
 }

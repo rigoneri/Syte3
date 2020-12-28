@@ -6,7 +6,7 @@ import Videos from './Videos'
 import styles from './YouTube.module.css'
 
 const YouTube = () => {
-    const [user, error] = useUser('youtube')
+    const [user, error] = useUser<YouTubeUser>('youtube')
 
     if (error) {
         return <Error message="Unable to fetch youtube profile." />

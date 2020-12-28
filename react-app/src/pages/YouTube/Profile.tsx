@@ -2,7 +2,9 @@ import React from 'react'
 import Img from 'react-image'
 import styles from './YouTube.module.css'
 
-const Profile = ({ user }) => {
+type Props = { user: YouTubeUser }
+
+const Profile = ({ user }: Props) => {
     return (
         <div className={styles.profile}>
             <div className={styles.banner} style={{ backgroundImage: `url(${user.banner})` }}>

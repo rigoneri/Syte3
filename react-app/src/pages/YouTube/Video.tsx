@@ -5,17 +5,20 @@ import { Logo, PlayLogo } from 'components/Icons'
 import Modal from './Modal'
 import styles from './YouTube.module.css'
 
-const Video = ({ video }) => {
+type Props = { video: YouTubeActivity }
+type ClickEvent = React.MouseEvent<HTMLAnchorElement, MouseEvent>
+
+const Video = ({ video }: Props) => {
     const [videoVisible, setVideoVisible] = useState(false)
     const [showDetails, setShowDetails] = useState(false)
-    const handleClick = e => {
+    const handleClick = (e: ClickEvent) => {
         e.preventDefault()
         setShowDetails(!showDetails)
     }
 
     return (
-        <li>
-            <a href={video.url} className={styles.video} onClick={handleClick}>
+        <li data-testid={`video-${video.id}`}>
+            <a href="/youtube" className={styles.video} onClick={handleClick}>
                 <Img
                     src={video.image}
                     alt={video.title}
@@ -34,7 +37,14 @@ const Video = ({ video }) => {
                 <div className={styles.title}>{video.title}</div>
                 <div className={styles.date}>{formatDistanceToNow(parseISO(video.date))} ago</div>
             </div>
-            {showDetails && <Modal item={video} onClose={handleClick} />}
+            {showDetails && (
+                <Modal
+                    item={video}
+                    onClose={() => {
+                        setShowDetails(false)
+                    }}
+                />
+            )}
         </li>
     )
 }

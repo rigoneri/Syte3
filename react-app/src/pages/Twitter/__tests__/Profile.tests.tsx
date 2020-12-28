@@ -1,5 +1,5 @@
 import React from 'react'
-import { getByText, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import Profile from '../Profile'
 import { mockUser } from './Twitter.tests'
 
@@ -9,7 +9,7 @@ describe('Profile', () => {
         screen.getByRole('heading', { name: mockUser.name })
         expect(screen.getByAltText('Twitter Profile')).toHaveAttribute('src', mockUser.picture)
         expect(screen.getByRole('link', { name: `@${mockUser.username}` })).toHaveAttribute('href', mockUser.url)
-        screen.getByText(mockUser.description)
+        screen.getByText('Some description')
         expect(screen.getByText('Tweets').textContent).toEqual(`Tweets ${mockUser.statuses}`)
         expect(screen.getByText('Following').textContent).toEqual(`Following ${mockUser.following}`)
         expect(screen.getByText('Followers').textContent).toEqual(`Followers ${mockUser.followers}`)
@@ -20,7 +20,7 @@ describe('Profile', () => {
         render(<Profile user={{ ...mockUser, description: null }} />)
         screen.getByRole('heading', { name: mockUser.name })
         expect(screen.getByAltText('Twitter Profile')).toHaveAttribute('src', mockUser.picture)
-        expect(screen.queryByText(mockUser.description)).not.toBeInTheDocument()
+        expect(screen.queryByText('Some description')).not.toBeInTheDocument()
     })
 
     it('should not display pictures if user has no pictures', () => {
