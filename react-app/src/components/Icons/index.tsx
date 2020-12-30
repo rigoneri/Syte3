@@ -42,18 +42,7 @@ import { ReactComponent as LeftIcon } from './LeftIcon.svg'
 import { ReactComponent as RightIcon } from './RightIcon.svg'
 
 type LogoProps = {
-    type:
-        | 'Twitter'
-        | 'Dribbble'
-        | 'Instagram'
-        | 'Github'
-        | 'Spotify'
-        | 'YouTube'
-        | 'Foursquare'
-        | 'Tumblr'
-        | 'Facebook'
-        | 'Flickr'
-        | 'LinkedIn'
+    type: SyteServiceCap
 }
 
 const Logo = ({ type }: LogoProps) => {

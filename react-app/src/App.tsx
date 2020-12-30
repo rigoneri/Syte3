@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react'
 import { BrowserRouter, Switch, Route, useLocation } from 'react-router-dom'
+import { Location } from 'history'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import Header from 'components/Header'
 import { ModalMount } from 'components/Modal'
@@ -52,7 +53,11 @@ const AppContent = () => {
     )
 }
 
-const Routes = ({ location }) => {
+type RoutesProps = {
+    location: Location
+}
+
+const Routes = ({ location }: RoutesProps) => {
     return (
         <Switch location={location}>
             <Route exact path="/">

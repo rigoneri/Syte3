@@ -3,7 +3,12 @@ import { NavLink, useRouteMatch } from 'react-router-dom'
 import { Logo } from 'components/Icons'
 import styles from './Nav.module.css'
 
-export const Nav = ({ handleOpened, opened }) => {
+type NavProps = {
+    handleOpened(): void
+    opened: boolean
+}
+
+export const Nav = ({ handleOpened, opened }: NavProps) => {
     const handleClick = () => {
         if (opened) {
             handleOpened()
@@ -56,7 +61,12 @@ export const Nav = ({ handleOpened, opened }) => {
     )
 }
 
-export const NavItem = ({ to, handleClick }) => {
+type NavItemProps = {
+    to: SyteServiceCap
+    handleClick(): void
+}
+
+export const NavItem = ({ to, handleClick }: NavItemProps) => {
     const admin = useRouteMatch('/admin')
     return (
         <li key={to}>
@@ -71,7 +81,12 @@ export const NavItem = ({ to, handleClick }) => {
     )
 }
 
-const NavButton = ({ handleClick, opened }) => {
+type NavButtonProps = {
+    handleClick(): void
+    opened: boolean
+}
+
+const NavButton = ({ handleClick, opened }: NavButtonProps) => {
     return (
         <button className={`${styles.navButton} ${opened ? styles.opened : ''}`} onClick={handleClick}>
             <span className={styles.bar1}></span>

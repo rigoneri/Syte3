@@ -28,3 +28,16 @@ type SyteService =
     | 'facebook'
     | 'flickr'
     | 'linkedin'
+
+type SyteServiceCap =
+    | 'Twitter'
+    | 'Dribbble'
+    | 'Instagram'
+    | 'Github'
+    | 'Spotify'
+    | 'YouTube'
+    | 'Foursquare'
+    | 'Tumblr'
+    | 'Facebook'
+    | 'Flickr'
+    | 'LinkedIn'

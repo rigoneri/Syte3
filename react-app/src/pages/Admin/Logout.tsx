@@ -1,16 +1,21 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 
+interface LogoutResponse {
+    success: boolean
+}
+type ClickEvent = React.MouseEvent<HTMLAnchorElement, MouseEvent>
+
 const Logout = () => {
     const history = useHistory()
 
-    const handleLogout = async e => {
+    const handleLogout = async (e: ClickEvent) => {
         e.preventDefault()
 
         try {
             const response = await fetch('/api/logout')
             if (response.ok) {
-                const result = await response.json()
+                const result: LogoutResponse = await response.json()
                 if (result.success) {
                     history.push('/')
                 }

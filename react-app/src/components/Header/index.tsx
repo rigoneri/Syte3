@@ -12,7 +12,7 @@ export default function Header() {
             <hgroup>
                 <Link to="/">
                     <span className={styles.picture}>
-                        <img src={pic} width="50" heigh="50" alt="Profile" />
+                        <img src={pic} width="50" height="50" alt="Profile" />
                     </span>
                     <h1>Rodrigo Neri</h1>
                 </Link>

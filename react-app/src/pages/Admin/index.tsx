@@ -3,13 +3,23 @@ import { useParams, useLocation } from 'react-router-dom'
 import Logout from './Logout'
 import styles from './Admin.module.css'
 
-export const camel2title = camelCase =>
+type ChangeEvent = React.ChangeEvent<HTMLInputElement>
+type SubmitEvent = React.FormEvent<HTMLFormElement>
+
+export const camel2title = (camelCase: string): string =>
     camelCase.replace(/([A-Z])/g, match => ` ${match}`).replace(/^./, match => match.toUpperCase())
 
+interface ServiceParams {
+    service?: string
+}
+interface ServiceSettings {
+    [key: string]: any
+}
+
 const Admin = () => {
-    const { service = 'twitter' } = useParams()
+    const { service = 'twitter' } = useParams<ServiceParams>()
     const query = new URLSearchParams(useLocation().search)
-    const [settings, setSettings] = useState()
+    const [settings, setSettings] = useState<ServiceSettings>()
     const [error, setError] = useState(query.get('result') === 'fail' ? true : false)
     const [success, setSuccess] = useState(query.get('result') === 'success' ? true : false)
     const [newSetting, setNewSetting] = useState('')
@@ -18,7 +28,7 @@ const Admin = () => {
         const fetchSettings = async () => {
             try {
                 const response = await fetch(`/api/configs/${service}`)
-                const result = await response.json()
+                const result: object = await response.json()
                 if (response.ok && Object.keys(result).length) {
                     setSettings(result)
                 } else {
@@ -32,18 +42,18 @@ const Admin = () => {
         fetchSettings()
     }, [service])
 
-    const handleFieldChange = e => {
+    const handleFieldChange = (e: ChangeEvent) => {
         const {
             target: { name, value },
         } = e
         setSettings(items => {
-            const updated = { ...items }
+            const updated = items ? { ...items } : {}
             updated[name] = value
             return updated
         })
     }
 
-    const handleSubmit = async e => {
+    const handleSubmit = async (e: SubmitEvent) => {
         e.preventDefault()
         setSuccess(false)
         setError(false)
@@ -114,17 +124,18 @@ const Admin = () => {
             {success && <p className={styles.success}>Updated {service} settings successfully.</p>}
             {!error && settings && (
                 <form onSubmit={handleSubmit}>
-                    {Object.keys(settings)
-                        .sort()
-                        .map(key => {
-                            const value = settings[key]
-                            return (
-                                <div className={styles.input} key={key}>
-                                    <label>{camel2title(key)}</label>
-                                    <input type="text" name={key} value={value} onChange={handleFieldChange} />
-                                </div>
-                            )
-                        })}
+                    {settings &&
+                        Object.keys(settings)
+                            .sort()
+                            .map(key => {
+                                const value = settings[key]
+                                return (
+                                    <div className={styles.input} key={key}>
+                                        <label>{camel2title(key)}</label>
+                                        <input type="text" name={key} value={value} onChange={handleFieldChange} />
+                                    </div>
+                                )
+                            })}
                     <div className={styles.buttons}>
                         <button type="submit" className={styles.primary}>
                             Save Settings

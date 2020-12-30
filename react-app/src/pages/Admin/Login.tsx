@@ -2,17 +2,23 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import styles from './Admin.module.css'
 
+interface LoginResponse {
+    success: boolean
+}
+type ChangeEvent = React.ChangeEvent<HTMLInputElement>
+type SubmitEvent = React.FormEvent<HTMLFormElement>
+
 const Login = () => {
     const history = useHistory()
     const [value, setValue] = useState('')
     const [loading, setLoading] = useState(false)
-    const [error, setError] = useState()
+    const [error, setError] = useState(false)
 
-    const handleChange = e => {
+    const handleChange = (e: ChangeEvent) => {
         setValue(e.target.value)
     }
 
-    const handleSubmit = async e => {
+    const handleSubmit = async (e: SubmitEvent) => {
         e.preventDefault()
         if (!value.length) {
             return
@@ -20,7 +26,7 @@ const Login = () => {
 
         try {
             setLoading(true)
-            setError(null)
+            setError(false)
             const response = await fetch('/api/login', {
                 method: 'POST',
                 headers: {
@@ -32,7 +38,7 @@ const Login = () => {
             })
             setLoading(false)
             if (response.ok) {
-                const result = await response.json()
+                const result: LoginResponse = await response.json()
                 if (result.success) {
                     history.push('/admin/twitter')
                 }
@@ -43,7 +49,7 @@ const Login = () => {
         } catch (error) {
             console.error(error)
             setLoading(false)
-            setError(error)
+            setError(true)
         }
     }
 
