@@ -5,8 +5,13 @@ import { PlayContext } from './PlayContext'
 import { PlayLogo, PauseLogo } from 'components/Icons'
 import styles from './Spotify.module.css'
 
+interface ActivityResponse {
+    data: SpotifyActivity[]
+    nextPage: number
+}
+
 const RecentTracks = () => {
-    const [tracks, setTracks] = useState([])
+    const [tracks, setTracks] = useState<SpotifyActivity[]>([])
     const [error, setError] = useState(false)
     const context = useContext(PlayContext)
 
@@ -14,7 +19,7 @@ const RecentTracks = () => {
         const fetchTracks = async () => {
             try {
                 const response = await fetch(`/api/spotify/activity?limit=50`)
-                const result = await response.json()
+                const result: ActivityResponse = await response.json()
                 if (result.data && result.data.length > 0) {
                     setTracks(result.data)
                 }
@@ -38,15 +43,23 @@ const RecentTracks = () => {
                                 className={styles.album}
                                 onClick={e => {
                                     e.preventDefault()
-                                    context.onPlayTrack(track)
+                                    if (context) {
+                                        context.onPlayTrack(track)
+                                    }
                                 }}>
                                 <Img src={track.image} alt={track.title} />
                                 {track.preview_url && (
                                     <span
                                         className={`${styles.playIcon} ${
-                                            context.playing && context.playing === track.id ? styles.playing : ''
+                                            context && context.playing && context.playing === track.id
+                                                ? styles.playing
+                                                : ''
                                         }`}>
-                                        {context.playing && context.playing === track.id ? <PauseLogo /> : <PlayLogo />}
+                                        {context && context.playing && context.playing === track.id ? (
+                                            <PauseLogo />
+                                        ) : (
+                                            <PlayLogo />
+                                        )}
                                     </span>
                                 )}
                             </a>
@@ -54,7 +67,9 @@ const RecentTracks = () => {
                                 {track.title}
                             </a>
                             <span className={styles.artist}>{track.artist}</span>
-                            <span className={styles.date}>{formatDistanceToNow(parseISO(track.date))} ago</span>
+                            {track.date && (
+                                <span className={styles.date}>{formatDistanceToNow(parseISO(track.date))} ago</span>
+                            )}
                         </li>
                     ))}
                 </ul>

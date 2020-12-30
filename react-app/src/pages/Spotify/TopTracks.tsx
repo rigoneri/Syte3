@@ -4,7 +4,9 @@ import { PlayContext } from './PlayContext'
 import { PlayLogo, PauseLogo } from 'components/Icons'
 import styles from './Spotify.module.css'
 
-const TopTracks = ({ tracks }) => {
+type Props = { tracks: SpotifyTracks[] | null }
+
+const TopTracks = ({ tracks }: Props) => {
     const context = useContext(PlayContext)
     return (
         <div className={styles.topTracks}>
@@ -14,17 +16,23 @@ const TopTracks = ({ tracks }) => {
                     {tracks.map(track => (
                         <li key={track.id}>
                             <a href={track.url} className={styles.album}>
-                                <Img src={track.image} alt={track.title} />
+                                <Img src={track.image} alt={track.name} />
                             </a>
                             {track.preview_url && (
                                 <span
                                     className={`${styles.playIcon} ${
-                                        context.playing && context.playing === track.id ? styles.playing : ''
+                                        context && context.playing && context.playing === track.id ? styles.playing : ''
                                     }`}
                                     onClick={() => {
-                                        context.onPlayTrack(track)
+                                        if (context) {
+                                            context.onPlayTrack(track)
+                                        }
                                     }}>
-                                    {context.playing && context.playing === track.id ? <PauseLogo /> : <PlayLogo />}
+                                    {context && context.playing && context.playing === track.id ? (
+                                        <PauseLogo />
+                                    ) : (
+                                        <PlayLogo />
+                                    )}
                                 </span>
                             )}
                             <a href={track.url} className={styles.name}>

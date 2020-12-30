@@ -3,7 +3,9 @@ import Img from 'react-image'
 import { Logo } from 'components/Icons'
 import styles from './Spotify.module.css'
 
-const TopArtists = ({ artists }) => {
+type Props = { artists: SpotifyArtists[] | null }
+
+const TopArtists = ({ artists }: Props) => {
     return (
         <div className={styles.topArtists}>
             <h3>Top Artists</h3>

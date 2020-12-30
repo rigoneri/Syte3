@@ -4,7 +4,9 @@ import { PlayContext } from './PlayContext'
 import { PlayLogo, PauseLogo } from 'components/Icons'
 import styles from './Spotify.module.css'
 
-export const TimelineItem = ({ item }) => {
+type Props = { item: SpotifyTimelineActivity }
+
+export const TimelineItem = ({ item }: Props) => {
     const context = useContext(PlayContext)
     return (
         <>
@@ -34,15 +36,23 @@ export const TimelineItem = ({ item }) => {
                                 className={styles.album}
                                 onClick={e => {
                                     e.preventDefault()
-                                    context.onPlayTrack(track)
+                                    if (context) {
+                                        context.onPlayTrack(track)
+                                    }
                                 }}>
                                 <Img src={track.image} alt={track.title} />
                                 {track.preview_url && (
                                     <span
                                         className={`${styles.playIcon} ${
-                                            context.playing && context.playing === track.id ? styles.playing : ''
+                                            context && context.playing && context.playing === track.id
+                                                ? styles.playing
+                                                : ''
                                         }`}>
-                                        {context.playing && context.playing === track.id ? <PauseLogo /> : <PlayLogo />}
+                                        {context && context.playing && context.playing === track.id ? (
+                                            <PauseLogo />
+                                        ) : (
+                                            <PlayLogo />
+                                        )}
                                     </span>
                                 )}
                             </a>

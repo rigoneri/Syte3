@@ -3,15 +3,20 @@ import TopArtists from './TopArtists'
 import TopTracks from './TopTracks'
 import styles from './Spotify.module.css'
 
+interface TopResponse {
+    artists: SpotifyArtists[]
+    tracks: SpotifyTracks[]
+}
+
 const Top = () => {
-    const [top, setTop] = useState(null)
+    const [top, setTop] = useState<TopResponse | null>(null)
     const [error, setError] = useState(false)
 
     useEffect(() => {
         const fetchTop = async () => {
             try {
                 const response = await fetch(`/api/spotify/top`)
-                const top = await response.json()
+                const top: TopResponse = await response.json()
                 setTop(top)
             } catch (error) {
                 setError(true)

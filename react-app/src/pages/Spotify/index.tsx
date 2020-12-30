@@ -8,7 +8,7 @@ import Top from './Top'
 import styles from './Spotify.module.css'
 
 const Spotify = () => {
-    const [user, error] = useUser('spotify')
+    const [user, error] = useUser<SpotifyUser>('spotify')
 
     if (error) {
         return <Error message="Unable to fetch spotify profile." />
@@ -18,9 +18,11 @@ const Spotify = () => {
         <div className={styles.page}>
             {user && (
                 <div className={styles.profile}>
-                    <a href={user.url} className={styles.picture}>
-                        <Img src={user.picture} alt="Spotify Profile" />
-                    </a>
+                    {user.url && user.picture && (
+                        <a href={user.url} className={styles.picture}>
+                            <Img src={user.picture} alt="Spotify Profile" />
+                        </a>
+                    )}
                     <h2>{user.name}</h2>
                 </div>
             )}

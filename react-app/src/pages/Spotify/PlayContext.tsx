@@ -1,9 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react'
 
-export const PlayContext = React.createContext()
+interface PlayContextInterface {
+    playing: string | null
+    onPlayTrack: (track: SpotifyActivity | SpotifyTracks) => void
+}
 
-export const PlayProvider = ({ children }) => {
-    const [playing, setPlaying] = useState(null)
+export const PlayContext = React.createContext<PlayContextInterface | undefined>(undefined)
+
+interface PlayProviderInterface {
+    children: React.ReactNode
+}
+
+export const PlayProvider = ({ children }: PlayProviderInterface) => {
+    const [playing, setPlaying] = useState<string | null>(null)
     let audio = useRef(new Audio())
 
     useEffect(() => {
@@ -19,13 +28,13 @@ export const PlayProvider = ({ children }) => {
         }
     }, [])
 
-    const playTrack = track => {
+    const playTrack = (track: SpotifyActivity | SpotifyTracks) => {
         const playTrack = playing !== track.id ? track.id : null
         setPlaying(playTrack)
         if (!audio.current.paused) {
             audio.current.pause()
         }
-        if (playTrack) {
+        if (playTrack && track.preview_url) {
             audio.current.setAttribute('src', track.preview_url)
             audio.current.play()
         }
