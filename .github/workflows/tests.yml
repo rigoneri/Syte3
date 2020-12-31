@@ -1,0 +1,32 @@
+name: Runs Tests
+on:
+    push:
+        paths:
+            - 'react-app/**'
+            - '.github/workflows/tests.yml'
+        branches: [ master ]
+    pull_request:
+        branches: [ master ] 
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                node-version: [12.x, 14.x]
+
+        steps:
+            - name: Checking out code
+              uses: actions/checkout@v2
+
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v1
+              with:
+                node-version: ${{ matrix.node-version }}
+
+            - name: Running React Tests
+              run: |
+                    cd react-app
+                    npm install
+                    npm run test
+                    npm run build
