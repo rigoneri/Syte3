@@ -1,10 +1,5 @@
 name: Runs Tests
 on:
-    push:
-        paths:
-            - 'react-app/**'
-            - '.github/workflows/tests.yml'
-        branches: [ master ]
     pull_request:
         branches: [ master ] 
 
