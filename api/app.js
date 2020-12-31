@@ -37,7 +37,12 @@ app.use((req, res, next) => {
 app.use(require('./endpoints'))
 
 // Everything else should take to react app
-app.use(express.static(path.join(__dirname, '/dist')))
+app.use(
+    express.static(path.join(__dirname, '/dist'), {
+        maxAge: '1d',
+        lastModified: true,
+    })
+)
 app.get('*', (_req, res) => {
     res.sendFile(__dirname + '/dist/index.html')
 })
