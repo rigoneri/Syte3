@@ -21,6 +21,7 @@ it uses some of the latest technologies today: (Get ready for a bunch of AWS nom
 -   I then decided to use CloudFront (Content Delivery Network) to act as a reverse proxy to ELB & ECS by using the HTTP response cache headers to cache responses in the CDN. This prevents the need to scale the number of containers;
 -   And because it's 2020 I end up using AWS Certificate Manager to create a free SSL certificate and make my website run on HTTPS 😁
 -   The whole deployment is controlled via Github Actions. Every time I push or merge to master it automatically deploys the services to Lambda and does a rolling deployment to ECS (no downtime!);
+-   UPDATE: 01/01/2021 - Ported the react app to TypeScript to see if that's something I wanted to use on a different project. I like it, I found a few edge case bugs where otherwise I wouldn't have known.
 
 I may still not find time to maintain this project, and I'll probably not get to write some documentation on how you can get yours running. But
 at least it's out here, where you can see the code and maybe learn something from it. If you would like to contribute please do so.

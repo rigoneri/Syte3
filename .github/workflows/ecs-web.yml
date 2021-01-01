@@ -24,7 +24,7 @@ jobs:
                   cd react-app
                   echo 'REACT_APP_GOOGLE_MAPS_KEY=${{ secrets.REACT_APP_GOOGLE_MAPS_KEY }}' > .env
                   ls -la | grep .env
-                  npm install
+                  npm ci
                   npm run build
 
             - name: Configuring AWS credentials
