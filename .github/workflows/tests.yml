@@ -22,6 +22,6 @@ jobs:
             - name: Running React Tests
               run: |
                     cd react-app
-                    npm install
+                    npm ci 
                     npm run test
                     npm run build

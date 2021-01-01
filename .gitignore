@@ -5,9 +5,6 @@ node_modules/
 /.pnp
 .pnp.js
 
-#we don't need package-locks for this project
-package-lock.json
-
 # testing
 /react-app/coverage
 

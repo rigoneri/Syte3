@@ -8,6 +8,7 @@ const { getActivity, getActivityByRange } = require('./activity')
 router.param('service', serviceParam)
 
 router.use('/healthcheck', (_req, res, _next) => {
+    res.set('Cache-control', 'no-cache')
     res.send('ok')
 })
 
