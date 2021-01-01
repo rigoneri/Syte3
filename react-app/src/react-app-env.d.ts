@@ -1,0 +1,43 @@
+/// <reference types="react-scripts" />
+
+type GitIcon =
+    | 'git-branch'
+    | 'git-stars'
+    | 'star'
+    | 'git-commit'
+    | 'git-merge'
+    | 'git-pull'
+    | 'git-repo'
+    | 'git-issue-closed'
+    | 'git-issue'
+    | 'git-issue-reopened'
+    | 'git-tag'
+    | 'git-comment'
+
+type SyteService =
+    | 'twitter'
+    | 'dribbble'
+    | 'instagram'
+    | 'github'
+    | 'spotify'
+    | 'lastfm'
+    | 'youtube'
+    | 'youtube-like'
+    | 'foursquare'
+    | 'tumblr'
+    | 'facebook'
+    | 'flickr'
+    | 'linkedin'
+
+type SyteServiceCap =
+    | 'Twitter'
+    | 'Dribbble'
+    | 'Instagram'
+    | 'Github'
+    | 'Spotify'
+    | 'YouTube'
+    | 'Foursquare'
+    | 'Tumblr'
+    | 'Facebook'
+    | 'Flickr'
+    | 'LinkedIn'
