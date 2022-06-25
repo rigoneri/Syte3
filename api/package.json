@@ -14,7 +14,7 @@
         "date-fns-tz": "^1.0.12",
         "express": "^4.17.1",
         "express-session": "^1.17.1",
-        "node-fetch": "^2.6.0",
+        "node-fetch": "^2.6.7",
         "syte-common": "file:../common"
     }
 }
